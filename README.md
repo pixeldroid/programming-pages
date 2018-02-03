@@ -30,7 +30,7 @@ a site template for publishing code documentation to GitHub pages
 
 ```console
 bundle install
-bundle exec jekyll serve -I -s pages
+bundle exec jekyll serve -I -s docs
 open http://localhost:4000/
 ```
 
