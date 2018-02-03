@@ -1,0 +1,48 @@
+<div class="ui inverted large menu">
+<div class="item" style="padding-top: 1.6em;">
+{% include elements/search.html %}
+</div>
+</div>
+
+<div class="ui fitted inverted divider"></div>
+
+<div id="collection-tabs" class="ui inverted stackable pointing secondary menu">
+{% for collection in site.collections %}
+{% unless collection.label == 'posts' or collection.docs.size == 0 %}
+{% capture tab_class %}{% if forloop.first %}active {% endif %}item{% endcapture %}
+  <a class="{{ tab_class }}" data-tab="{{ collection.label | downcase }}">{{ collection.title }}</a>
+{% endunless %}
+{% endfor %}
+</div>
+
+{% for collection in site.collections %}
+{% unless collection.label == 'posts' or collection.docs.size == 0 %}
+{% capture tab_class %}ui {% if forloop.first %}active {% endif %}inverted tab segment{% endcapture %}
+<div class="{{ tab_class }}" data-tab="{{ collection.label | downcase }}">
+<h4 class="ui header">{{ collection.title }}</h4>
+<div class="ui inverted link list">
+{% for doc in collection.docs %}
+  {% capture link %}{{ doc.title }}{% endcapture %}
+  {% capture url %}{{ doc.url }}#/{{ collection.label | downcase }}/{% endcapture %}
+  {% capture item_class %}{% if doc.title == page.title %}active {% endif %}item{% endcapture %}
+  {% case doc.layout %}
+    {% when 'package' %}
+      {% capture link %}<svg class="icon"><use xlink:href="#folder-outline" /></svg> {% include package_shortener.liquid package=doc.module %}{% endcapture %}
+    {% when 'type' %}
+      {% capture pkg %}{{ doc.module }}.{{ doc.name }}{% endcapture %}
+      {% capture link %}{% include package_shortener.liquid package=pkg %}{% endcapture %}
+    {% when 'page' %}
+      {% assign path_bits = doc.relative_path | split: '.' | first | split: '/' %}
+      {% assign n = path_bits.size | minus: 2 %}
+      {% if n > 3 %}{% assign n = 3 %}{% endif %}
+      {% capture indent %}{% for i in (1..n) %}&ensp;{% endfor %}{% endcapture %}
+      {% capture link %}{{ indent }}{{ doc.title }}{% endcapture %}
+  {% endcase %}
+  <a class="very tight smaller text {{ item_class }}" href="{{ site.baseurl }}{{ url }}">{{ link }}</a>
+{% endfor %}
+</div>
+<p>&nbsp;</p><br/>
+<p>&nbsp;</p>
+</div>
+{% endunless %}
+{% endfor %}

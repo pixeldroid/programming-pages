@@ -1,0 +1,27 @@
+---
+layout: page
+---
+
+<div class="ui basic segment">
+<h1 class="ui dividing header">{{ page.title }}</h1>
+
+{% assign parent = page.path | split: '.' | first %}
+
+<div class="ui bulleted link list">
+{% for item in site.guides %}
+  {% assign child = item.path | split: '.' | first %}
+  {% if parent == child %}{% continue %}{%endif%}
+  {% assign prefix = child | truncate: parent.size, "" %}
+  {% if prefix == parent %}
+  {% capture url %}{{ item.url }}#/{{ item.collection | downcase }}/{% endcapture %}
+  <a class="item" href="{{ site.baseurl }}{{ url }}">{{ item.title }}</a>
+  {% endif %}
+{% endfor %}
+</div>
+</div>
+
+{% if content %}
+<div class="ui basic segment">
+{{ content | markdownify }}
+</div>
+{% endif %}

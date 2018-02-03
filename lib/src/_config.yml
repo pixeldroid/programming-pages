@@ -1,0 +1,23 @@
+---
+code_indent: "  "
+collections:
+  api: { output: true, permalink: "/:collection/:path/", title: "Layouts" }
+  examples: { output: true, permalink: "/:collection/:path/", title: "Examples" }
+  guides: { output: true, permalink: "/:collection/:path/", title: "Guides" }
+highlighter: "rouge"
+permalink: "pretty"
+plugins:
+  - "jemoji"
+project:
+  name: "<project_name>"
+  owner: "<project_owner>"
+  repo: "<project_repo>"
+  version: "<project_version>"
+sass:
+  style: "compressed"
+template_version: "0.5.0"
+
+# TODO: remove references to these _roots
+example_root: "/examples"
+guide_root: "/guides"
+module_root: "/api"

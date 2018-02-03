@@ -1,0 +1,55 @@
+---
+layout: base
+---
+
+{% include styles/svg.html %}
+
+<!-- top menu -->
+<div id="title" class="ui top fixed menu">
+{% include elements/title.html %}
+</div>
+
+<!-- animated sidebar (can be revealed in mobile view) -->
+<div id="sidebar-retractable" class="ui vertical inverted sidebar menu">
+  <!-- #indices is re-parented here for mobile view -->
+</div>
+
+<!-- pushing container (will be pushed right when retractable sidebar opens) -->
+<div class="pusher">
+
+<div class="ui left attached internal rail">
+<!-- static sidebar (visible in non-mobile view) -->
+<div id="sidebar-fixed" class="ui vertical inverted menu">
+<div id="indices">
+{% include elements/indices.html %}
+</div>
+</div>
+</div>
+
+<!-- main contents -->
+<div id="page-contents">
+<div class="ui left aligned fluid container">
+<div id="content" class="ui basic segment">
+{{ content }}
+</div>
+
+<!-- footer -->
+<div id="attribution" class="ui basic segment">
+{% include elements/attribution.html %}
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- help modal -->
+<div id="help" class="ui small modal">
+{% include elements/help.html %}
+</div>
+
+<script type="text/javascript">
+{% include scripts/indices.js %}
+{% include scripts/search.js %}
+{% include scripts/page.js %}
+{% include scripts/help.js %}
+</script>

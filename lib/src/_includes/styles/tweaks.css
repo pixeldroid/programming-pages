@@ -1,0 +1,134 @@
+/*
+ * CSS customizations
+ */
+
+/* use flexbox to keep footer stuck to bottom */
+.pusher {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+#page-contents {
+  flex: 1;
+}
+
+/* toggle visibility of menu button / sidebar at 'mobile' width */
+#title .button.item {
+  display: none;
+}
+#sidebar-fixed {
+  overflow-y: auto!important;
+  height: 100%;
+  max-height: 100vh;
+}
+#sidebar-retractable {
+  width: 15rem;
+}
+.pusher #page-contents {
+  margin-left: 15rem; /* position page to left of sidebar when it's not retractable */
+}
+@media only screen and (max-width: 767px) {
+  #title .button.item {
+    display: flex;
+  }
+  .pusher #sidebar-fixed {
+    display: none;
+  }
+  .pusher #page-contents {
+    margin-left: 0;
+  }
+}
+
+/* adjust anchor positions so in-page links appear below fixed top menu */
+span.anchor {
+  display: block;
+  content: " ";
+  margin-top: -3.5em;
+  height: 3.5em;
+  visibility: hidden;
+}
+
+/* additions to semantic-ui */
+ #sidebar-retractable.ui.push.sidebar {
+  z-index: 100; /* underneath top fixed menu */
+}
+#sidebar-retractable.ui.menu {
+  top: 48px; /* below top fixed menu */
+}
+#sidebar-fixed.ui.menu {
+  position: fixed;
+  top: 48px; /* below top fixed menu */
+  left: auto;
+}
+.ui.vertical.text.menu .tight.item {
+  margin: 0;
+  padding: .5em;
+}
+.ui.vertical.text.menu .very.tight.item {
+  margin: 0;
+  padding: .125em;
+}
+.ui.tight.header {
+  margin-bottom: .5em;
+}
+.ui.very.tight.header {
+  margin-bottom: .25em;
+}
+.ui.tight.segment {
+  padding: .5em;
+}
+.ui.tight.label, .ui.tight.button {
+  padding: .25em;
+}
+.ui.message {
+  max-width: 45rem;
+}
+
+/* custom styling */
+blockquote {
+  background: #f9f9f9;
+  border-left: .5em solid #4183c4;
+  margin: 1.5em .5em;
+  padding: .5em .5em;
+}
+blockquote p {
+  display: inline;
+}
+code, kbd, pre, samp {
+  font-family: Consolas,'Lucida Console','Andale Mono',monospace;
+}
+li code, p code, td code {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #d87b00;
+    background-color: #f5f4e8;
+    border-radius: 4px;
+}
+pre.highlight {
+  line-height: 1.18em;
+}
+#page-contents {
+  margin-top:3.40em; /* position page under top menu */
+}
+.larger.text {
+  font-size: 150%;
+}
+.larger.text li, p.larger.text {
+  line-height: 130%;
+  max-width: 50rem;
+}
+.smaller.text {
+  font-size: 80%;
+}
+.smaller.text li, p.smaller.text {
+  line-height: 90%;
+}
+.normal.text {
+  font-weight: normal;
+}
+.ui.tab.segment .link.list .item>.icon {
+  float: right;
+}
+.ui.list .item>.icon {
+  float: left;
+}
