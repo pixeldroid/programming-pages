@@ -11,6 +11,7 @@ The programming pages site template provides the css, javascript, and [Jekyll][g
 This guide describes the folder structure, layouts, and include files used by the site template.
 {:.larger.text}
 
+You don't need to understand these files in order to successfully [author content][authoring-documentation]. This documentation may be useful for those who wish to modify (or [correct][reporting-issues]) how the template works.
 
 - TOC
 {::options toc_levels="2,3" /}
@@ -32,7 +33,7 @@ The programming pages template comprises the following main pieces, discussed in
     ├─scripts/          / javascript aggregation into single file
     └─styles/           / css aggregation into single file
 
-User authored content should provide a homepage and some combination of API documentation, examples, and/or guides:
+User authored content should include a homepage and some combination of API documentation, examples, and/or guides:
 
     ├─index.md          / user provided homepage
     ├─_api/             / (optional) user provided api reference
@@ -86,7 +87,9 @@ See the [Authoring Documentation][authoring-documentation] guide to learn more a
 
 ## Template content
 
-The programming pages template is a layered system of Jekyll layouts and included modules. The foundational layers are diagrammed below, illustrating what each layer builds upon, defines, and includes:
+The programming pages template is a layered system of Jekyll layouts and included modules.
+
+The foundational layers are diagrammed below, illustrating what each layer builds upon, defines, and includes:
 
 [![layouts](template-structure.png "diagram of the template structure (draw.io)")](template-structure.png)
 {:.ui.fluid.image}
@@ -109,7 +112,7 @@ Global scripts like the [jQuery][jquery] and [Semantic UI][semantic-ui] librarie
 
 ### Styles
 
-Programming pages uses the [Semantic UI][semantic-ui] framework for styling and navigation. The components used are stored under `_includes/styles/semantic-ui`, are aggregated by `styles/site.css`, and are included by the [base][layout-base] layout.
+Programming pages uses portions of the [Semantic UI][semantic-ui] framework for styling and navigation. The components used are stored under `_includes/styles/semantic-ui`, are aggregated by `styles/site.css`, and are included by the [base][layout-base] layout.
 
 Also under `_includes/styles/` are the [svg icon][svg-icons] definitions and css customizations unique to the programming pages template.
 
@@ -133,4 +136,5 @@ Also under `_includes/styles/` are the [svg icon][svg-icons] definitions and css
 [layout-compress]: /api/compress/#/api/ "compress layout"
 [layout-page]: /api/page/#/api/ "page layout"
 [semantic-ui]: https://semantic-ui.com/ "Semantic UI css and javascript framework"
+[reporting-issues]: /guides/Reporting-Issues-and-Contributing/#/guides/ "Reporting issues and contributing"
 [svg-icons]: /examples/sampler/#icons "SVG icons provided by the programming pages template"

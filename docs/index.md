@@ -8,7 +8,7 @@ title: Home
 **programming pages** is a site template for publishing documentation of code on [GitHub Pages][gh-pages]. This site is an example of the template in use.
 {:.larger.text}
 
-With this template installed in your project, you can author documentation in [Markdown][markdown-sampler] files, and rely on the template to index them for search and render them in style.
+With this template installed in your project, you can author documentation in [Markdown][markdown-sampler] files, and rely on the template to index them for browsing and search and render them in style.
 
 Learn more about the template in the following guides:
 
