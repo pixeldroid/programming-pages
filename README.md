@@ -28,10 +28,25 @@ a site template for publishing code documentation to GitHub pages
 
 ## building
 
+### building the static site locally
+
+> first: <br>
+> 1. [install jekyll][jekyll-install] and the [github-pages gem][ghpages-install]: `bundle install`
+
 ```console
-bundle install
+rake build:docs
 bundle exec jekyll serve -I -s docs
 open http://localhost:4000/
+```
+
+### generating the semantic ui files
+
+> first: <br>
+> 1. ensure you can build semantic ui (requires nodejs, npm, gulp)
+> 1. checkout the programming-pages branch of the pixeldroid fork of semantic ui
+
+```console
+rake build:semantic['/path/to/semantic']
 ```
 
 
@@ -41,8 +56,10 @@ open http://localhost:4000/
 
 
 
+[author-documentation]: https://pixeldroid.github.io/programming-pages/guides/Authoring-Documentation/#/guides/ "Authoring documentation using the programming pages site template"
 [ghpages-howto]: https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/ "How to Configure a publishing source for GitHub Pages"
+[ghpages-install]: https://github.com/github/pages-gem "GitHub Pages Ruby Gem"
+[jekyll-install]: https://jekyllrb.com/docs/installation/ "How to install Jekyll"
 [pull-requests]: https://github.com/pixeldroid/programming-pages/pulls "Pull requests for the Programming Pages template project"
 [push-to-github]: https://help.github.com/articles/pushing-to-a-remote/ "Pushing to a remote"
 [releases]: https://github.com/pixeldroid/programming-pages/releases "Packaged releases of the Programming Pages template"
-[author-documentation]: https://pixeldroid.github.io/programming-pages/guides/Authoring-Documentation/#/guides/ "Authoring documentation using the programming pages site template"

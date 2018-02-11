@@ -1,0 +1,51 @@
+/********************************************
+     User Global Variables
+*********************************************/
+
+/*-------------------
+       Fonts
+--------------------*/
+
+@importGoogleFonts : true;
+@googleProtocol    : 'https://';
+@googleFontWeights : '400,700,400italic,700italic';
+@googleSubset      : 'latin';
+
+@headerFont        : 'Montserrat Regular', sans-serif;
+@pageFont          : 'Raleway', sans-serif;
+@googleFontRequest : 'Montserrat|Raleway:400,800&subset=@{googleSubset}';
+
+/*-------------------
+      Base Sizes
+--------------------*/
+
+/* This is the single variable that controls all font sizes */
+@baseFontPixelSize : 16px;
+
+@emSize   : @baseFontPixelSize;
+@fontSize : @baseFontPixelSize;
+
+/*-------------------
+        Sizes
+--------------------*/
+
+/*
+  Sizes are expressed in ratios to remain constant despite changes in EM
+*/
+
+@miniSize        : 0.625; /* (10 / 16) */
+@tinySize        : 0.750; /* (12 / 16) */
+@smallSize       : 0.875; /* (14 / 16) */
+@mediumSize      : 1.000; /* (16 / 16) */
+@largeSize       : 1.135; /* (18 / 16) */
+@bigSize         : 1.250; /* (20 / 16) */
+@hugeSize        : 1.500; /* (24 / 16) */
+@massiveSize     : 2.000; /* (32 / 16) */
+
+/*-------------------
+    Emotive Colors
+--------------------*/
+
+/* Warning */
+@warningBorderColor     : #D6B46E;
+@warningTextColor       : #D67E08;

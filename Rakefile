@@ -1,14 +1,47 @@
 require 'fileutils'
+require 'json'
 require 'yaml'
 
 @template_config = nil
 @user_config = nil
 
 TEMPLATE = 'programming-pages'
+JEKYLL_CMD = 'bundle exec jekyll serve -I -s docs'
+
 EXIT_OK = 0
 
+def lib_dir
+  File.join('.', 'lib')
+end
+
+def ghpages_dir
+  File.join('.', 'docs')
+end
+
+def doc_dir
+  File.join(lib_dir, 'doc')
+end
+
+def src_dir
+  File.join(lib_dir, 'src')
+end
+
+def semantic_build_dir
+  File.join(lib_dir, 'semantic-build')
+end
+
+def semantic_attribution(version)
+  [
+    '/*!',
+    "* Semantic UI #{version}",
+    '* http://github.com/semantic-org/semantic-ui/',
+    '* http://opensource.org/licenses/MIT',
+    "*/\n",
+  ].join("\n")
+end
+
 def template_config_file
-  File.join(lib_dir, '_config.yml')
+  File.join(src_dir, '_config.yml')
 end
 
 def template_config
@@ -29,18 +62,6 @@ end
 
 def merged_config
   template_config.merge(user_config)
-end
-
-def doc_dir
-  File.join('.', 'lib', 'doc')
-end
-
-def lib_dir
-  File.join('.', 'lib', 'src')
-end
-
-def ghpages_dir
-  File.join('.', 'docs')
 end
 
 def lib_version
@@ -66,6 +87,20 @@ end
 
 def try(cmd, failure_message)
   fail(failure_message) if (exec_with_echo(cmd) != EXIT_OK)
+end
+
+def which(cmd)
+  # from https://stackoverflow.com/a/5471032
+  exts = ENV['PATHEXT'] ? ENV['PATHEXT'].split(';') : ['']
+
+  ENV['PATH'].split(File::PATH_SEPARATOR).each do |path|
+    exts.each do |ext|
+      exe = File.join(path, "#{cmd}#{ext}")
+      return exe if File.executable?(exe) && !File.directory?(exe)
+    end
+  end
+
+  return nil
 end
 
 def windows?
@@ -95,40 +130,96 @@ task :list_targets do |t, args|
   system('rake -T')
 end
 
-desc [
-  "builds the documentation site for #{TEMPLATE}, under #{ghpages_dir}",
-].join("\n")
-task :build do |t, args|
-  target_dir = ghpages_dir
+namespace :docs do
 
-  if (Dir.exists?(target_dir))
-    puts "[#{t.name}] removing existing #{target_dir}..."
-    FileUtils.rm_r(target_dir)
+  desc [
+    "builds the GitHub pages compatible doc site for #{TEMPLATE}, under #{ghpages_dir}",
+    "if jekyll is installed, you can preview the doc site locally:",
+    "  $ #{JEKYLL_CMD}",
+  ].join("\n")
+  task :build do |t, args|
+    target_dir = ghpages_dir
+
+    if (Dir.exists?(target_dir))
+      puts "[#{t.name}] removing existing #{target_dir}..."
+      FileUtils.rm_r(target_dir)
+    end
+    puts "[#{t.name}] creating and populating #{target_dir}..."
+
+    FileUtils.cp_r(File.join(src_dir, '/.'), target_dir)
+    FileUtils.cp_r(File.join(doc_dir, '/.'), target_dir)
+    File.open(merged_config_file, 'w') { |f| f.write(merged_config.to_yaml) }
+
+    puts "[#{t.name}] task completed, find github pages ready site in #{target_dir}/"
+    puts "[#{t.name}] preview locally: #{JEKYLL_CMD}" if (which('jekyll'))
   end
-  puts "[#{t.name}] creating and populating #{target_dir}..."
 
-  FileUtils.cp_r(File.join(lib_dir, '/.'), target_dir)
-  FileUtils.cp_r(File.join(doc_dir, '/.'), target_dir)
-  File.open(merged_config_file, 'w') { |f| f.write(merged_config.to_yaml) }
-
-  puts "[#{t.name}] task completed, find github pages ready site in #{target_dir}/"
 end
 
-desc [
-  "packages #{TEMPLATE} for release",
-].join("\n")
-task :package do |t, args|
-  template_release = "#{TEMPLATE}_v#{lib_version}.zip"
-  source_dir = lib_dir
-  release_dir = '.'
-  released_template = File.join(release_dir, template_release)
+namespace :lib do
 
-  fail('zip archiving not yet supported on windows') if windows?
-  zip_exclusions = exclusions.map { |e| "--exclude \"#{e}\"" }.join(' ')
-  cmd = "zip --quiet --recurse-paths #{released_template} #{source_dir} #{zip_exclusions}"
+  desc [
+    "packages #{TEMPLATE} for release",
+  ].join("\n")
+  task :package do |t, args|
+    template_release = "#{TEMPLATE}_v#{lib_version}.zip"
+    source_dir = src_dir
+    release_dir = '.'
+    released_template = File.join(release_dir, template_release)
 
-  FileUtils.rm(released_template) if (File.exists?(released_template))
-  try(cmd, "unable to create #{template_release}")
+    fail('zip archiving not yet supported on windows') if windows?
+    zip_exclusions = exclusions.map { |e| "--exclude \"#{e}\"" }.join(' ')
+    cmd = "zip --quiet --recurse-paths #{released_template} #{source_dir} #{zip_exclusions}"
 
-  puts "[#{t.name}] task completed, find #{template_release} in #{release_dir}/"
+    FileUtils.rm(released_template) if (File.exists?(released_template))
+    try(cmd, "unable to create #{template_release}")
+
+    puts "[#{t.name}] task completed, find #{template_release} in #{release_dir}/"
+  end
+
+  desc [
+    "updates semantic ui files used by the template",
+    " expects local path to a checkout of the Semantic UI repo",
+    " Semantic UI is on GitHub: https://github.com/Semantic-Org/Semantic-UI",
+    "this task will copy the following files into the project to customize build output:",
+    " semantic.json - limits the components built",
+    " src/site/globals/site.variables - customizes global styles",
+  ].join("\n")
+  task :semantic, [:dir] do |t, args|
+    args.with_defaults(:dir => nil)
+    fail("cannot find semantic ui project at #{args.dir}") unless Dir.exists?(args.dir)
+
+    puts "[#{t.name}] copying custom build files to #{args.dir}..."
+    FileUtils.cp_r(File.join(semantic_build_dir, '.'), args.dir)
+
+    puts "[#{t.name}] running semantic build..."
+    cmd = 'gulp clean && gulp build'
+    build_success = false
+    Dir.chdir(args.dir) do
+      build_success = (system(cmd) == true)
+    end
+    fail('semantic build failed') unless build_success
+
+    puts "[#{t.name}] copying generated files from semantic dist_dir..."
+    components_dir = File.join(args.dir, 'dist', 'components')
+    scripts_dir = File.join(src_dir, '_includes', 'scripts', 'semantic-ui')
+    styles_dir = File.join(src_dir, '_includes', 'styles', 'semantic-ui')
+
+    puts "[#{t.name}]  updating #{scripts_dir}"
+    FileUtils.rm_rf(File.join(scripts_dir, '.'))
+    FileUtils.cp(Dir.glob(File.join(components_dir, '*.min.js')), scripts_dir)
+
+    puts "[#{t.name}]  updating #{styles_dir}"
+    FileUtils.rm_rf(File.join(styles_dir, '.'))
+    FileUtils.cp(Dir.glob(File.join(components_dir, '*.min.css')), styles_dir)
+
+    sui_p = JSON.parse(File.read(File.join(args.dir, 'package.json')))
+    sui_v = sui_p['version']
+    puts "[#{t.name}] updating version in semantic license attributions to #{sui_v}..."
+    File.open(File.join(scripts_dir, '_version.js'), 'w') { |f| f.write(semantic_attribution(sui_v)) }
+    File.open(File.join(styles_dir, '_version.css'), 'w') { |f| f.write(semantic_attribution(sui_v)) }
+
+    puts "[#{t.name}] task completed, semantic-ui files updated"
+  end
+
 end
