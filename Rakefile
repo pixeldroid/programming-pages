@@ -46,7 +46,7 @@ def template_config_file
 end
 
 def template_config
-  @template_config || (@template_config = YAML.load(File.read(template_config_file)))
+  @template_config || (@template_config = read_yaml(template_config_file))
 end
 
 def user_config_file
@@ -54,7 +54,7 @@ def user_config_file
 end
 
 def user_config
-  @user_config || (@user_config = YAML.load(File.read(user_config_file)))
+  @user_config || (@user_config = read_yaml(user_config_file))
 end
 
 def merged_config_file
@@ -69,10 +69,25 @@ def lib_version
   template_config['template_version']
 end
 
+def update_lib_version(new_value)
+  config = template_config
+  config['template_version'] = new_value
+  write_yaml(template_config_file, config)
+end
+
 def exclusions
   [
     '*.DS_Store',
   ]
+end
+
+
+def read_yaml(file)
+  YAML.load(File.read(file))
+end
+
+def write_yaml(file, config)
+  IO.write(file, config.to_yaml)
 end
 
 def exec_with_echo(cmd)
@@ -129,6 +144,13 @@ task :list_targets do |t, args|
   b = "running on Ruby #{RUBY_VERSION}"
   puts "#{a} #{b}"
   system('rake -T')
+end
+
+desc [
+  "reports template version",
+].join("\n")
+task :version do |t, args|
+  puts "#{TEMPLATE} v#{lib_version}"
 end
 
 namespace :docs do
@@ -228,6 +250,18 @@ namespace :lib do
     File.open(File.join(styles_dir, '_version.css'), 'w') { |f| f.write(semantic_attribution(sui_v)) }
 
     puts "[#{t.name}] task completed, semantic-ui files updated"
+  end
+
+  desc [
+    "sets the template version number into #{template_config_file}",
+  ].join("\n")
+  task :version, [:v] do |t, args|
+    args.with_defaults(:v => '0.0.0')
+    lib_version = args.v
+
+    update_lib_version(lib_version)
+
+    puts "[#{t.name}] task completed, lib version updated to #{lib_version}"
   end
 
 end
