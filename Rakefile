@@ -1,5 +1,6 @@
 require 'fileutils'
 require 'json'
+require 'tmpdir'
 require 'yaml'
 
 @template_config = nil
@@ -159,20 +160,27 @@ end
 namespace :lib do
 
   desc [
-    "packages #{TEMPLATE} for release",
+    "packages #{TEMPLATE} files for release as a zip archive",
   ].join("\n")
   task :package do |t, args|
     template_release = "#{TEMPLATE}_v#{lib_version}.zip"
-    source_dir = src_dir
+    source_dir = File.absolute_path(src_dir)
     release_dir = '.'
-    released_template = File.join(release_dir, template_release)
+    released_template = File.absolute_path(File.join(release_dir, template_release))
 
     fail('zip archiving not yet supported on windows') if windows?
-    zip_exclusions = exclusions.map { |e| "--exclude \"#{e}\"" }.join(' ')
-    cmd = "zip --quiet --recurse-paths #{released_template} #{source_dir} #{zip_exclusions}"
 
     FileUtils.rm(released_template) if (File.exists?(released_template))
-    try(cmd, "unable to create #{template_release}")
+
+    Dir.mktmpdir do |tmp_dir|
+      Dir.chdir(tmp_dir) do
+        Dir.mkdir(TEMPLATE)
+        FileUtils.cp_r(File.join(source_dir, '.'), File.join(tmp_dir, TEMPLATE))
+        zip_exclusions = exclusions.map { |e| "--exclude \"#{e}\"" }.join(' ')
+        cmd = "zip --quiet --recurse-paths #{released_template} #{TEMPLATE} #{zip_exclusions}"
+        try(cmd, "unable to create #{template_release}")
+      end
+    end
 
     puts "[#{t.name}] task completed, find #{template_release} in #{release_dir}/"
   end
