@@ -112,7 +112,7 @@ Global scripts like the [jQuery][jquery] and [Semantic UI][semantic-ui] librarie
 
 ### Styles
 
-Programming pages uses the [Semantic UI][semantic-ui] framework for styling and navigation. The components used are stored under `_includes/styles/semantic-ui`, are aggregated by `styles/site.css`, and are included by the [base][layout-base] layout.
+Programming pages uses portions of the [Semantic UI][semantic-ui] framework for styling and navigation. The components used are stored under `_includes/styles/semantic-ui`, are aggregated by `styles/site.css`, and are included by the [base][layout-base] layout.
 
 Also under `_includes/styles/` are the [svg icon][svg-icons] definitions and css customizations unique to the programming pages template.
 

@@ -12,7 +12,7 @@ title: Site template features
 - mobile-ready design browsable on multiple devices
 - simple authoring syntax using [Markdown](/examples/sampler/#/examples/) and [Liquid][liquid]
 - styling for readability, leveraging [Semantic UI][semantic-ui]
-- clean site generation that scores well on [PageSpeed Insights][pagespeed]
+- clean site generation that scores well on [Lighthouse][lighthouse] audits
 - compatibility with [GitHub Pages][ghpages] for free hosting and simple publishing
 {:.larger.text}
 
@@ -93,5 +93,5 @@ Please see the individual layout pages for more detail:
 [ghpages]: https://pages.github.com/ "Websites for you and your projects. Hosted directly from your GitHub repository"
 [homepage]: /guides/Authoring-Documentation/#homepage "User-authored homepage"
 [liquid]: https://shopify.github.io/liquid/ "Safe, customer-facing template language for flexible web apps"
-[pagespeed]: https://developers.google.com/speed/pagespeed/insights/ "Make your web pages fast on all devices"
+[lighthouse]: https://developers.google.com/web/tools/lighthouse/ "Lighthouse is an open-source, automated tool for improving the quality of web pages"
 [semantic-ui]: https://semantic-ui.com/ "Semantic is a development framework that helps create beautiful, responsive layouts using human-friendly HTML"
