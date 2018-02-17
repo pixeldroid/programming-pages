@@ -179,6 +179,12 @@ namespace :docs do
 
 end
 
+desc [
+  "shorthand for 'rake docs:build'",
+].join("\n")
+task :docs => ['docs:build']
+
+
 namespace :lib do
 
   desc [
