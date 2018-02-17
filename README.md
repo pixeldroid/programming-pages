@@ -42,8 +42,8 @@ open http://localhost:4000/
 ### generating the semantic ui files
 
 > first: <br>
-> 1. ensure you can build semantic ui (requires nodejs, npm, gulp)
-> 1. checkout the programming-pages branch of the pixeldroid fork of semantic ui
+> 1. ensure you can [build semantic ui][semantic-build] (requires nodejs, npm, gulp): `gulp build`
+> 1. check out the [programming-pages branch of the pixeldroid fork][semantic-custom] of semantic ui
 
 ```console
 rake build:semantic['/path/to/semantic']
@@ -63,3 +63,5 @@ rake build:semantic['/path/to/semantic']
 [pull-requests]: https://github.com/pixeldroid/programming-pages/pulls "Pull requests for the Programming Pages template project"
 [push-to-github]: https://help.github.com/articles/pushing-to-a-remote/ "Pushing to a remote"
 [releases]: https://github.com/pixeldroid/programming-pages/releases "Packaged releases of the Programming Pages template"
+[semantic-build]: https://semantic-ui.com/introduction/build-tools.html "Semantic UI build tools"
+[semantic-custom]: https://github.com/pixeldroid/Semantic-UI/tree/programming-pages "programming-pages branch of Semantic UI"
