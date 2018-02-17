@@ -50,3 +50,9 @@
 /* Warning */
 @warningBorderColor     : #D6B46E;
 @warningTextColor       : #D67E08;
+
+/*-------------------
+       Links
+--------------------*/
+
+@linkColor           : #3A76BB; /* darkened to pass WCAG 2 AA contrast ratio thresholds for large and small text */
