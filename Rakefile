@@ -156,7 +156,7 @@ end
 namespace :docs do
 
   desc [
-    "builds the GitHub pages compatible doc site for #{TEMPLATE}, under #{ghpages_dir}",
+    "builds the GitHub pages documentation site for #{TEMPLATE}, under #{ghpages_dir}",
     "if jekyll is installed, you can preview the doc site locally:",
     "  $ #{JEKYLL_CMD}",
   ].join("\n")
@@ -208,7 +208,7 @@ namespace :lib do
   end
 
   desc [
-    "updates semantic ui files used by the template",
+    "updates and rebuilds semantic ui files used by the template",
     " expects local path to a checkout of the Semantic UI repo",
     " Semantic UI is on GitHub: https://github.com/Semantic-Org/Semantic-UI",
     "this task will copy the following files into the project to customize build output:",
