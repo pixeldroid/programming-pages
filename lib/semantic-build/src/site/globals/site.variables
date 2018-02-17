@@ -8,12 +8,10 @@
 
 @importGoogleFonts : true;
 @googleProtocol    : 'https://';
-@googleFontWeights : '400,700,400italic,700italic';
-@googleSubset      : 'latin';
 
-@headerFont        : 'Montserrat Regular', sans-serif;
-@pageFont          : 'Raleway', sans-serif;
-@googleFontRequest : 'Montserrat|Raleway:400,800&subset=@{googleSubset}';
+@pageFont          : 'Montserrat', sans-serif;;
+@headerFont        : 'Raleway', sans-serif;
+@googleFontRequest : 'Montserrat|Raleway:700';
 
 /*-------------------
       Base Sizes
