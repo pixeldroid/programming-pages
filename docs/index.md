@@ -12,13 +12,13 @@ With this template installed in your project, you can author documentation in [M
 
 Learn more about the template in the following guides:
 
-- [Template Features](/guides/Template-Features/#/guides/)
-- [Installing the Site Template](/guides/Installing-the-site-template/#/guides/)
-- [Authoring Documentation](/guides/Authoring-Documentation/#/guides/)
-- [Publishing to GitHub Pages](/guides/Publishing-to-GitHub-Pages/#/guides/)
-- [Reporting Issues and Contributing](/guides/Reporting-Issues-and-Contributing/#/guides/)
+- [Template Features](/{{ site.baseurl }}guides/Template-Features/#/guides/)
+- [Installing the Site Template](/{{ site.baseurl }}guides/Installing-the-site-template/#/guides/)
+- [Authoring Documentation](/{{ site.baseurl }}guides/Authoring-Documentation/#/guides/)
+- [Publishing to GitHub Pages](/{{ site.baseurl }}guides/Publishing-to-GitHub-Pages/#/guides/)
+- [Reporting Issues and Contributing](/{{ site.baseurl }}guides/Reporting-Issues-and-Contributing/#/guides/)
 
 
 
 [gh-pages]: https://pages.github.com/ "Websites for you and your projects"
-[markdown-sampler]: /examples/sampler/#/examples/ "Samples of the markdown supported by lsdoc and GitHub Pages"
+[markdown-sampler]: /{{ site.baseurl }}examples/sampler/#/examples/ "Samples of the markdown supported by lsdoc and GitHub Pages"
