@@ -6,12 +6,15 @@
        Fonts
 --------------------*/
 
+@pageFontName      : Montserrat;
+@headerFontName    : Raleway;
+
+@pageFont          : '@{pageFontName}', sans-serif;
+@headerFont        : '@{headerFontName}', sans-serif;
+
 @importGoogleFonts : true;
 @googleProtocol    : 'https://';
-
-@pageFont          : 'Montserrat', sans-serif;;
-@headerFont        : 'Raleway', sans-serif;
-@googleFontRequest : 'Montserrat|Raleway:700';
+@googleFontRequest : '@{pageFontName}|@{headerFontName}:700';
 
 /*-------------------
       Base Sizes
