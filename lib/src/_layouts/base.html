@@ -6,11 +6,15 @@ layout: compress
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ page.title }}</title>
-  <link href="{{ site.baseurl }}/styles/site.css" type="text/css" rel="stylesheet" media="screen"/>
-  <script src="{{ site.baseurl }}/scripts/site.js" type="text/javascript" charset="utf-8"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ page.title }}</title>
+<link rel="preload" as="style" href="{{ site.baseurl }}/styles/site.css" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ site.baseurl }}/styles/site.css"></noscript>
+<script>
+{% include scripts/loadcss/loadcss-2.0.1.min.js %}
+</script>
+<script src="{{ site.baseurl }}/scripts/site.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
 <body>
