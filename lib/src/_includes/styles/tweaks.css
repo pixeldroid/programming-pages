@@ -12,8 +12,8 @@
   flex: 1;
 }
 
-/* toggle visibility of menu button / sidebar at 'mobile' width */
-#title .button.item {
+/* toggle visibility of menu toggle / sidebar at 'mobile' width */
+#title .toggle.item {
   display: none;
 }
 #sidebar-fixed {
@@ -28,7 +28,7 @@
   margin-left: 15rem; /* position page to left of sidebar when it's not retractable */
 }
 @media only screen and (max-width: 767px) {
-  #title .button.item {
+  #title .toggle.item {
     display: flex;
   }
   .pusher #sidebar-fixed {
@@ -80,7 +80,7 @@ span.anchor {
 .ui.tight.segment {
   padding: .5em;
 }
-.ui.tight.label, .ui.tight.button {
+.ui.tight.label {
   padding: .25em;
 }
 .ui.message {
