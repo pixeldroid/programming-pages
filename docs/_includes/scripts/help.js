@@ -1,10 +1,10 @@
 help_modal_init = function() {
-  $('.ui.modal')
-    .modal()
-  ;
+  $('.ui.modal').modal({
+    inverted: true
+  });
 
   // set up shortut key sequence to toggle modal
-  Mousetrap.bind('?', function() { console.log('help requested'); $('#help').modal('toggle'); return false; });
+  Mousetrap.bind('h', function() { $('#help').modal('toggle'); return false; });
 };
 
 $(help_modal_init);

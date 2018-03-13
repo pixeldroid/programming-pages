@@ -1,4 +1,4 @@
-pkg_search_init = function() {
+site_search_init = function() {
   var search_content = [
   {% for collection in site.collections %}
   {% unless collection.label == 'posts' %}
@@ -27,4 +27,4 @@ pkg_search_init = function() {
   Mousetrap.bind('s', function() { $( '#search .prompt' ).focus(); return false; });
 };
 
-$(window).on( 'load', pkg_search_init )
+$(site_search_init);

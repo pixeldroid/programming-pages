@@ -5,7 +5,7 @@ sidebar_init = function() {
     dimPage: false,
     transition: 'push',
   })
-  .sidebar('attach events', '#title .button.item', 'toggle')
+  .sidebar('attach events', '#title .toggle.item', 'toggle')
   ;
 };
 

@@ -2,7 +2,7 @@
 layout: compress
 ---
 
-{% include scripts/jquery/jquery-3.1.1.min.js %}
+{% include scripts/jquery/jquery-3.3.1.custom.min.js %}
 {% include scripts/jquery-address/jquery-address-1.6.semantic-ui.min.js %}
 
 {% include scripts/mousetrap/mousetrap-1.6.1.min.js %}
