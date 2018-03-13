@@ -49,6 +49,45 @@ open http://localhost:4000/
 rake build:semantic['/path/to/semantic']
 ```
 
+### generating the jQuery file
+
+> first <br>
+> 1. ensure you can [build jQuery][jquery-build] (requires nodejs, grunt): `grunt default`
+
+```console
+grunt custom:-ajax,-wrap
+```
+
+#### jQuery modules
+
+> Smaller custom subsets of the jQuery library can be build by excluding unwanted modules. <br>
+> See https://github.com/jquery/jquery#modules <br>
+> This project excludes the following unused modules to reduce file size:
+
+##### excluded
+- `ajax`
+- `wrap`
+
+##### required
+- `attr`
+- `classes`
+- `core`
+- `css`
+- `data`
+- `deferred` (required for `effects`)
+- `deprecated` (for Semantic UI's use of `bind`)
+- `dimensions`
+- `effects`
+- `events`
+- `filtering`
+- `init`
+- `manipulation`
+- `offsets`
+- `parseHTML`
+- `prop`
+- `ready`
+- `traversing`
+- `val`
 
 ## contributing
 
@@ -60,6 +99,7 @@ rake build:semantic['/path/to/semantic']
 [ghpages-howto]: https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/ "How to Configure a publishing source for GitHub Pages"
 [ghpages-install]: https://github.com/github/pages-gem "GitHub Pages Ruby Gem"
 [jekyll-install]: https://jekyllrb.com/docs/installation/ "How to install Jekyll"
+[jquery-build]: https://github.com/jquery/jquery#how-to-build-your-own-jquery "How to build your own jQuery"
 [pull-requests]: https://github.com/pixeldroid/programming-pages/pulls "Pull requests for the Programming Pages template project"
 [push-to-github]: https://help.github.com/articles/pushing-to-a-remote/ "Pushing to a remote"
 [releases]: https://github.com/pixeldroid/programming-pages/releases "Packaged releases of the Programming Pages template"
