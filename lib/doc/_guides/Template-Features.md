@@ -8,7 +8,7 @@ title: Site template features
 **programming pages** offers the following:
 {:.larger.text}
 
-- searchable content, with keyboard shortcuts (try `?`)
+- searchable content, with keyboard shortcuts (try `h`)
 - mobile-ready design browsable on multiple devices
 - simple authoring syntax using [Markdown](/examples/sampler/#/examples/) and [Liquid][liquid]
 - styling for readability, leveraging [Semantic UI][semantic-ui]
@@ -30,7 +30,7 @@ The site template provides a Home link (&nbsp;<i><svg class="icon"><use xlink:hr
 To search for content, focus the search input, and start typing a term to search for. A results box will populate with best matches. Select one to navigate to the page.
 
 <i><svg class="icon"><use xlink:href="#info-circle" /></svg></i>
-On a desktop, open the help menu with the `?` key to see keyboard shortcuts for toggling navigation tabs and searching.
+On a desktop, open the help menu with the `h` key to see keyboard shortcuts for toggling navigation tabs and searching.
 {:.ui.info.message}
 
 
@@ -55,7 +55,7 @@ At the bottom of every content page is the attribution element, which contains:
 
 ## Help overlay
 
-When a user presses the `?` key, a help overlay appears and shows the shortcut keys available for use.
+When a user presses the `h` key, a help overlay appears and shows the shortcut keys available for use.
 
 
 ## Navigation
