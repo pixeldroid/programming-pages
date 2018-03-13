@@ -70,9 +70,20 @@ def lib_version
 end
 
 def update_lib_version(new_value)
+  # normally, a user would just update their project config,
+  # and the template is versioned separately (by this project)
+  #
+  # but here the project _is_ the template,
+  # and so both should be updated to the same version
+
+  config = user_config
+  config['project']['version'] = new_value
+  write_yaml(user_config_file, config)
+
   config = template_config
   config['template_version'] = new_value
   write_yaml(template_config_file, config)
+
 end
 
 def exclusions
