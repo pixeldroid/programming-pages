@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Authoring documentation
+order: 3
 ---
 
 # {{ page.title }}

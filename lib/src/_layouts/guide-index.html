@@ -8,13 +8,23 @@ layout: page
 {% assign parent = page.path | split: '.' | first %}
 
 <div class="ui bulleted link list">
-{% for item in site.guides %}
-  {% assign child = item.path | split: '.' | first %}
+{% assign doc_list = site.guides %}
+{% assign ordered_docs = '' | split: '' %}
+{% assign unorder_docs = '' | split: '' %}
+{% for doc in doc_list %}
+  {% if doc.order %}{% assign ordered_docs = ordered_docs | push: doc %}
+  {% else %}{% assign unorder_docs = unorder_docs | push: doc %}
+  {% endif %}
+{% endfor %}
+{% assign ordered_docs = ordered_docs | sort: 'order' %}
+{% assign doc_list = ordered_docs | concat: unorder_docs %}
+{% for doc in doc_list %}
+  {% assign child = doc.path | split: '.' | first %}
   {% if parent == child %}{% continue %}{%endif%}
   {% assign prefix = child | truncate: parent.size, "" %}
   {% if prefix == parent %}
-  {% capture url %}{{ item.url }}#/{{ item.collection | downcase }}/{% endcapture %}
-  <a class="item" href="{{ site.baseurl }}{{ url }}">{{ item.title }}</a>
+  {% capture url %}{{ doc.url }}#/{{ doc.collection | downcase }}/{% endcapture %}
+  <a class="item" href="{{ site.baseurl }}{{ doc.url }}">{{ doc.title }}</a>
   {% endif %}
 {% endfor %}
 </div>

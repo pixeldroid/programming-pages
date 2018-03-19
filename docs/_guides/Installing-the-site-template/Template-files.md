@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Site template files
+order: 2.1
 ---
 
 # {{ page.title }}

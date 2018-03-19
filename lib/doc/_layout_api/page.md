@@ -14,4 +14,6 @@ description: |
 
   Also brings the [SVG icons](/examples/sampler/#icons) into scope.
 parent_layout: "base"
+parameters:
+  - { name: "order", type: "string", optional: true, description: "ordinal to be used for sorting. Only applies to guides; all other collections are sorted alphabetical by title." }
 ---

@@ -1,6 +1,7 @@
 ---
 layout: page
-title: Site template features
+title: Template features
+order: 1
 ---
 
 # {{ page.title }}

@@ -1,6 +1,7 @@
 ---
 layout: guide-index
 title: Installing the site template
+order: 2
 ---
 
 The programming pages template is a collection of files designed to be dropped into your project as the basis of its documentation folder.

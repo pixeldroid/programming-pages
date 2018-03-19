@@ -21,7 +21,21 @@
 <div class="{{ tab_class }}" data-tab="{{ collection.label | downcase }}">
 <h4 class="ui header">{{ collection.title }}</h4>
 <div class="ui inverted link list">
-{% for doc in collection.docs %}
+{% assign doc_list = collection.docs %}
+
+{% if collection.label == 'guides' %}
+{% assign ordered_docs = '' | split: '' %}
+{% assign unorder_docs = '' | split: '' %}
+{% for doc in doc_list %}
+{% if doc.order %}{% assign ordered_docs = ordered_docs | push: doc %}
+{% else %}{% assign unorder_docs = unorder_docs | push: doc %}
+{% endif %}
+{% endfor %}
+{% assign ordered_docs = ordered_docs | sort: 'order' %}
+{% assign doc_list = ordered_docs | concat: unorder_docs %}
+{% endif %}
+
+{% for doc in doc_list %}
   {% capture link %}{{ doc.title }}{% endcapture %}
   {% capture url %}{{ doc.url }}#/{{ collection.label | downcase }}/{% endcapture %}
   {% capture item_class %}{% if doc.title == page.title %}active {% endif %}item{% endcapture %}
