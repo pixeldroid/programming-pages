@@ -1,5 +1,5 @@
 /*
- * CSS customizations
+ * CSS customizations for the programming pages template
  */
 
 /* use flexbox to keep footer stuck to bottom */
@@ -8,12 +8,12 @@
   min-height: 100vh;
   flex-direction: column;
 }
-#page-contents {
+#page-container {
   flex: 1;
 }
 
 /* toggle visibility of menu toggle / sidebar at 'mobile' width */
-#title .toggle.item {
+#site-title .toggle.item {
   display: none;
 }
 #sidebar-fixed {
@@ -24,17 +24,17 @@
 #sidebar-retractable {
   width: 15rem;
 }
-.pusher #page-contents {
+.pusher #page-container {
   margin-left: 15rem; /* position page to left of sidebar when it's not retractable */
 }
 @media only screen and (max-width: 767px) {
-  #title .toggle.item {
+  #site-title .toggle.item {
     display: flex;
   }
   .pusher #sidebar-fixed {
     display: none;
   }
-  .pusher #page-contents {
+  .pusher #page-container {
     margin-left: 0;
   }
 }
@@ -110,7 +110,7 @@ li code, p code, td code {
 pre.highlight {
   line-height: 1.18em;
 }
-#page-contents {
+#page-container {
   margin-top:3.40em; /* position page under top menu */
 }
 .larger.text {

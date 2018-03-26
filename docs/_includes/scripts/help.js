@@ -4,7 +4,7 @@ help_modal_init = function() {
   });
 
   // set up shortut key sequence to toggle modal
-  Mousetrap.bind('h', function() { $('#help').modal('toggle'); return false; });
+  Mousetrap.bind('h', function() { $('#site-help').modal('toggle'); return false; });
 };
 
 $(help_modal_init);

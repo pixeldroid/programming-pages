@@ -18,13 +18,13 @@ site_search_init = function() {
   ];
 
   // urls are auto-followed, so no callback needed
-  $('#search').search({
+  $('#site-search').search({
     source: search_content,
     selectFirstResult: true,
   });
 
   // set up shortut key for search input focus
-  Mousetrap.bind('s', function() { $( '#search .prompt' ).focus(); return false; });
+  Mousetrap.bind('s', function() { $( '#site-search .prompt' ).focus(); return false; });
 };
 
 $(site_search_init);

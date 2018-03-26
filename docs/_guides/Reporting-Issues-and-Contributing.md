@@ -8,7 +8,7 @@ title: Reporting Issues and Contributing
 The source for this template is [hosted on GitHub][programming-pages]
 {:.larger.text}
 
-If you'd like to report a bug, please provide steps to reproduce in an [issue][issues]
+If you'd like to report a bug, please provide steps to reproduce in an [issue][issues].
 
 [Pull requests][pull-requests] for improved documentation, bug fixes and useful features are also welcome. :gift_heart:
 

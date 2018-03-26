@@ -5,20 +5,20 @@ sidebar_init = function() {
     dimPage: false,
     transition: 'push',
   })
-  .sidebar('attach events', '#title .toggle.item', 'toggle')
+  .sidebar('attach events', '#site-title .toggle.item', 'toggle')
   ;
 };
 
 $(sidebar_init);
 
 ensure_mobile_view = function() {
-  if (0 == $('#sidebar-retractable').has('#indices').length) {
-    $('#indices').appendTo( $('#sidebar-retractable') );
+  if (0 == $('#sidebar-retractable').has('#collection-indices').length) {
+    $('#collection-indices').appendTo( $('#sidebar-retractable') );
   }
 };
 ensure_desktop_view = function() {
-  if (0 == $('#sidebar-fixed').has('#indices').length) {
-    $('#indices').appendTo( $('#sidebar-fixed') );
+  if (0 == $('#sidebar-fixed').has('#collection-indices').length) {
+    $('#collection-indices').appendTo( $('#sidebar-fixed') );
   }
   if ($('#sidebar-retractable').sidebar('is visible')) {
     $('#sidebar-retractable').sidebar('hide');
