@@ -16,7 +16,7 @@ collections:
 highlighter: rouge
 permalink: pretty
 plugins:
-- jemoji
+  - jemoji
 project:
   name: "<project_name>"
   owner: "<project_owner>"

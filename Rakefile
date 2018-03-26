@@ -146,8 +146,6 @@ def linux?
 end
 
 
-# TODO: version set and retrieve
-
 task :default => [:list_targets]
 
 task :list_targets do |t, args|
