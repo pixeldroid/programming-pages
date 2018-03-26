@@ -5,13 +5,13 @@ layout: base
 {% include styles/svg.html %}
 
 <!-- top menu -->
-<div id="title" class="ui top fixed menu">
+<div id="site-title" class="ui top fixed menu">
 {% include elements/title.html %}
 </div>
 
 <!-- animated sidebar (can be revealed in mobile view) -->
 <div id="sidebar-retractable" class="ui vertical inverted sidebar menu">
-  <!-- #indices is re-parented here for mobile view -->
+  <!-- #collection-indices is re-parented here for mobile view -->
 </div>
 
 <!-- pushing container (will be pushed right when retractable sidebar opens) -->
@@ -20,21 +20,21 @@ layout: base
 <div class="ui left attached internal rail">
 <!-- static sidebar (visible in non-mobile view) -->
 <div id="sidebar-fixed" class="ui vertical inverted menu">
-<div id="indices">
+<div id="collection-indices">
 {% include elements/indices.html %}
 </div>
 </div>
 </div>
 
 <!-- main contents -->
-<div id="page-contents">
+<div id="page-container">
 <div class="ui left aligned fluid container">
-<div id="content" class="ui basic segment">
+<div id="page-content" class="ui basic segment">
 {{ content }}
 </div>
 
 <!-- footer -->
-<div id="attribution" class="ui basic segment">
+<div id="site-attribution" class="ui basic segment">
 {% include elements/attribution.html %}
 </div>
 </div>
@@ -43,7 +43,7 @@ layout: base
 </div>
 
 <!-- help modal -->
-<div id="help" class="ui small modal">
+<div id="site-help" class="ui small modal">
 {% include elements/help.html %}
 </div>
 

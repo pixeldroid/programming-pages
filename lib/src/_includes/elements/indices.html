@@ -41,7 +41,7 @@
   {% capture item_class %}{% if doc.title == page.title %}active {% endif %}item{% endcapture %}
   {% case doc.layout %}
     {% when 'package' %}
-      {% capture link %}<svg class="icon"><use xlink:href="#folder-outline" /></svg> {% include package_shortener.liquid package=doc.module %}{% endcapture %}
+      {% capture link %}<svg class="icon"><use xlink:href="#icon-folder-outline" /></svg> {% include package_shortener.liquid package=doc.module %}{% endcapture %}
     {% when 'type' %}
       {% capture pkg %}{{ doc.module }}.{{ doc.name }}{% endcapture %}
       {% capture link %}{% include package_shortener.liquid package=pkg %}{% endcapture %}
