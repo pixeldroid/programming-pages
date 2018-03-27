@@ -1,11 +1,42 @@
 /*!
- * Pared down svg-centric version of:
- *   # Semantic UI 2.2.9 - Icon
+ * svg-based version of:
+ *   # Semantic UI 2.3.1 - Icon
  *   http://github.com/semantic-org/semantic-ui/
  *
  * Released under the MIT license
  * http://opensource.org/licenses/MIT
  */
+
+/*******************************
+
+Changes from Semantic-UI font-based icons:
+
+1. no icon font, no references to font files or font properties
+2. css is defined for <svg> tags, not <i> tags
+3. no icon symbols are defined in css; all icons are defined in svg.html as symbol definitions
+
+specifically, by commented section:
+
+- Icon : tweaked to remove font references
+- Types : same
+- States : same
+- Variations : same
+- Groups : same
+- Icons : removed (see svg.html for all symbol definitions and ids)
+- Outline Icons : removed (see svg.html for all symbol definitions and ids)
+- Brand Icons : removed (see svg.html for all symbol definitions and ids)
+
+Usage:
+
+   font: <i class="info circle icon"></i>
+   svg : <svg class="icon"><use xlink:href="#icon-info-circle" /></svg>
+
+Why?
+
+- https://blog.github.com/2016-02-22-delivering-octicons-with-svg/
+- https://css-tricks.com/icon-fonts-vs-svg/
+
+*******************************/
 
 
 /*******************************
@@ -19,6 +50,7 @@ svg.icon {
   width: 1.18em;
   height: 1em;
   fill: currentColor;
+  speak: none;
 }
 
 svg.icon:before {
@@ -92,7 +124,7 @@ svg.disabled.icon {
 
 svg.fitted.icon {
   width: auto;
-  margin: 0em;
+  margin: 0em !important;
 }
 
 /*-------------------
@@ -119,13 +151,15 @@ svg.circular.icon {
   border-radius: 500em !important;
   line-height: 1 !important;
   padding: 0.5em 0.5em !important;
-  box-shadow: 0em 0em 0em 0.1em rgba(0, 0, 0, 0.1) inset;
+  -webkit-box-shadow: 0em 0em 0em 0.1em rgba(0, 0, 0, 0.1) inset;
+          box-shadow: 0em 0em 0em 0.1em rgba(0, 0, 0, 0.1) inset;
   width: 2em !important;
   height: 2em !important;
 }
 svg.circular.inverted.icon {
   border: none;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 /*-------------------
@@ -167,12 +201,14 @@ svg.bordered.icon {
   vertical-align: baseline;
   width: 2em;
   height: 2em;
-  padding: 0.5em 0.41em !important;
-  box-shadow: 0em 0em 0em 0.1em rgba(0, 0, 0, 0.1) inset;
+  padding: 0.5em 0em !important;
+  -webkit-box-shadow: 0em 0em 0em 0.1em rgba(0, 0, 0, 0.1) inset;
+          box-shadow: 0em 0em 0em 0.1em rgba(0, 0, 0, 0.1) inset;
 }
 svg.bordered.inverted.icon {
   border: none;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 /*-------------------
@@ -452,6 +488,31 @@ svg.icons .corner.icon {
   font-size: 0.45em;
   text-shadow: -1px -1px 0 #FFFFFF, 1px -1px 0 #FFFFFF, -1px 1px 0 #FFFFFF, 1px 1px 0 #FFFFFF;
 }
+svg.icons .top.right.corner.icon {
+  top: 0;
+  left: auto;
+  right: 0;
+  bottom: auto;
+}
+svg.icons .top.left.corner.icon {
+  top: 0;
+  left: 0;
+  right: auto;
+  bottom: auto;
+}
+svg.icons .bottom.left.corner.icon {
+  top: auto;
+  left: 0;
+  right: auto;
+  bottom: 0;
+}
+svg.icons .bottom.right.corner.icon {
+  top: auto;
+  left: auto;
+  right: 0;
+  bottom: 0;
+}
 svg.icons .inverted.corner.icon {
   text-shadow: -1px -1px 0 #1B1C1D, 1px -1px 0 #1B1C1D, -1px 1px 0 #1B1C1D, 1px 1px 0 #1B1C1D;
 }
+

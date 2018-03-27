@@ -436,25 +436,25 @@ Reference Format: `[reference-id]: url "hover text"`
 
 There is no markdown shortcut for icons, but the following are provided with the template ([svg.html][svg-file]) and can be included via regular html syntax.
 
-Format: `<i><svg class="icon"><use xlink:href="#icon-id" /></svg></i>`
+Format: `<svg class="icon"><use xlink:href="#icon-id" /></svg>`
 
 |:----:|-----------|
-| <i><svg class="icon"><use xlink:href="#bars" /></svg></i> | `#bars` |
-| <i><svg class="icon"><use xlink:href="#cc-by" /></svg></i> | `#cc-by` |
-| <i><svg class="icon"><use xlink:href="#cc-cc" /></svg></i> | `#cc-cc` |
-| <i><svg class="icon"><use xlink:href="#check-circle" /></svg></i> | `#check-circle` |
-| <i><svg class="icon"><use xlink:href="#chevron-right" /></svg></i> | `#chevron-right` |
-| <i><svg class="icon"><use xlink:href="#exclamation-circle" /></svg></i> | `#exclamation-circle` |
-| <i><svg class="icon"><use xlink:href="#exclamation-triangle" /></svg></i> | `#exclamation-triangle` |
-| <i><svg class="icon"><use xlink:href="#file-outline" /></svg></i> | `#file-outline` |
-| <i><svg class="icon"><use xlink:href="#flow-line" /></svg></i> | `#flow-line` |
-| <i><svg class="icon"><use xlink:href="#flow-tree" /></svg></i> | `#flow-tree` |
-| <i><svg class="icon"><use xlink:href="#folder-outline" /></svg></i> | `#folder-outline` |
-| <i><svg class="icon"><use xlink:href="#home" /></svg></i> | `#home` |
-| <i><svg class="icon"><use xlink:href="#info-circle" /></svg></i> | `#info-circle` |
-| <i><svg class="icon"><use xlink:href="#interface" /></svg></i> | `#interface` |
-| <i><svg class="icon"><use xlink:href="#magnifier" /></svg></i> | `#magnifier` |
-| <i><svg class="icon"><use xlink:href="#star" /></svg></i> | `#star` |
+| <svg class="icon"><use xlink:href="#icon-bars" /></svg> | `#icon-bars` |
+| <svg class="icon"><use xlink:href="#icon-cc-by" /></svg> | `#icon-cc-by` |
+| <svg class="icon"><use xlink:href="#icon-cc-cc" /></svg> | `#icon-cc-cc` |
+| <svg class="icon"><use xlink:href="#icon-check-circle" /></svg> | `#icon-check-circle` |
+| <svg class="icon"><use xlink:href="#icon-chevron-right" /></svg> | `#icon-chevron-right` |
+| <svg class="icon"><use xlink:href="#icon-exclamation-circle" /></svg> | `#icon-exclamation-circle` |
+| <svg class="icon"><use xlink:href="#icon-exclamation-triangle" /></svg> | `#icon-exclamation-triangle` |
+| <svg class="icon"><use xlink:href="#icon-file-outline" /></svg> | `#icon-file-outline` |
+| <svg class="icon"><use xlink:href="#icon-flow-line" /></svg> | `#icon-flow-line` |
+| <svg class="icon"><use xlink:href="#icon-flow-tree" /></svg> | `#icon-flow-tree` |
+| <svg class="icon"><use xlink:href="#icon-folder-outline" /></svg> | `#icon-folder-outline` |
+| <svg class="icon"><use xlink:href="#icon-home" /></svg> | `#icon-home` |
+| <svg class="icon"><use xlink:href="#icon-info-circle" /></svg> | `#icon-info-circle` |
+| <svg class="icon"><use xlink:href="#icon-interface" /></svg> | `#icon-interface` |
+| <svg class="icon"><use xlink:href="#icon-magnifier" /></svg> | `#icon-magnifier` |
+| <svg class="icon"><use xlink:href="#icon-star" /></svg> | `#icon-star` |
 
 > See also [Emoji](#emoji) as another way to insert pictograms.
 
