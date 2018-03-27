@@ -19,7 +19,9 @@ a site template for publishing code documentation to GitHub pages
 
 ## usage
 
-1. [Configure a publishing source for GitHub Pages][ghpages-howto] so GitHub knows where to find your documentation.
+> first: <br>
+> 1. [Configure a publishing source for GitHub Pages][ghpages-howto] so GitHub knows where to find your documentation.
+
 1. [Author documentation][author-documentation]
 1. [Push to GitHub][push-to-github]
 1. Visit your documentation site at https://_&lt;username&gt;_.github.io/_&lt;project&gt;_
@@ -27,6 +29,11 @@ a site template for publishing code documentation to GitHub pages
 
 
 ## building
+
+**programming pages** depends on [Jekyll][jekyll], [Semantic UI][semantic], and [jQuery][jquery].
+The dependencies are all captured in source control for this project,
+but if you want to update a dependency or change its configuration,
+you'll need to be able to build them from source.
 
 ### building the static site locally
 
@@ -46,8 +53,12 @@ open http://localhost:4000/
 > 1. check out the [programming-pages branch of the pixeldroid fork][semantic-custom] of semantic ui
 
 ```console
-rake build:semantic['/path/to/semantic']
+rake build:semantic['/path/to/programming-pages-semantic']
 ```
+
+#### semantic ui modules
+
+The Semantic UI modules required by this project are declared in `lib/semantic-build/semantic.json`.
 
 ### generating the jQuery file
 
@@ -56,13 +67,17 @@ rake build:semantic['/path/to/semantic']
 
 ```console
 grunt custom:-ajax,-wrap
+cp /path/to/jquery/dist/jquery.min.js /path/to/programming-pages/lib/src/_includes/scripts/jquery/jquery-<version>.custom.min.js
 ```
+
+Don't forget to update `lib/src/scripts/site.js` with the new filename.
 
 #### jQuery modules
 
-> Smaller custom subsets of the jQuery library can be build by excluding unwanted modules. <br>
-> See https://github.com/jquery/jquery#modules <br>
-> This project excludes the following unused modules to reduce file size:
+> Smaller custom subsets of the jQuery library can be built by excluding unwanted modules.
+> (see https://github.com/jquery/jquery#modules)
+
+This project excludes the following unused modules to reduce file size:
 
 ##### excluded
 - `ajax`
@@ -98,10 +113,13 @@ grunt custom:-ajax,-wrap
 [author-documentation]: https://pixeldroid.github.io/programming-pages/guides/Authoring-Documentation/#/guides/ "Authoring documentation using the programming pages site template"
 [ghpages-howto]: https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/ "How to Configure a publishing source for GitHub Pages"
 [ghpages-install]: https://github.com/github/pages-gem "GitHub Pages Ruby Gem"
+[jekyll]: https://jekyllrb.com/ "Simple, blog-aware, static sites"
 [jekyll-install]: https://jekyllrb.com/docs/installation/ "How to install Jekyll"
+[jquery]: https://github.com/jquery/jquery#how-to-build-your-own-jquery "jQuery is a fast, small, and feature-rich JavaScript library"
 [jquery-build]: https://github.com/jquery/jquery#how-to-build-your-own-jquery "How to build your own jQuery"
 [pull-requests]: https://github.com/pixeldroid/programming-pages/pulls "Pull requests for the Programming Pages template project"
 [push-to-github]: https://help.github.com/articles/pushing-to-a-remote/ "Pushing to a remote"
 [releases]: https://github.com/pixeldroid/programming-pages/releases "Packaged releases of the Programming Pages template"
+[semantic]: https://semantic-ui.com/ "Semantic is a UI component framework based around useful principles from natural language"
 [semantic-build]: https://semantic-ui.com/introduction/build-tools.html "Semantic UI build tools"
 [semantic-custom]: https://github.com/pixeldroid/Semantic-UI/tree/programming-pages "programming-pages branch of Semantic UI"
