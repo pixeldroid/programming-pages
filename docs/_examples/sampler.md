@@ -509,8 +509,7 @@ This text will appear as a huge message.
 {: .ui.attached.tertiary.inverted.tight.grey.segment}
 
 <div>
-    <i><svg class="icon"><use xlink:href="#check-circle" /></svg></i>
-    This text will appear in a big success block with an icon.
+    <span><svg class="icon"><use xlink:href="#icon-check-circle" /></svg></span> This text will appear in a big success block with an icon.
     {: .ui.big.success.message}
 </div>
 {: .ui.attached.secondary.tight.segment}
@@ -521,8 +520,7 @@ This text will appear as a huge message.
 {: .ui.attached.secondary.inverted.tight.blue.segment}
 
 <div>
-<i><svg class="icon"><use xlink:href="#check-circle" /></svg></i>
-This text will appear in a big success block with an icon.
+<span><svg class="icon"><use xlink:href="#icon-check-circle" /></svg></span> This text will appear in a big success block with an icon.
 {: .ui.big.success.message}
 </div>
 {: .ui.attached.secondary.segment}
@@ -534,8 +532,7 @@ This text will appear in a big success block with an icon.
 {: .ui.attached.tertiary.inverted.tight.grey.segment}
 
 <div>
-    <i><svg class="icon"><use xlink:href="#info-circle" /></svg></i>
-    This text will appear in an info block with an icon.
+    <span><svg class="icon"><use xlink:href="#icon-info-circle" /></svg></span> This text will appear in an info block with an icon.
     {: .ui.info.message}
 </div>
 {: .ui.attached.secondary.tight.segment}
@@ -546,8 +543,7 @@ This text will appear in a big success block with an icon.
 {: .ui.attached.secondary.inverted.tight.blue.segment}
 
 <div>
-<i><svg class="icon"><use xlink:href="#info-circle" /></svg></i>
-This text will appear in an info block with an icon.
+<span><svg class="icon"><use xlink:href="#icon-info-circle" /></svg></span> This text will appear in an info block with an icon.
 {: .ui.info.message}
 </div>
 {: .ui.attached.secondary.segment}
@@ -559,8 +555,7 @@ This text will appear in an info block with an icon.
 {: .ui.attached.tertiary.inverted.tight.grey.segment}
 
 <div>
-    <i><svg class="icon"><use xlink:href="#exclamation-triangle" /></svg></i>
-    This text will appear in a warning block with an icon.
+    <span><svg class="icon"><use xlink:href="#icon-exclamation-triangle" /></svg></span> This text will appear in a warning block with an icon.
     {: .ui.warning.message}
 </div>
 {: .ui.attached.secondary.tight.segment}
@@ -571,8 +566,7 @@ This text will appear in an info block with an icon.
 {: .ui.attached.secondary.inverted.tight.blue.segment}
 
 <div>
-<i><svg class="icon"><use xlink:href="#exclamation-triangle" /></svg></i>
-This text will appear in a warning block with an icon.
+<span><svg class="icon"><use xlink:href="#icon-exclamation-triangle" /></svg></span> This text will appear in a warning block with an icon.
 {: .ui.warning.message}
 </div>
 {: .ui.attached.secondary.segment}
@@ -584,8 +578,7 @@ This text will appear in a warning block with an icon.
 {: .ui.attached.tertiary.inverted.tight.grey.segment}
 
 <div>
-    <i><svg class="icon"><use xlink:href="#exclamation-circle" /></svg></i>
-    This text will appear in an error block with an icon.
+    <span><svg class="icon"><use xlink:href="#icon-exclamation-circle" /></svg></span> This text will appear in an error block with an icon.
     {: .ui.error.message}
 </div>
 {: .ui.attached.secondary.tight.segment}
@@ -596,8 +589,7 @@ This text will appear in a warning block with an icon.
 {: .ui.attached.secondary.inverted.tight.blue.segment}
 
 <div>
-<i><svg class="icon"><use xlink:href="#exclamation-circle" /></svg></i> Error
-This text will appear in an error block with an icon.
+<span><svg class="icon"><use xlink:href="#icon-exclamation-circle" /></svg></span> This text will appear in an error block with an icon.
 {: .ui.error.message}
 </div>
 {: .ui.attached.secondary.segment}
