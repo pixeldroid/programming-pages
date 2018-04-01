@@ -3,12 +3,11 @@ require 'json'
 require 'tmpdir'
 require 'yaml'
 
+
 @template_config = nil
 @user_config = nil
 
 TEMPLATE = 'programming-pages'
-JEKYLL_CMD = 'bundle exec jekyll serve -I -s docs'
-
 EXIT_OK = 0
 
 def lib_dir
@@ -19,12 +18,20 @@ def ghpages_dir
   File.join('.', 'docs')
 end
 
+def site_dir
+  File.join('.', '_site')
+end
+
 def doc_dir
   File.join(lib_dir, 'doc')
 end
 
 def src_dir
   File.join(lib_dir, 'src')
+end
+
+def jekyll_cmd
+  "bundle exec jekyll serve -I -s #{ghpages_dir} -d #{site_dir}"
 end
 
 def semantic_build_dir
@@ -167,7 +174,7 @@ namespace :docs do
   desc [
     "builds the GitHub pages documentation site for #{TEMPLATE}, under #{ghpages_dir}",
     "if jekyll is installed, you can preview the doc site locally:",
-    "  $ #{JEKYLL_CMD}",
+    "  $ #{jekyll_cmd}",
   ].join("\n")
   task :build do |t, args|
     target_dir = ghpages_dir
@@ -183,7 +190,8 @@ namespace :docs do
     File.open(merged_config_file, 'w') { |f| f.write(merged_config.to_yaml) }
 
     puts "[#{t.name}] task completed, find github pages ready site in #{target_dir}/"
-    puts "[#{t.name}] preview locally: #{JEKYLL_CMD}" if (which('jekyll'))
+    puts "[#{t.name}] preview locally: #{jekyll_cmd}" if (which('jekyll'))
+  end
   end
 
 end
