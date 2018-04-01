@@ -90,7 +90,6 @@ def update_lib_version(new_value)
   config = template_config
   config['template_version'] = new_value
   write_yaml(template_config_file, config)
-
 end
 
 def exclusions
@@ -191,7 +190,6 @@ namespace :docs do
 
     puts "[#{t.name}] task completed, find github pages ready site in #{target_dir}/"
     puts "[#{t.name}] preview locally: #{jekyll_cmd}" if (which('jekyll'))
-  end
   end
 
 end
