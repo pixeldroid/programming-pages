@@ -89,7 +89,7 @@ This project excludes the following unused modules to reduce file size:
 - `css`
 - `data`
 - `deferred` (required for `effects`)
-- `deprecated` (for Semantic UI's use of `bind`)
+- `deprecated` (for jQuery Address's use of `bind`)
 - `dimensions`
 - `effects`
 - `events`
