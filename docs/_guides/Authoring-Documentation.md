@@ -40,7 +40,7 @@ User-authored content is expected in the following places:
 
 ### Project Configuration
 
-The [title](/guides/Template-Features/#title-bar) and [attribution](/guides/Template-Features/#attribution) elements of the template use metadata defined in `_config.yml`.
+The [title]({{ site.baseurl }}/guides/Template-Features/#title-bar) and [attribution]({{ site.baseurl }}/guides/Template-Features/#attribution) elements of the template use metadata defined in `_config.yml`.
 
 See the [Site template files](http://localhost:4000/guides/Installing-the-site-template/Template-files/#user-provided-configuration) guide for more details.
 
@@ -64,7 +64,7 @@ title: My project
 Grouped documentation is called a _collection_ by Jekyll, and can be any folder of files that is named with an underscore and listed in the site configuration (`_config.yml`).
 
 <i><svg class="icon"><use xlink:href="#info-circle" /></svg></i>
-See the [Site template files guide](/guides/Installing-the-site-template/Template-files/#template-provided-configuration) for details about specifying collection folders in the site configuration file.
+See the [Site template files guide]({{ site.baseurl }}/guides/Installing-the-site-template/Template-files/#template-provided-configuration) for details about specifying collection folders in the site configuration file.
 {:.ui.info.message}
 
 The programming pages template is pre-configured for three common collections (`_api`, `_examples`, `_guides`). To use one or more of them, simply create the collection folder and put content markdown files inside. Collections without a folder are ignored.
@@ -106,20 +106,20 @@ title: Installing the site template
 
 Please see the individual layout pages for more detail:
 
-- [base](/api/base/#/api/)
-- [compress](/api/compress/#/api/)
-- [example](/api/example/#/api/)
-- [guide-index](/api/guide-index/#/api/)
-- [layout](/api/layout/#/api/)
-- [package](/api/package/#/api/)
-- [page](/api/page/#/api/)
-- [type](/api/type/#/api/)
+- [base]({{ site.baseurl }}/layout_api/base/#/layout_api/)
+- [compress]({{ site.baseurl }}/layout_api/compress/#/layout_api/)
+- [example]({{ site.baseurl }}/layout_api/example/#/layout_api/)
+- [guide-index]({{ site.baseurl }}/layout_api/guide-index/#/layout_api/)
+- [layout]({{ site.baseurl }}/layout_api/layout/#/layout_api/)
+- [package]({{ site.baseurl }}/layout_api/package/#/layout_api/)
+- [page]({{ site.baseurl }}/layout_api/page/#/layout_api/)
+- [type]({{ site.baseurl }}/layout_api/type/#/layout_api/)
 
 
 
 [front-matter]: https://jekyllrb.com/docs/frontmatter/ "YAML front matter is at minimum a set of triple-dashed lines"
 [kramdown-block-ial]: https://kramdown.gettalong.org/quickref.html#block-attributes "kramdown block attributes"
 [liquid]: https://shopify.github.io/liquid/ "Safe, customer-facing template language for flexible web apps"
-[markdown-sampler]: /examples/sampler/#/examples/ "Samples of the markdown supported by lsdoc and GitHub Pages"
+[markdown-sampler]: {{ site.baseurl }}/examples/sampler/#/examples/ "Samples of the markdown supported by lsdoc and GitHub Pages"
 [semantic-ui]: https://semantic-ui.com/globals/site.html "Semantic is a development framework that helps create beautiful, responsive layouts using human-friendly HTML"
-[svg-icons]: /examples/sampler/#icons "A small set of svg iocns are included in the template"
+[svg-icons]: {{ site.baseurl }}/examples/sampler/#icons "A small set of svg iocns are included in the template"
