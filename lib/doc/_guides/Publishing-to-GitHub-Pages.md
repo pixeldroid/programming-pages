@@ -12,7 +12,7 @@ Documentation authored with the programming pages template is compatible with [G
 
 _Once:_
 
-- [Install the template](/guides/Installing-the-site-template/#/guides/)
+- [Install the template]({{ site.baseurl }}/guides/Installing-the-site-template/#/guides/)
 - [Configure a publishing source for GitHub Pages][ghpages-howto] so GitHub knows where to find your documentation.
 
 _Then:_
@@ -27,5 +27,5 @@ _Then:_
 [ghpages]: https://pages.github.com/ "Websites for you and your projects. Hosted directly from your GitHub repository"
 [ghpages-howto]: https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/ "How to Configure a publishing source for GitHub Pages"
 [push-to-github]: https://help.github.com/articles/pushing-to-a-remote/ "Pushing to a remote"
-[install-template]: /guides/Installing-the-site-template/#/guides/ "Installing the site template"
-[write-documentation]: /guides/Authoring-Documentation/#/guides/ "Authoring documentation using the programming pages site template"
+[install-template]: {{ site.baseurl }}/guides/Installing-the-site-template/#/guides/ "Installing the site template"
+[write-documentation]: {{ site.baseurl }}/guides/Authoring-Documentation/#/guides/ "Authoring documentation using the programming pages site template"

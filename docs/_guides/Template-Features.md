@@ -11,7 +11,7 @@ order: 1
 
 - searchable content, with keyboard shortcuts (try `h`)
 - mobile-ready design browsable on multiple devices
-- simple authoring syntax using [Markdown](/examples/sampler/#/examples/) and [Liquid][liquid]
+- simple authoring syntax using [Markdown]({{ site.baseurl }}/examples/sampler/#/examples/) and [Liquid][liquid]
 - styling for readability, leveraging [Semantic UI][semantic-ui]
 - clean site generation that scores well on [Lighthouse][lighthouse] audits
 - compatibility with [GitHub Pages][ghpages] for free hosting and simple publishing
@@ -26,7 +26,7 @@ Elements of the site template are explained in detail in the sections below:
 ## Overview
 {:.no_toc}
 
-The site template provides a Home link (&nbsp;<i><svg class="icon"><use xlink:href="#home" /></svg></i>) in the top left corner that returns to the [site entry page][homepage], and a navigation menu (&nbsp;<i><svg class="icon"><use xlink:href="#bars" /></svg></i>) on the left side of the screen where content can be accessed via links under the collection tabs (e.g. [Layouts](#/api "toggle the Layouts collection"), [Examples](#/examples "toggle the Examples collection"), or [Guides](#/guides "toggle the Guides collection")), or via the search box (&nbsp;<i><svg class="icon"><use xlink:href="#magnifier" /></svg></i>).
+The site template provides a Home link (&nbsp;<i><svg class="icon"><use xlink:href="#home" /></svg></i>) in the top left corner that returns to the [site entry page][homepage], and a navigation menu (&nbsp;<i><svg class="icon"><use xlink:href="#bars" /></svg></i>) on the left side of the screen where content can be accessed via links under the collection tabs (e.g. [Layouts](#/layout_api "toggle the Layouts collection"), [Examples](#/examples "toggle the Examples collection"), or [Guides](#/guides "toggle the Guides collection")), or via the search box (&nbsp;<i><svg class="icon"><use xlink:href="#magnifier" /></svg></i>).
 
 To search for content, focus the search input, and start typing a term to search for. A results box will populate with best matches. Select one to navigate to the page.
 
@@ -79,20 +79,20 @@ The site template provides several pre-defined layouts for rendering different k
 
 Please see the individual layout pages for more detail:
 
-- [base](/api/base/#/api/)
-- [compress](/api/compress/#/api/)
-- [example](/api/example/#/api/)
-- [guide-index](/api/guide-index/#/api/)
-- [layout](/api/layout/#/api/)
-- [package](/api/package/#/api/)
-- [page](/api/page/#/api/)
-- [type](/api/type/#/api/)
+- [base]({{ site.baseurl }}/layout_api/base/#/layout_api/)
+- [compress]({{ site.baseurl }}/layout_api/compress/#/layout_api/)
+- [example]({{ site.baseurl }}/layout_api/example/#/layout_api/)
+- [guide-index]({{ site.baseurl }}/layout_api/guide-index/#/layout_api/)
+- [layout]({{ site.baseurl }}/layout_api/layout/#/layout_api/)
+- [package]({{ site.baseurl }}/layout_api/package/#/layout_api/)
+- [page]({{ site.baseurl }}/layout_api/page/#/layout_api/)
+- [type]({{ site.baseurl }}/layout_api/type/#/layout_api/)
 
 
 
 [cc-by]: https://creativecommons.org/licenses/by/4.0/ "Creative Commons Attribution 4.0 International (CC BY 4.0)"
 [ghpages]: https://pages.github.com/ "Websites for you and your projects. Hosted directly from your GitHub repository"
-[homepage]: /guides/Authoring-Documentation/#homepage "User-authored homepage"
+[homepage]: {{ site.baseurl }}/guides/Authoring-Documentation/#homepage "User-authored homepage"
 [liquid]: https://shopify.github.io/liquid/ "Safe, customer-facing template language for flexible web apps"
 [lighthouse]: https://developers.google.com/web/tools/lighthouse/ "Lighthouse is an open-source, automated tool for improving the quality of web pages"
 [semantic-ui]: https://semantic-ui.com/ "Semantic is a development framework that helps create beautiful, responsive layouts using human-friendly HTML"

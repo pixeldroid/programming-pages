@@ -24,6 +24,6 @@ You might want to consider keeping your authored documentation and any template 
 
 
 
-[author]: /guides/Authoring-Documentation/#/guides/ "Authoring documentation"
-[publish]: /guides/Publishing-to-GitHub-Pages/#/guides/ "Publishing to GitHub Pages"
+[author]: {{ site.baseurl }}/guides/Authoring-Documentation/#/guides/ "Authoring documentation"
+[publish]: {{ site.baseurl }}/guides/Publishing-to-GitHub-Pages/#/guides/ "Publishing to GitHub Pages"
 [releases]: https://github.com/pixeldroid/programming-pages/releases "Packaged releases of the Programming Pages template"

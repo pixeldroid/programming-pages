@@ -620,7 +620,7 @@ This text will appear as a huge message.
 [markdown-cheatsheet]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet "Markdown Cheatsheet"
 [sampler-source]: https://github.com/pixeldroid/programming-pages/blob/master/doc/examples/sampler.md "source code for this page"
 [semantic-message]: https://semantic-ui.com/collections/message.html#warning "A message displays information that explains nearby content"
-[svg-file]: https://github.com/pixeldroid/programming-pages/blob/master/lib/ghpages-template/_includes/styles/svg.html "Source file for SVG icons provided in lsdoc"
+[svg-file]: https://github.com/pixeldroid/programming-pages/blob/master/lib/src/_includes/styles/svg.html "Source file for SVG icons provided by default"
 
 [reference-image]: https://dummyimage.com/600x400/70b7ec/000 "a 600x400 image"
 [reference-page]: http://en.wikipedia.org/wiki/Special:Randompage "link to a random Wikipedia page"
