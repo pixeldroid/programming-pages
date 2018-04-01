@@ -24,7 +24,7 @@ a site template for publishing code documentation to GitHub pages
 
 1. [Author documentation][author-documentation]
 1. [Push to GitHub][push-to-github]
-1. Visit your documentation site at https://_&lt;username&gt;_.github.io/_&lt;project&gt;_
+1. Visit your documentation site at https://&lt;`username`&gt;.github.io/&lt;`project`&gt;
 1. _repeat_
 
 
