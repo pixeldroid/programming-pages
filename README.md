@@ -4,6 +4,9 @@ a site template for publishing code documentation to GitHub pages
 
 > See **programming pages** used to document itself here: https://pixeldroid.github.io/programming-pages/
 
+
+**Table of Contents**
+
 - [installation](#installation)
 - [usage](#usage)
 - [building](#building)
