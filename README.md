@@ -65,7 +65,7 @@ The Semantic UI modules required by this project are declared in `lib/semantic-b
 > 1. ensure you can [build jQuery][jquery-build] (requires nodejs, grunt): `grunt default`
 
 ```console
-grunt custom:-ajax,-wrap
+grunt custom:-ajax,-wrap remove_map_comment
 cp /path/to/jquery/dist/jquery.min.js /path/to/programming-pages/lib/src/_includes/scripts/jquery/jquery-<version>.custom.min.js
 ```
 
