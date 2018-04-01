@@ -1,16 +1,10 @@
 # programming-pages
 
-a site template for publishing code documentation to GitHub pages
+a site template for publishing code documentation to GitHub pages <br/>
+[installation](#installation) | [usage](#usage) | [building](#building) | [contributing](#contributing)
 
 > See **programming pages** used to document itself here: https://pixeldroid.github.io/programming-pages/
 
-
-**Table of Contents**
-
-- [installation](#installation)
-- [usage](#usage)
-- [building](#building)
-- [contributing](#contributing)
 
 <br/>
 
