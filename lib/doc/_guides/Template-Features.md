@@ -26,12 +26,11 @@ Elements of the site template are explained in detail in the sections below:
 ## Overview
 {:.no_toc}
 
-The site template provides a Home link (&nbsp;<i><svg class="icon"><use xlink:href="#home" /></svg></i>) in the top left corner that returns to the [site entry page][homepage], and a navigation menu (&nbsp;<i><svg class="icon"><use xlink:href="#bars" /></svg></i>) on the left side of the screen where content can be accessed via links under the collection tabs (e.g. [Layouts](#/layout_api "toggle the Layouts collection"), [Examples](#/examples "toggle the Examples collection"), or [Guides](#/guides "toggle the Guides collection")), or via the search box (&nbsp;<i><svg class="icon"><use xlink:href="#magnifier" /></svg></i>).
+The site template provides a Home link (&nbsp;<i><svg class="icon"><use xlink:href="#icon-home" /></svg></i>) in the top left corner that returns to the [site entry page][homepage], and a navigation menu (&nbsp;<i><svg class="icon"><use xlink:href="#icon-bars" /></svg></i>) on the left side of the screen where content can be accessed via links under the collection tabs (e.g. [Layouts](#/layout_api "toggle the Layouts collection"), [Examples](#/examples "toggle the Examples collection"), or [Guides](#/guides "toggle the Guides collection")), or via the search box (&nbsp;<i><svg class="icon"><use xlink:href="#icon-magnifier" /></svg></i>).
 
 To search for content, focus the search input, and start typing a term to search for. A results box will populate with best matches. Select one to navigate to the page.
 
-<i><svg class="icon"><use xlink:href="#info-circle" /></svg></i>
-On a desktop, open the help menu with the `h` key to see keyboard shortcuts for toggling navigation tabs and searching.
+<span><svg class="icon"><use xlink:href="#icon-info-circle" /></svg></span> On a desktop, open the help menu with the `h` key to see keyboard shortcuts for toggling navigation tabs and searching.
 {:.ui.info.message}
 
 
