@@ -1,0 +1,58 @@
+/********************************************
+     User Global Variables
+*********************************************/
+
+/*-------------------
+       Fonts
+--------------------*/
+
+@pageFontName      : Montserrat;
+@headerFontName    : Raleway;
+
+@pageFont          : '@{pageFontName}', sans-serif;
+@headerFont        : '@{headerFontName}', sans-serif;
+
+@importGoogleFonts : true;
+@googleProtocol    : 'https://';
+@googleFontRequest : '@{pageFontName}|@{headerFontName}:700';
+
+/*-------------------
+      Base Sizes
+--------------------*/
+
+/* This is the single variable that controls all font sizes */
+@baseFontPixelSize : 16px;
+
+@emSize   : @baseFontPixelSize;
+@fontSize : @baseFontPixelSize;
+
+/*-------------------
+        Sizes
+--------------------*/
+
+/*
+  Sizes are expressed in ratios to remain constant despite changes in EM
+*/
+
+@miniSize        : 0.625; /* (10 / 16) */
+@tinySize        : 0.750; /* (12 / 16) */
+@smallSize       : 0.875; /* (14 / 16) */
+@mediumSize      : 1.000; /* (16 / 16) */
+@largeSize       : 1.135; /* (18 / 16) */
+@bigSize         : 1.250; /* (20 / 16) */
+@hugeSize        : 1.500; /* (24 / 16) */
+@massiveSize     : 2.000; /* (32 / 16) */
+
+/*-------------------
+    Emotive Colors
+--------------------*/
+
+/* Warning */
+@warningBorderColor     : #D6B46E;
+@warningTextColor       : #D67E08;
+
+/*-------------------
+       Links
+--------------------*/
+
+@linkColor           : #3A76BB; /* darkened to pass WCAG 2 AA contrast ratio thresholds for large and small text */

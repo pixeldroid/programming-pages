@@ -1,0 +1,30 @@
+{%- comment -%}
+
+module_has_link
+  checks documents in the site.module_root collection for a url attribute that matches include.module_url
+
+params:
+  module_url="/api/foo/bar/Baz"
+
+returns:
+  'true' when document for module url is found
+  'false' when no document can be found
+
+{%- endcomment -%}
+{%- assign u = include.module_url -%}
+{%- assign found = false -%}
+{%- assign api_collection = site.module_root | slice: 1, site.module_root.size -%}
+{%- assign api_docs = site.documents | where:"collection",api_collection -%}
+
+{%- for doc in api_docs -%}
+  {%- if u == doc.url -%}
+    {%- assign found = true -%}
+    {%- break -%}
+  {%- endif -%}
+  {%- assign u1 = u | append: "/" -%}
+  {%- if u1 == doc.url -%}
+    {%- assign found = true -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if found -%}true{%- else -%}false{%- endif -%}

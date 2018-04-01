@@ -1,0 +1,37 @@
+---
+layout: compress
+---
+
+{% include styles/semantic-ui/_version.css %}
+{% include styles/semantic-ui/site.min.css %}
+{% include styles/semantic-ui/reset.min.css %}
+
+{% include styles/semantic-ui/breadcrumb.min.css %}
+{% include styles/semantic-ui/container.min.css %}
+{% include styles/semantic-ui/dimmer.min.css %}
+{% include styles/semantic-ui/divider.min.css %}
+{% include styles/semantic-ui/grid.min.css %}
+{% include styles/semantic-ui/header.min.css %}
+{% include styles/semantic-ui/image.min.css %}
+{% include styles/semantic-ui/input.min.css %}
+{% include styles/semantic-ui/item.min.css %}
+{% include styles/semantic-ui/label.min.css %}
+{% include styles/semantic-ui/list.min.css %}
+{% include styles/semantic-ui/menu.min.css %}
+{% include styles/semantic-ui/message.min.css %}
+{% include styles/semantic-ui/modal.min.css %}
+{% include styles/semantic-ui/rail.min.css %}
+{% include styles/semantic-ui/search.min.css %}
+{% include styles/semantic-ui/segment.min.css %}
+{% include styles/semantic-ui/sidebar.min.css %}
+{% include styles/semantic-ui/sticky.min.css %}
+{% include styles/semantic-ui/tab.min.css %}
+{% include styles/semantic-ui/table.min.css %}
+{% include styles/semantic-ui/transition.min.css %}
+
+{% include themes/syntax.min.css %}
+
+{% capture _css %}
+{% include styles/svg-icons.css %}
+{% include styles/tweaks.css %}
+{% endcapture %}{{ _css | scssify }}

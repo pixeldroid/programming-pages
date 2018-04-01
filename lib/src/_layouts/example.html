@@ -1,0 +1,42 @@
+---
+layout: page
+---
+
+<span class="anchor" id="heading">&nbsp;</span>
+<h1 class="ui dividing header">{{ page.title }}</h1>
+
+<div class="ui basic segment">
+
+<h2 class="ui header">Description</h3>
+{% if page.thumb %}<img class="ui rounded left floated image" src="../{{ page.thumb }}">{% endif %}
+<p>{{ content }}</p>
+
+{% unless page.code.size == 0 %}
+<h3 class="ui header">Code</h3>
+<div id="example-code-tabs" class="ui top attached tabular menu">
+{% for n in (1..page.code.size) %}
+  {% assign i = n | minus: 1 %}
+  <a class="{% if forloop.first %}active {% endif%}item" data-tab="file{{ n }}">{{ page.code[i] }}</a>
+{% endfor %}
+</div>
+
+{% assign dir = page.relative_path | split: '.' | first | split: '/' | last %}
+{% for n in (1..page.code.size) %}
+<div class="{% if forloop.first %}active {% endif%}ui bottom attached tab segment" data-tab="file{{ n }}">
+{% assign i = n | minus: 1 %}
+{% assign file = page.code[i] %}
+{% capture filepath %}{{ dir }}/{{ file.url }}{% endcapture %}
+{% assign syntax = file.language | default: 'text' %}
+{% capture code %}```{{ syntax }}
+{% include_relative {{ filepath }} %}
+```{% endcapture %}
+{{ code | markdownify }}
+</div>
+{% endfor %}
+
+<script type="text/javascript">
+{% include scripts/example.js %}
+</script>
+{% endunless %}
+
+</div>

@@ -1,0 +1,19 @@
+---
+collections:
+  layout_api:
+    output: true
+    permalink: "/:collection/:path/"
+    title: Layout API
+  examples:
+    output: true
+    permalink: "/:collection/:path/"
+    title: Examples
+  guides:
+    output: true
+    permalink: "/:collection/:path/"
+    title: Guides
+project:
+  name: programming pages site template
+  owner: pixeldroid
+  repo: https://github.com/pixeldroid/programming-pages
+  version: 0.5.1
