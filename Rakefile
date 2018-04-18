@@ -238,7 +238,7 @@ namespace :lib do
   ].join("\n")
   task :semantic, [:dir] do |t, args|
     args.with_defaults(:dir => nil)
-    fail("cannot find semantic ui project at #{args.dir}") unless Dir.exists?(args.dir)
+    fail("cannot find semantic ui project at '#{args.dir}'") unless (args.dir && Dir.exists?(args.dir))
 
     puts "[#{t.name}] copying custom build files to #{args.dir}..."
     FileUtils.cp_r(File.join(semantic_build_dir, '.'), args.dir)
