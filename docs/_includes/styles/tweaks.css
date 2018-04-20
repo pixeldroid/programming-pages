@@ -86,6 +86,13 @@ span.anchor {
 .ui.message {
   max-width: 45rem;
 }
+.ui.message svg.icon {
+  top: .125em;
+}
+.ui.success.message, .ui.info.message, .ui.warning.message, .ui.error.message {
+  border-left-style: solid;
+  border-left-width: .25em;
+}
 
 /* custom styling */
 blockquote {

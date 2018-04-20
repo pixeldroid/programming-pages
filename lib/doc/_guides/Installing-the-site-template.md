@@ -18,7 +18,7 @@ Then use the template to:
 1. [Publish][publish] to GitHub Pages
 1. (optionally) modify the template to taste
 
-<span><svg class="icon"><use xlink:href="#icon-info-circle" /></svg></span> You might want to consider keeping your authored documentation and any template customizations separate from the template files to enable easier updates of the template. This can be accomplished with a build task that copies authored content from its source folders into the appropriate template folders.
+<span><svg class="icon"><use xlink:href="#icon-info-circle" /></svg> <b>Info</b></span><br>You might want to consider keeping your authored documentation and any template customizations separate from the template files to enable easier updates of the template. This can be accomplished with a build task that copies authored content from its source folders into the appropriate template folders.
 {: .ui.info.message}
 
 
