@@ -35,7 +35,7 @@ See the [References](#references) section below for links to more details.
 {:.ui.collapsing.compact.table}
 
 </div>
-{:.ui.compact.green.segment}
+{:.ui.compact.segment}
 
 Each section on this page illustrates markdown syntax that can be used to author content with the **programming pages** template.
 {:.larger.text}
