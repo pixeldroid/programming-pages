@@ -18,7 +18,7 @@ permalink: pretty
 plugins:
 - jemoji
 project:
-  name: programming pages site template
+  name: programming pages
   owner: pixeldroid
   repo: https://github.com/pixeldroid/programming-pages
   version: 0.5.1
