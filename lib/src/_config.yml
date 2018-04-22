@@ -16,7 +16,7 @@ collections:
 highlighter: rouge
 permalink: pretty
 plugins:
-  - jemoji
+- jemoji
 project:
   name: "<project_name>"
   owner: "<project_owner>"
@@ -24,7 +24,7 @@ project:
   version: "<project_version>"
 sass:
   style: compressed
-template_version: 0.5.1
+template_version: 0.5.2
 example_root: "/examples"
 guide_root: "/guides"
 module_root: "/api"

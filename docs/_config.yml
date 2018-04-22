@@ -21,10 +21,10 @@ project:
   name: programming pages
   owner: pixeldroid
   repo: https://github.com/pixeldroid/programming-pages
-  version: 0.5.1
+  version: 0.5.2
 sass:
   style: compressed
-template_version: 0.5.1
+template_version: 0.5.2
 example_root: "/examples"
 guide_root: "/guides"
 module_root: "/api"
