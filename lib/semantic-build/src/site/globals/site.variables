@@ -14,7 +14,7 @@
 
 @importGoogleFonts : true;
 @googleProtocol    : 'https://';
-@googleFontRequest : '@{pageFontName}|@{headerFontName}:700';
+@googleFontRequest : '@{pageFontName}:400,700|@{headerFontName}:700';
 
 /*-------------------
       Base Sizes

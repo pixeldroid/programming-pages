@@ -41,7 +41,7 @@ you'll need to be able to build them from source.
 
 ```console
 rake build:docs
-bundle exec jekyll serve -I -s docs
+bundle exec jekyll serve -I -s ./docs -d ./_site
 open http://localhost:4000/
 ```
 

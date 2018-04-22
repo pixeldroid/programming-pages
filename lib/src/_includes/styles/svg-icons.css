@@ -45,10 +45,12 @@ Why?
 
 svg.icon {
   display: inline-block;
-  opacity: 1;
-  margin: 0em 0.25rem 0em 0em;
+  position: relative;
+  top: .18em;
   width: 1.18em;
   height: 1em;
+  opacity: 1;
+  margin: 0;
   fill: currentColor;
   speak: none;
 }

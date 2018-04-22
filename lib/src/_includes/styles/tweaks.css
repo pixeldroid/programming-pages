@@ -43,9 +43,24 @@
 span.anchor {
   display: block;
   content: " ";
-  margin-top: -3.5em;
-  height: 3.5em;
+  margin-top: -3.5rem;
+  height: 3.5rem;
   visibility: hidden;
+}
+
+/* adjustments to fixed top title */
+#page-container {
+  margin-top: 3.4rem; /* position page under top menu */
+}
+#site-title .header {
+  height: 3.5rem;
+}
+#site-title .header .text {
+  max-width: 12em;
+}
+#site-title a.borderless.item svg.icon {
+  top: -.06em;
+  margin-right: .18em;
 }
 
 /* tweaks to existing semantic-ui rules */
@@ -53,11 +68,11 @@ span.anchor {
   z-index: 100; /* underneath top fixed menu */
 }
 #sidebar-retractable.ui.menu {
-  top: 48px; /* below top fixed menu */
+  top: 3.5rem; /* below top fixed menu */
 }
 #sidebar-fixed.ui.menu {
   position: fixed;
-  top: 48px; /* below top fixed menu */
+  top: 3.5rem; /* below top fixed menu */
   left: auto;
 }
 .ui.secondary.pointing.menu .item {
@@ -86,6 +101,13 @@ span.anchor {
 .ui.message {
   max-width: 45rem;
 }
+.ui.message svg.icon {
+  top: .125em;
+}
+.ui.success.message, .ui.info.message, .ui.warning.message, .ui.error.message {
+  border-left-style: solid;
+  border-left-width: .25em;
+}
 
 /* custom styling */
 blockquote {
@@ -109,9 +131,6 @@ li code, p code, td code {
 }
 pre.highlight {
   line-height: 1.18em;
-}
-#page-container {
-  margin-top:3.40em; /* position page under top menu */
 }
 .larger.text {
   font-size: 150%;
