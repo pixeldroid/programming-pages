@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'pathname'
 
 
 PROJECT = 'programming-pages'
@@ -147,7 +148,7 @@ namespace :lib do
   end
 
   desc [
-    "sets the template version number into #{template_config_file}",
+    "sets the template version number into '#{Pathname(template_config_file).relative_path_from(Pathname.pwd).to_s}'",
   ].join("\n")
   task :version, [:v] do |t, args|
     args.with_defaults(:v => nil)

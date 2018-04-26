@@ -2,6 +2,7 @@ require 'fileutils'
 require 'json'
 require 'net/http'
 require 'open-uri'
+require 'pathname'
 require 'tmpdir'
 require 'uri'
 require 'yaml'
@@ -116,7 +117,7 @@ end
 namespace :template do
 
   desc [
-    "downloads the latest release from GitHub, installing to ...",
+    "downloads the latest release from GitHub, installing to TEMPLATE_DIR",
   ].join("\n")
   task :install => [:check_consts] do |t, args|
     puts "[#{t.name}] asking GitHub for latest release.."
@@ -157,7 +158,7 @@ end
 namespace :docs do
 
   desc [
-    "builds the GitHub pages documentation site, under #{ghpages_dir}",
+    "builds the GitHub pages documentation site, under '#{Pathname(ghpages_dir).relative_path_from(Pathname.pwd).to_s}/'",
     "if jekyll is installed, you can preview the doc site locally:",
     "  $ #{jekyll_cmd}",
   ].join("\n")
