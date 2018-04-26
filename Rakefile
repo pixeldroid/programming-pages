@@ -1,37 +1,19 @@
 require 'fileutils'
-require 'json'
-require 'tmpdir'
-require 'yaml'
 
 
-@template_config = nil
-@user_config = nil
+PROJECT = 'programming-pages'
 
-TEMPLATE = 'programming-pages'
-EXIT_OK = 0
+PROJECT_ROOT = File.dirname(__FILE__)
+TEMPLATE_DIR = File.join(PROJECT_ROOT, 'lib', 'src')
+DOC_DIR = File.join(PROJECT_ROOT, 'lib', 'doc')
+load File.join(File.join(PROJECT_ROOT, 'lib', 'tasks'), 'programming-pages.rake')
 
 def lib_dir
-  File.join('.', 'lib')
-end
-
-def ghpages_dir
-  File.join('.', 'docs')
-end
-
-def site_dir
-  File.join('.', '_site')
-end
-
-def doc_dir
-  File.join(lib_dir, 'doc')
+  File.join(PROJECT_ROOT, 'lib')
 end
 
 def src_dir
   File.join(lib_dir, 'src')
-end
-
-def jekyll_cmd
-  "bundle exec jekyll serve -I -s #{ghpages_dir} -d #{site_dir}"
 end
 
 def semantic_build_dir
@@ -46,30 +28,6 @@ def semantic_attribution(version)
     '* http://opensource.org/licenses/MIT',
     "*/\n",
   ].join("\n")
-end
-
-def template_config_file
-  File.join(src_dir, '_config.yml')
-end
-
-def template_config
-  @template_config || (@template_config = read_yaml(template_config_file))
-end
-
-def user_config_file
-  File.join(doc_dir, '_config.yml')
-end
-
-def user_config
-  @user_config || (@user_config = read_yaml(user_config_file))
-end
-
-def merged_config_file
-  File.join(ghpages_dir, '_config.yml')
-end
-
-def merged_config
-  template_config.merge(user_config)
 end
 
 def lib_version
@@ -99,63 +57,10 @@ def exclusions
 end
 
 
-def read_yaml(file)
-  YAML.load(File.read(file))
-end
-
-def write_yaml(file, config)
-  IO.write(file, config.to_yaml)
-end
-
-def exec_with_echo(cmd)
-  puts(cmd)
-  stdout = %x[#{cmd}]
-  puts(stdout) unless stdout.empty?
-  $?.exitstatus
-end
-
-def fail(message)
-  abort("✘ #{message}")
-end
-
-def try(cmd, failure_message)
-  fail(failure_message) if (exec_with_echo(cmd) != EXIT_OK)
-end
-
-def which(cmd)
-  # from https://stackoverflow.com/a/5471032
-  exts = ENV['PATHEXT'] ? ENV['PATHEXT'].split(';') : ['']
-
-  ENV['PATH'].split(File::PATH_SEPARATOR).each do |path|
-    exts.each do |ext|
-      exe = File.join(path, "#{cmd}#{ext}")
-      return exe if File.executable?(exe) && !File.directory?(exe)
-    end
-  end
-
-  return nil
-end
-
-def windows?
-  return true if RbConfig::CONFIG['host_os'] =~ /mingw|mswin/
-  false
-end
-
-def osx?
-  return true if RbConfig::CONFIG['host_os'] =~ /darwin/
-  false
-end
-
-def linux?
-  return true if RbConfig::CONFIG['host_os'] =~ /linux/
-  false
-end
-
-
 task :default => [:list_targets]
 
 task :list_targets do |t, args|
-  a = "#{TEMPLATE} v#{lib_version} Rakefile"
+  a = "#{PROJECT} v#{lib_version} Rakefile"
   b = "running on Ruby #{RUBY_VERSION}"
   puts "#{a} #{b}"
   system('rake -T')
@@ -165,50 +70,18 @@ desc [
   "reports template version",
 ].join("\n")
 task :version do |t, args|
-  puts "#{TEMPLATE} v#{lib_version}"
+  puts "#{PROJECT} v#{lib_version}"
 end
-
-namespace :docs do
-
-  desc [
-    "builds the GitHub pages documentation site for #{TEMPLATE}, under #{ghpages_dir}",
-    "if jekyll is installed, you can preview the doc site locally:",
-    "  $ #{jekyll_cmd}",
-  ].join("\n")
-  task :build do |t, args|
-    target_dir = ghpages_dir
-
-    if (Dir.exists?(target_dir))
-      puts "[#{t.name}] removing existing #{target_dir}..."
-      FileUtils.rm_r(target_dir)
-    end
-    puts "[#{t.name}] creating and populating #{target_dir}..."
-
-    FileUtils.cp_r(File.join(src_dir, '/.'), target_dir)
-    FileUtils.cp_r(File.join(doc_dir, '/.'), target_dir)
-    File.open(merged_config_file, 'w') { |f| f.write(merged_config.to_yaml) }
-
-    puts "[#{t.name}] task completed, find github pages ready site in #{target_dir}/"
-    puts "[#{t.name}] preview locally: #{jekyll_cmd}" if (which('jekyll'))
-  end
-
-end
-
-desc [
-  "shorthand for 'rake docs:build'",
-].join("\n")
-task :docs => ['docs:build']
-
 
 namespace :lib do
 
   desc [
-    "packages #{TEMPLATE} files for release as a zip archive",
+    "packages #{PROJECT} files for release as a zip archive",
   ].join("\n")
   task :package do |t, args|
-    template_release = "#{TEMPLATE}_v#{lib_version}.zip"
+    template_release = "#{PROJECT}_v#{lib_version}.zip"
     source_dir = File.absolute_path(src_dir)
-    release_dir = '.'
+    release_dir = PROJECT_ROOT
     released_template = File.absolute_path(File.join(release_dir, template_release))
 
     fail('zip archiving not yet supported on windows') if windows?
@@ -217,10 +90,10 @@ namespace :lib do
 
     Dir.mktmpdir do |tmp_dir|
       Dir.chdir(tmp_dir) do
-        Dir.mkdir(TEMPLATE)
-        FileUtils.cp_r(File.join(source_dir, '.'), File.join(tmp_dir, TEMPLATE))
+        Dir.mkdir(PROJECT)
+        FileUtils.cp_r(File.join(source_dir, '.'), File.join(tmp_dir, PROJECT))
         zip_exclusions = exclusions.map { |e| "--exclude \"#{e}\"" }.join(' ')
-        cmd = "zip --quiet --recurse-paths #{released_template} #{TEMPLATE} #{zip_exclusions}"
+        cmd = "zip --quiet --recurse-paths #{released_template} #{PROJECT} #{zip_exclusions}"
         try(cmd, "unable to create #{template_release}")
       end
     end
@@ -277,9 +150,10 @@ namespace :lib do
     "sets the template version number into #{template_config_file}",
   ].join("\n")
   task :version, [:v] do |t, args|
-    args.with_defaults(:v => '0.0.0')
-    lib_version = args.v
+    args.with_defaults(:v => nil)
+    fail('please provide a version string') unless (args.v && args.v.length > 0)
 
+    lib_version = args.v
     update_lib_version(lib_version)
 
     puts "[#{t.name}] task completed, lib version updated to #{lib_version}"
