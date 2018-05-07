@@ -4,17 +4,18 @@ require 'pathname'
 
 PROJECT = 'programming-pages'
 
+# define these three constants before loading the programming-pages rake tasks
 PROJECT_ROOT = File.dirname(__FILE__)
 DOC_TEMPLATE_DIR = File.join(PROJECT_ROOT, 'lib', 'doc-template')
 DOC_SOURCE_DIR = File.join(PROJECT_ROOT, 'lib', 'doc-source')
-load File.join(File.join(PROJECT_ROOT, 'lib', 'src', '_tasks'), 'programming-pages.rake')
+load File.join(File.join(PROJECT_ROOT, 'lib', 'source', '_tasks'), 'programming-pages.rake')
 
 def lib_dir
   File.join(PROJECT_ROOT, 'lib')
 end
 
 def src_dir
-  File.join(lib_dir, 'src')
+  File.join(lib_dir, 'source')
 end
 
 def semantic_build_dir
