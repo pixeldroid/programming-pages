@@ -5,9 +5,9 @@ require 'pathname'
 PROJECT = 'programming-pages'
 
 PROJECT_ROOT = File.dirname(__FILE__)
-TEMPLATE_DIR = File.join(PROJECT_ROOT, 'lib', 'src')
-DOC_DIR = File.join(PROJECT_ROOT, 'lib', 'doc')
-load File.join(File.join(PROJECT_ROOT, 'lib', 'tasks'), 'programming-pages.rake')
+DOC_TEMPLATE_DIR = File.join(PROJECT_ROOT, 'lib', 'doc-template')
+DOC_SOURCE_DIR = File.join(PROJECT_ROOT, 'lib', 'doc-source')
+load File.join(File.join(PROJECT_ROOT, 'lib', 'src', '_tasks'), 'programming-pages.rake')
 
 def lib_dir
   File.join(PROJECT_ROOT, 'lib')
@@ -31,8 +31,18 @@ def semantic_attribution(version)
   ].join("\n")
 end
 
+@template_source_config = nil
+
+def template_source_config_file
+  File.join(src_dir, '_config.yml')
+end
+
+def template_source_config
+  @template_source_config || (@template_source_config = read_yaml(template_source_config_file))
+end
+
 def lib_version
-  template_config['template_version']
+  template_source_config['template_version']
 end
 
 def update_lib_version(new_value)
@@ -46,9 +56,9 @@ def update_lib_version(new_value)
   config['project']['version'] = new_value
   write_yaml(user_config_file, config)
 
-  config = template_config
+  config = template_source_config
   config['template_version'] = new_value
-  write_yaml(template_config_file, config)
+  write_yaml(template_source_config_file, config)
 end
 
 def exclusions
@@ -74,10 +84,25 @@ task :version do |t, args|
   puts "#{PROJECT} v#{lib_version}"
 end
 
+
 namespace :lib do
 
   desc [
+    "deploys the current local source files into DOC_TEMPLATE_DIR",
+  ].join("\n")
+  task :build => [:check_consts] do |t, args|
+    source_dir = File.absolute_path(src_dir)
+
+    puts "[#{t.name}] copying template source files into DOC_TEMPLATE_DIR"
+    FileUtils.cp_r(File.join(source_dir, '.'), DOC_TEMPLATE_DIR)
+
+    puts "[#{t.name}] task completed, template updated at #{DOC_TEMPLATE_DIR}"
+  end
+
+  desc [
     "packages #{PROJECT} files for release as a zip archive",
+    "the zip archive is created in a temp directory,",
+    " and delivered to #{PROJECT_ROOT}",
   ].join("\n")
   task :package do |t, args|
     template_release = "#{PROJECT}_v#{lib_version}.zip"
@@ -104,7 +129,7 @@ namespace :lib do
 
   desc [
     "updates and rebuilds semantic ui files used by the template",
-    " expects local path to a checkout of the Semantic UI repo",
+    " expects a local path to a clone of the Semantic UI repo",
     " Semantic UI is on GitHub: https://github.com/Semantic-Org/Semantic-UI",
     "this task will copy the following files into the project to customize build output:",
     " semantic.json - limits the components built",
@@ -148,7 +173,7 @@ namespace :lib do
   end
 
   desc [
-    "sets the template version number into '#{Pathname(template_config_file).relative_path_from(Pathname.pwd).to_s}'",
+    "sets the template version number into '#{from_pwd(template_source_config_file)}'",
   ].join("\n")
   task :version, [:v] do |t, args|
     args.with_defaults(:v => nil)
@@ -161,3 +186,8 @@ namespace :lib do
   end
 
 end
+
+desc [
+  "shorthand for 'rake lib:build'",
+].join("\n")
+task :lib => ['lib:build']

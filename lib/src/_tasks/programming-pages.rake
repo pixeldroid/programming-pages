@@ -44,6 +44,10 @@ def const_find(name)
   Module.const_defined?(name) ? Module.const_get(name) : nil
 end
 
+def from_pwd(path)
+  Pathname(path).relative_path_from(Pathname.pwd).to_s
+end
+
 def read_yaml(file)
   YAML.load(File.read(file))
 end
@@ -71,7 +75,7 @@ end
 @user_config = nil
 
 def template_config_file
-  File.join(TEMPLATE_DIR, '_config.yml')
+  File.join(DOC_TEMPLATE_DIR, '_config.yml')
 end
 
 def template_config
@@ -79,7 +83,7 @@ def template_config
 end
 
 def user_config_file
-  File.join(DOC_DIR, '_config.yml')
+  File.join(DOC_SOURCE_DIR, '_config.yml')
 end
 
 def user_config
@@ -103,21 +107,20 @@ def site_dir
 end
 
 def jekyll_cmd
-  "bundle exec jekyll serve -I -s #{ghpages_dir} -d #{site_dir}"
+  "bundle exec jekyll serve -I -s #{from_pwd(ghpages_dir)} -d #{from_pwd(site_dir)}"
 end
 
 
 task :check_consts do |t, args|
   fail('please define the PROJECT_ROOT constant before loading this rakefile') unless const_find('PROJECT_ROOT')
-  fail('please define the TEMPLATE_DIR constant before loading this rakefile') unless const_find('TEMPLATE_DIR')
-  fail('please define the DOC_DIR constant before loading this rakefile') unless const_find('DOC_DIR')
+  fail('please define the DOC_TEMPLATE_DIR constant before loading this rakefile') unless const_find('DOC_TEMPLATE_DIR')
+  fail('please define the DOC_SOURCE_DIR constant before loading this rakefile') unless const_find('DOC_SOURCE_DIR')
 end
-
 
 namespace :template do
 
   desc [
-    "downloads the latest release from GitHub, installing to TEMPLATE_DIR",
+    "downloads the latest release from GitHub, installing to DOC_TEMPLATE_DIR",
   ].join("\n")
   task :install => [:check_consts] do |t, args|
     puts "[#{t.name}] asking GitHub for latest release.."
@@ -129,8 +132,7 @@ namespace :template do
     asset_url = result['assets'].first['browser_download_url']
     puts "[#{t.name}] found asset at '#{asset_url}'"
 
-    target_dir = File.join(Dir.pwd, 'install')
-    FileUtils.remove_dir(target_dir) if (Dir.exists?(target_dir))
+    FileUtils.remove_dir(DOC_TEMPLATE_DIR) if (Dir.exists?(DOC_TEMPLATE_DIR))
 
     Dir.mktmpdir do |tmp_dir|
       Dir.chdir(tmp_dir) do
@@ -144,12 +146,12 @@ namespace :template do
         cmd = "unzip -q #{filepath}"
         try(cmd, "unzip failed")
 
-        puts "[#{t.name}] copying template files to #{target_dir}"
-        FileUtils.cp_r(Dir.glob('*/').first, target_dir)
+        puts "[#{t.name}] copying template files to DOC_TEMPLATE_DIR"
+        FileUtils.cp_r(Dir.glob('*/').first, DOC_TEMPLATE_DIR)
       end
     end
 
-    puts "[#{t.name}] task completed, template updated at #{target_dir}"
+    puts "[#{t.name}] task completed, template updated at #{DOC_TEMPLATE_DIR}"
   end
 
 end
@@ -157,13 +159,20 @@ end
 
 namespace :docs do
 
+  # TODO: make template:install a pre-req / maybe make a file task?
   desc [
-    "builds the GitHub pages documentation site, under '#{Pathname(ghpages_dir).relative_path_from(Pathname.pwd).to_s}/'",
+    "builds the GitHub pages documentation site, under '#{from_pwd(ghpages_dir)}/'",
+    " first, any existing documentation site files are removed",
+    " then, files from DOC_TEMPLATE_DIR are copied in",
+    " then, files from DOC_SOURCE_DIR are copied over top",
+    " lastly, jekyll site config from DOC_SOURCE_DIR is merged over top of the template config",
     "if jekyll is installed, you can preview the doc site locally:",
     "  $ #{jekyll_cmd}",
   ].join("\n")
   task :build => [:check_consts] do |t, args|
     target_dir = ghpages_dir
+
+    fail('please ensure the template is installed; you can run rake template:install') unless Dir.exists?(DOC_TEMPLATE_DIR)
 
     if (Dir.exists?(target_dir))
       puts "[#{t.name}] removing existing #{target_dir}..."
@@ -171,8 +180,9 @@ namespace :docs do
     end
     puts "[#{t.name}] creating and populating #{target_dir}..."
 
-    FileUtils.cp_r(File.join(TEMPLATE_DIR, '.'), target_dir)
-    FileUtils.cp_r(File.join(DOC_DIR, '.'), target_dir)
+    FileUtils.cp_r(File.join(DOC_TEMPLATE_DIR, '.'), target_dir)
+    FileUtils.rm_r(File.join(target_dir, '_tasks'))
+    FileUtils.cp_r(File.join(DOC_SOURCE_DIR, '.'), target_dir)
     write_yaml(merged_config_file, merged_config)
 
     puts "[#{t.name}] task completed, find github pages ready site in #{target_dir}/"
