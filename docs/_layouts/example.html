@@ -2,25 +2,27 @@
 layout: page
 ---
 
+{% assign dir = page.relative_path | split: '.' | first | split: '/' | last %}
+
 <span class="anchor" id="heading">&nbsp;</span>
 <h1 class="ui dividing header">{{ page.title }}</h1>
 
 <div class="ui basic segment">
 
 <h2 class="ui header">Description</h3>
-{% if page.thumb %}<img class="ui rounded left floated image" src="../{{ page.thumb }}">{% endif %}
+{% if page.thumb %}<img class="ui rounded left floated image" src="{{ page.thumb }}">{% endif %}
 <p>{{ content }}</p>
+{% if page.thumb %}<div class="ui clearing divider"></div>{% endif %}
 
 {% unless page.code.size == 0 %}
 <h3 class="ui header">Code</h3>
 <div id="example-code-tabs" class="ui top attached tabular menu">
 {% for n in (1..page.code.size) %}
   {% assign i = n | minus: 1 %}
-  <a class="{% if forloop.first %}active {% endif%}item" data-tab="file{{ n }}">{{ page.code[i] }}</a>
+  <a class="{% if forloop.first %}active {% endif%}item" data-tab="file{{ n }}">{{ page.code[i].label }}</a>
 {% endfor %}
 </div>
 
-{% assign dir = page.relative_path | split: '.' | first | split: '/' | last %}
 {% for n in (1..page.code.size) %}
 <div class="{% if forloop.first %}active {% endif%}ui bottom attached tab segment" data-tab="file{{ n }}">
 {% assign i = n | minus: 1 %}
