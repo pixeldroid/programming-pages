@@ -8,7 +8,7 @@ PROJECT = 'programming-pages'
 PROJECT_ROOT = File.dirname(__FILE__)
 DOC_TEMPLATE_DIR = File.join(PROJECT_ROOT, 'lib', 'doc-template')
 DOC_SOURCE_DIR = File.join(PROJECT_ROOT, 'lib', 'doc-source')
-load File.join(File.join(PROJECT_ROOT, 'lib', 'source', '_tasks'), 'programming-pages.rake')
+load File.join(File.join(DOC_TEMPLATE_DIR, '_tasks'), 'programming-pages.rake')
 
 def lib_dir
   File.join(PROJECT_ROOT, 'lib')
