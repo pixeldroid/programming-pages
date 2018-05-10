@@ -122,7 +122,7 @@ namespace :template do
   desc [
     "downloads the latest release from GitHub, installing to DOC_TEMPLATE_DIR",
   ].join("\n")
-  task :install => [:check_consts] do |t, args|
+  task :update => [:check_consts] do |t, args|
     puts "[#{t.name}] asking GitHub for latest release.."
     uri = URI(RELEASE_API)
     response = Net::HTTP.get_response(uri)
@@ -159,7 +159,7 @@ end
 
 namespace :docs do
 
-  # TODO: make template:install a pre-req / maybe make a file task?
+  # TODO: make template:update a pre-req / maybe make a file task?
   desc [
     "builds the GitHub pages documentation site, under '#{from_pwd(ghpages_dir)}/'",
     " first, any existing documentation site files are removed",
@@ -172,7 +172,7 @@ namespace :docs do
   task :build => [:check_consts] do |t, args|
     target_dir = ghpages_dir
 
-    fail('please ensure the template is installed; you can run rake template:install') unless Dir.exists?(DOC_TEMPLATE_DIR)
+    fail('please ensure the template is installed before running this task') unless Dir.exists?(DOC_TEMPLATE_DIR)
 
     if (Dir.exists?(target_dir))
       puts "[#{t.name}] removing existing #{target_dir}..."
