@@ -9,9 +9,11 @@ order: 1
 **programming pages** offers the following:
 {:.larger.text}
 
+- pre-built [site structure](#overview), just add documentation
+- simple authoring syntax using [Markdown]({{ site.baseurl }}/examples/sampler/#/examples/) and [Liquid][liquid]
+- ready to use [layouts](#/layout_api), extensible to create new ones
 - searchable content, with keyboard shortcuts (try `h`)
 - mobile-ready design browsable on multiple devices
-- simple authoring syntax using [Markdown]({{ site.baseurl }}/examples/sampler/#/examples/) and [Liquid][liquid]
 - styling for readability, leveraging [Semantic UI][semantic-ui]
 - clean site generation that scores well on [Lighthouse][lighthouse] audits
 - compatibility with [GitHub Pages][ghpages] for free hosting and simple publishing
