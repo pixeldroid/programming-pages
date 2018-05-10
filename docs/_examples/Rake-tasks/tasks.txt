@@ -1,0 +1,15 @@
+$ rake -D
+rake docs
+    shorthand for 'rake docs:build'
+
+rake docs:build
+    builds the GitHub pages documentation site, under 'docs/'
+     first, any existing documentation site files are removed
+     then, files from DOC_TEMPLATE_DIR are copied in
+     then, files from DOC_SOURCE_DIR are copied over top
+     lastly, jekyll site config from DOC_SOURCE_DIR is merged over top of the template config
+    if jekyll is installed, you can preview the doc site locally:
+      $ bundle exec jekyll serve -I -s docs -d _site
+
+rake template:update
+    downloads the latest release from GitHub, installing to DOC_TEMPLATE_DIR
