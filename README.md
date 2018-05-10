@@ -4,6 +4,8 @@ a site template for publishing code documentation to GitHub pages
 
 > See **programming pages** used to document itself here: https://pixeldroid.github.io/programming-pages/
 
+![screenshot][screenshot]
+
 <br/>
 
 
@@ -119,6 +121,7 @@ This project excludes the following unused modules to reduce file size:
 [pull-requests]: https://github.com/pixeldroid/programming-pages/pulls "Pull requests for the Programming Pages template project"
 [push-to-github]: https://help.github.com/articles/pushing-to-a-remote/ "Pushing to a remote"
 [releases]: https://github.com/pixeldroid/programming-pages/releases "Packaged releases of the Programming Pages template"
+[screenshot]: screenshot.png "screenshot of a programming pages generated site"
 [semantic]: https://semantic-ui.com/ "Semantic is a UI component framework based around useful principles from natural language"
 [semantic-build]: https://semantic-ui.com/introduction/build-tools.html "Semantic UI build tools"
 [semantic-custom]: https://github.com/pixeldroid/Semantic-UI/tree/programming-pages "programming-pages branch of Semantic UI"
