@@ -92,7 +92,7 @@ The programming pages template is a layered system of Jekyll layouts and include
 
 The foundational layers are diagrammed below, illustrating what each layer builds upon, defines, and includes:
 
-[![layouts](template-structure.png "diagram of the template structure (draw.io)"){:.ui.image}](template-structure.png)
+[![layouts](template-structure.draw-io.png "diagram of the template structure (draw.io)"){:.ui.image}](template-structure.draw-io.png)
 
 ### Layouts and includes
 
