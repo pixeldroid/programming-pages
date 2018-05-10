@@ -6,8 +6,22 @@
 
 <div class="ui fitted inverted divider"></div>
 
+{% assign collection_list = site.collections %}
+
+{% assign ordered = '' | split: '' %}
+{% assign unorder = '' | split: '' %}
+{% for collection in collection_list %}
+{% unless collection.label == 'posts' or collection.docs.size == 0 %}
+{% if collection.tab-order %}{% assign ordered = ordered | push: collection %}
+{% else %}{% assign unorder = unorder | push: collection %}
+{% endif %}
+{% endunless %}
+{% endfor %}
+{% assign ordered = ordered | sort: 'tab-order' %}
+{% assign collection_list = ordered | concat: unorder %}
+
 <div id="collection-tabs" class="ui inverted stackable pointing secondary menu">
-{% for collection in site.collections %}
+{% for collection in collection_list %}
 {% unless collection.label == 'posts' or collection.docs.size == 0 %}
 {% capture tab_class %}{% if forloop.first %}active {% endif %}item{% endcapture %}
   <a class="{{ tab_class }}" data-tab="{{ collection.label | downcase }}">{{ collection.title }}</a>
@@ -15,8 +29,7 @@
 {% endfor %}
 </div>
 
-{% for collection in site.collections %}
-{% unless collection.label == 'posts' or collection.docs.size == 0 %}
+{% for collection in collection_list %}
 {% capture tab_class %}ui {% if forloop.first %}active {% endif %}inverted tab segment{% endcapture %}
 <div class="{{ tab_class }}" data-tab="{{ collection.label | downcase }}">
 <h4 class="ui header">{{ collection.title }}</h4>
@@ -24,15 +37,15 @@
 {% assign doc_list = collection.docs %}
 
 {% if collection.label == 'guides' %}
-{% assign ordered_docs = '' | split: '' %}
-{% assign unorder_docs = '' | split: '' %}
+{% assign ordered = '' | split: '' %}
+{% assign unorder = '' | split: '' %}
 {% for doc in doc_list %}
-{% if doc.order %}{% assign ordered_docs = ordered_docs | push: doc %}
-{% else %}{% assign unorder_docs = unorder_docs | push: doc %}
+{% if doc.order %}{% assign ordered = ordered | push: doc %}
+{% else %}{% assign unorder = unorder | push: doc %}
 {% endif %}
 {% endfor %}
-{% assign ordered_docs = ordered_docs | sort: 'order' %}
-{% assign doc_list = ordered_docs | concat: unorder_docs %}
+{% assign ordered = ordered | sort: 'order' %}
+{% assign doc_list = ordered | concat: unorder %}
 {% endif %}
 
 {% for doc in doc_list %}
@@ -56,5 +69,4 @@
 {% endfor %}
 </div>
 </div>
-{% endunless %}
 {% endfor %}

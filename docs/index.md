@@ -12,11 +12,25 @@ With this template installed in your project, you can author documentation in [M
 
 Learn more about the template in the following guides:
 
-- [Template Features]({{ site.baseurl }}/guides/Template-Features/#/guides/)
-- [Installing the Site Template]({{ site.baseurl }}/guides/Installing-the-site-template/#/guides/)
-- [Authoring Documentation]({{ site.baseurl }}/guides/Authoring-Documentation/#/guides/)
-- [Publishing to GitHub Pages]({{ site.baseurl }}/guides/Publishing-to-GitHub-Pages/#/guides/)
-- [Reporting Issues and Contributing]({{ site.baseurl }}/guides/Reporting-Issues-and-Contributing/#/guides/)
+{% for collection in site.collections %}
+{% if collection.label == 'guides' %}
+{% assign doc_list = collection.docs %}
+{% assign ordered = '' | split: '' %}
+{% assign unorder = '' | split: '' %}
+{% for doc in doc_list %}
+{% if doc.order %}{% assign ordered = ordered | push: doc %}
+{% else %}{% assign unorder = unorder | push: doc %}
+{% endif %}
+{% endfor %}
+{% assign ordered = ordered | sort: 'order' %}
+{% assign doc_list = ordered | concat: unorder %}
+{% for doc in doc_list %}
+  {% capture link %}{{ doc.title }}{% endcapture %}
+  {% capture url %}{{ doc.url }}#/{{ collection.label | downcase }}/{% endcapture %}
+- [{{ link }}]({{ site.baseurl }}{{ url }})
+{% endfor %}
+{% endif %}
+{% endfor %}
 
 
 

@@ -9,9 +9,11 @@ order: 1
 **programming pages** offers the following:
 {:.larger.text}
 
+- pre-built [site structure](#overview), just add documentation
+- simple authoring syntax using [Markdown]({{ site.baseurl }}/examples/sampler/#/examples/) and [Liquid][liquid]
+- ready to use [layouts](#/layout_api), extensible to create new ones
 - searchable content, with keyboard shortcuts (try `h`)
 - mobile-ready design browsable on multiple devices
-- simple authoring syntax using [Markdown]({{ site.baseurl }}/examples/sampler/#/examples/) and [Liquid][liquid]
 - styling for readability, leveraging [Semantic UI][semantic-ui]
 - clean site generation that scores well on [Lighthouse][lighthouse] audits
 - compatibility with [GitHub Pages][ghpages] for free hosting and simple publishing
@@ -78,14 +80,15 @@ The site template provides several pre-defined layouts for rendering different k
 
 Please see the individual layout pages for more detail:
 
-- [base]({{ site.baseurl }}/layout_api/base/#/layout_api/)
-- [compress]({{ site.baseurl }}/layout_api/compress/#/layout_api/)
-- [example]({{ site.baseurl }}/layout_api/example/#/layout_api/)
-- [guide-index]({{ site.baseurl }}/layout_api/guide-index/#/layout_api/)
-- [layout]({{ site.baseurl }}/layout_api/layout/#/layout_api/)
-- [package]({{ site.baseurl }}/layout_api/package/#/layout_api/)
-- [page]({{ site.baseurl }}/layout_api/page/#/layout_api/)
-- [type]({{ site.baseurl }}/layout_api/type/#/layout_api/)
+{% for collection in site.collections %}
+{% if collection.label == 'layout_api' %}
+{% for doc in collection.docs %}
+  {% capture link %}{{ doc.title }}{% endcapture %}
+  {% capture url %}{{ doc.url }}#/{{ collection.label | downcase }}/{% endcapture %}
+- [{{ link }}]({{ site.baseurl }}{{ url }})
+{% endfor %}
+{% endif %}
+{% endfor %}
 
 
 
