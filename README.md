@@ -32,7 +32,7 @@ a site template for publishing code documentation to GitHub pages
 ## building
 
 **programming pages** depends on [Jekyll][jekyll], [Semantic UI][semantic], and [jQuery][jquery].
-The dependencies are all captured in source control for this project,
+The dependencies are all captured and coordinated in the source of this project,
 but if you want to update a dependency or change its configuration,
 you'll need to be able to build them from source.
 
