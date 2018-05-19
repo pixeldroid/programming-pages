@@ -1,5 +1,4 @@
 require 'fileutils'
-require 'pathname'
 
 
 PROJECT = 'programming-pages'
@@ -8,7 +7,10 @@ PROJECT = 'programming-pages'
 PROJECT_ROOT = File.dirname(__FILE__)
 DOC_TEMPLATE_DIR = File.join(PROJECT_ROOT, 'lib', 'doc-template')
 DOC_SOURCE_DIR = File.join(PROJECT_ROOT, 'lib', 'doc-source')
-load File.join(File.join(DOC_TEMPLATE_DIR, '_tasks'), 'programming-pages.rake')
+# load the rake tasks and include the module
+load File.join(PROJECT_ROOT, 'lib', 'source', '_tasks', 'programming-pages.rake')
+require File.join(PROJECT_ROOT, 'lib', 'source', '_tasks', 'progp')
+include ProgP
 
 def lib_dir
   File.join(PROJECT_ROOT, 'lib')
@@ -39,7 +41,7 @@ def template_source_config_file
 end
 
 def template_source_config
-  @template_source_config || (@template_source_config = read_yaml(template_source_config_file))
+  @template_source_config || (@template_source_config = ProgP.read_yaml(template_source_config_file))
 end
 
 def lib_version
@@ -55,11 +57,11 @@ def update_lib_version(new_value)
 
   config = user_config
   config['project']['version'] = new_value
-  write_yaml(user_config_file, config)
+  ProgP.write_yaml(user_config_file, config)
 
   config = template_source_config
   config['template_version'] = new_value
-  write_yaml(template_source_config_file, config)
+  ProgP.write_yaml(template_source_config_file, config)
 end
 
 def exclusions
@@ -111,7 +113,7 @@ namespace :lib do
     release_dir = PROJECT_ROOT
     released_template = File.absolute_path(File.join(release_dir, template_release))
 
-    fail('zip archiving not yet supported on windows') if windows?
+    ProgP.fail('zip archiving not yet supported on windows') if windows?
 
     FileUtils.rm(released_template) if (File.exists?(released_template))
 
@@ -121,7 +123,7 @@ namespace :lib do
         FileUtils.cp_r(File.join(source_dir, '.'), File.join(tmp_dir, PROJECT))
         zip_exclusions = exclusions.map { |e| "--exclude \"#{e}\"" }.join(' ')
         cmd = "zip --quiet --recurse-paths #{released_template} #{PROJECT} #{zip_exclusions}"
-        try(cmd, "unable to create #{template_release}")
+        ProgP.try(cmd, "unable to create #{template_release}")
       end
     end
 
@@ -138,7 +140,7 @@ namespace :lib do
   ].join("\n")
   task :semantic, [:dir] do |t, args|
     args.with_defaults(:dir => nil)
-    fail("cannot find semantic ui project at '#{args.dir}'") unless (args.dir && Dir.exists?(args.dir))
+    ProgP.fail("cannot find semantic ui project at '#{args.dir}'") unless (args.dir && Dir.exists?(args.dir))
 
     puts "[#{t.name}] copying custom build files to #{args.dir}..."
     FileUtils.cp_r(File.join(semantic_build_dir, '.'), args.dir)
@@ -149,7 +151,7 @@ namespace :lib do
     Dir.chdir(args.dir) do
       build_success = (system(cmd) == true)
     end
-    fail('semantic build failed') unless build_success
+    ProgP.fail('semantic build failed') unless build_success
 
     puts "[#{t.name}] copying generated files from semantic dist_dir..."
     components_dir = File.join(args.dir, 'dist', 'components')
@@ -178,7 +180,7 @@ namespace :lib do
   ].join("\n")
   task :version, [:v] do |t, args|
     args.with_defaults(:v => nil)
-    fail('please provide a version string') unless (args.v && args.v.length > 0)
+    ProgP.fail('please provide a version string') unless (args.v && args.v.length > 0)
 
     lib_version = args.v
     update_lib_version(lib_version)
