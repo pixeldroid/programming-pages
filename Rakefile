@@ -192,3 +192,8 @@ desc [
   "shorthand for 'rake lib:build'",
 ].join("\n")
 task :lib => ['lib:build']
+
+desc [
+  "generate a new release candidate, by updating the lib, docs, and package",
+].join("\n")
+task :release => ['lib:build', 'docs:build', 'lib:package']
