@@ -96,7 +96,8 @@ namespace :lib do
   task :build => [:check_consts] do |t, args|
     source_dir = File.absolute_path(src_dir)
 
-    puts "[#{t.name}] copying template source files into DOC_TEMPLATE_DIR"
+    puts "[#{t.name}] replacing contents of DOC_TEMPLATE_DIR with template source files"
+    FileUtils.rm_rf(File.join(DOC_TEMPLATE_DIR, '.'))
     FileUtils.cp_r(File.join(source_dir, '.'), DOC_TEMPLATE_DIR)
 
     puts "[#{t.name}] task completed, template updated at #{DOC_TEMPLATE_DIR}"
