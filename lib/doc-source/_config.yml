@@ -20,3 +20,4 @@ project:
   owner: pixeldroid
   repo: https://github.com/pixeldroid/programming-pages
   version: 0.5.4
+module_root: "/layout_api"
