@@ -105,7 +105,6 @@ end
 
 namespace :docs do
 
-  # TODO: make template:update a pre-req / maybe make a file task?
   desc [
     "builds the GitHub pages documentation site, under '#{ProgP.from_pwd(ghpages_dir)}/'",
     " first, any existing documentation site files are removed",
