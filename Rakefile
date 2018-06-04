@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'rake/clean'
 
 
 PROJECT = 'programming-pages'
@@ -33,6 +34,29 @@ def semantic_attribution(version)
     "*/\n",
   ].join("\n")
 end
+
+[
+  'docs',
+  DOC_TEMPLATE_DIR,
+].each { |f| CLEAN << f }
+Rake::Task[:clean].clear_comments()
+Rake::Task[:clean].add_description([
+  "removes intermediate files to ensure a clean build",
+  "running now would delete the following:\n  #{CLEAN.resolve.join("\n  ")}",
+].join("\n"))
+
+[
+  '_site',
+  'docs',
+  DOC_TEMPLATE_DIR,
+].each { |f| CLOBBER << f }
+Rake::Task[:clobber].clear_comments()
+Rake::Task[:clobber].add_description([
+  "removes all generated artifacts to restore project to checkout-like state",
+  "removes the following folders:\n  #{CLOBBER.join("\n  ")}",
+].join("\n"))
+Rake::Task[:clobber].enhance { FileUtils.rm_r(Dir.glob("#{PROJECT}_*.zip")) } # not sure why this glob pattern does not work in the clobber filelist
+
 
 @template_source_config = nil
 
