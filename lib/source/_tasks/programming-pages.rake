@@ -10,6 +10,20 @@ require 'yaml'
 require File.join(File.dirname(__FILE__), 'progp')
 include ProgP
 
+begin
+  check = [
+    PROJECT_ROOT,
+    DOC_TEMPLATE_DIR,
+    DOC_SOURCE_DIR,
+  ]
+rescue NameError
+  abort([
+    'error: unspecified constant(s)',
+    '  please ensure PROJECT_ROOT, DOC_TEMPLATE_DIR, and DOC_SOURCE_DIR are defined before loading this rakefile',
+  ].join("\n"))
+end
+
+
 @template_config = nil
 @user_config = nil
 
@@ -49,12 +63,6 @@ def jekyll_cmd
   "bundle exec jekyll serve -I -s #{ProgP.from_pwd(ghpages_dir)} -d #{ProgP.from_pwd(site_dir)}"
 end
 
-
-task :check_consts do |t, args|
-  ProgP.fail('please define the PROJECT_ROOT constant before loading this rakefile') unless ProgP.const_find('PROJECT_ROOT')
-  ProgP.fail('please define the DOC_TEMPLATE_DIR constant before loading this rakefile') unless ProgP.const_find('DOC_TEMPLATE_DIR')
-  ProgP.fail('please define the DOC_SOURCE_DIR constant before loading this rakefile') unless ProgP.const_find('DOC_SOURCE_DIR')
-end
 
 namespace :template do
 
@@ -99,7 +107,7 @@ namespace :template do
   desc [
     "downloads the latest release from GitHub, installing to DOC_TEMPLATE_DIR",
   ].join("\n")
-  task :update => [:check_consts, 'template:get_latest']
+  task :update => ['template:get_latest']
 
 end
 
@@ -114,7 +122,7 @@ namespace :docs do
     "if jekyll is installed, you can preview the doc site locally:",
     "  $ #{jekyll_cmd}",
   ].join("\n")
-  task :build => [:check_consts] do |t, args|
+  task :build do |t, args|
     target_dir = ghpages_dir
 
     ProgP.fail('please ensure the template is installed before running this task') unless Dir.exists?(DOC_TEMPLATE_DIR)

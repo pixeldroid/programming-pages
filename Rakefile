@@ -117,7 +117,7 @@ namespace :lib do
   desc [
     "deploys the current local source files into DOC_TEMPLATE_DIR",
   ].join("\n")
-  task :build => [:check_consts] do |t, args|
+  task :build do |t, args|
     source_dir = File.absolute_path(src_dir)
 
     puts "[#{t.name}] replacing contents of DOC_TEMPLATE_DIR with template source files"
