@@ -3,7 +3,7 @@ layout: "layout"
 
 title: "package"
 description: "Renders a summary page for a code package."
-parent_layout: "page"
+parent_layout: [ "page", "base", "compress" ]
 parameters:
   - { name: "module", type: "string", description: "name of the package" }
   - { name: "submodules", type: "[ string, .. ]", optional: true, description: "list of child packages" }

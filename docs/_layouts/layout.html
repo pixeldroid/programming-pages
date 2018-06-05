@@ -1,0 +1,77 @@
+---
+layout: page
+content_param: { name: "content", type: "string", description: "auto-populated variable representing the page content being passed to the layout." }
+---
+
+{% capture newline %}
+{% endcapture %}
+
+<span class="anchor" id="heading">&nbsp;</span>
+<h1 class="ui dividing header">{{ page.title }}</h1>
+
+{% if page.parent_layout %}
+<div class="ui list">
+  <div class="item">
+    <svg class="icon"><use xlink:href="#icon-flow-line" /></svg>
+    <div class="content">
+      <div class="ui breadcrumb">
+        <span class="section active">{{ page.title }}</span>
+        {% for ancestor in page.parent_layout %}
+        <svg class="icon divider"><use xlink:href="#icon-chevron-right" /></svg>
+        <a class="section" href="{{ site.base_url | append: site.module_root }}/{{ ancestor }}/#{{ site.module_root }}/">{{ ancestor }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<div class="ui basic segment"><span class="anchor" id="description">&nbsp;</span>
+  {% assign lines = page.description | split: newline %}
+  <p class="larger text">
+  {{ lines.first | markdownify | remove: '<p>' | remove: '</p>' }}
+  </p>
+
+  {% assign description = "" | split: "" %}
+  {% for line in lines offset:1 %}{% assign description = description | push: line %}{% endfor %}
+  {{ description | join: newline | markdownify }}
+</div>
+
+<div class="ui basic segment"><span class="anchor" id="usage">&nbsp;</span>
+<h2 class="ui header">Usage</h2>
+
+{% capture md %}
+```yaml
+---
+layout: "{{ page.title }}"
+{% if page.parameters %}
+{% assign params = page.parameters | sort: 'name' -%}
+{%- for p in params -%}
+{{ p.name }}: {{ p.type }}
+{% endfor -%}{%- endif -%}
+---
+<content>
+```
+{% endcapture %}
+{{ md | markdownify }}
+</div>
+
+{% if page.parameters %}
+<div class="ui basic segment"><span class="anchor" id="parameters">&nbsp;</span>
+<h2 class="ui header">Parameters</h2>
+
+{% assign params = "" | split: "" | push: layout.content_param %}
+{% for p in page.parameters %}
+  {% assign params = params | push: p %}
+{% endfor %}
+
+<table class="ui striped definition table"><tbody>
+{% assign params = params | sort: 'name' %}
+{% for p in params %}
+  {% capture optional %}{% if p.optional %}<div class="ui horizontal label">optional</div>&nbsp;{% endif %}{% endcapture %}
+  <tr><td class="collapsing"><code>{{ p.name }}</code></td><td>{{ optional }}{% if p.description %}{{ p.description | markdownify | remove: '<p>' | remove: '</p>' }}{% endif %}</td></tr>
+{% endfor %}
+</tbody></table>
+{% endif %}
+
+</div>

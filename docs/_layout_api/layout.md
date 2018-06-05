@@ -13,10 +13,10 @@ description: |
     optional: boolean
     description: string
   ```
-parent_layout: "layout"
+parent_layout: [ "page", "base", "compress" ]
 parameters:
   - { name: "title", type: "string", description: "filename of layout, without extension" }
   - { name: "description", type: "string", description: "purpose of layout" }
-  - { name: "parent_layout", type: "string", description: "name of layout based upon" }
+  - { name: "parent_layout", type: "[ string, .. ]", optional: true, description: "chain of layouts this layout inherits from, ordered with parent first, then grandparent, great grandparent, and so on." }
   - { name: "parameters", optional: true, type: "[ variable_info, .. ]", description: "list of supported page variables" }
 ---

@@ -122,7 +122,7 @@ blockquote p {
 code, kbd, pre, samp {
   font-family: Consolas,'Lucida Console','Andale Mono',monospace;
 }
-li code, p code, td code {
+li code, p code, td code, .ui.list .item code {
     padding: 2px 4px;
     font-size: 90%;
     color: #d87b00;

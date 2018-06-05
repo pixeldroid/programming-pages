@@ -3,7 +3,7 @@ layout: "layout"
 
 title: "example"
 description: "Creates an example page by placing an optional thumbnail image above a tab container presenting syntax-highlighted code files."
-parent_layout: "page"
+parent_layout: [ "page", "base", "compress" ]
 parameters:
   - { name: "title", type: "string", description: "name for the example" }
   - { name: "thumb", type: "string", optional: true, description: "url to a thumbnail image" }
