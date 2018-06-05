@@ -103,14 +103,15 @@ title: Installing the site template
 
 Please see the individual layout pages for more detail:
 
-- [base]({{ site.baseurl }}/layout_api/base/#/layout_api/)
-- [compress]({{ site.baseurl }}/layout_api/compress/#/layout_api/)
-- [example]({{ site.baseurl }}/layout_api/example/#/layout_api/)
-- [guide-index]({{ site.baseurl }}/layout_api/guide-index/#/layout_api/)
-- [layout]({{ site.baseurl }}/layout_api/layout/#/layout_api/)
-- [package]({{ site.baseurl }}/layout_api/package/#/layout_api/)
-- [page]({{ site.baseurl }}/layout_api/page/#/layout_api/)
-- [type]({{ site.baseurl }}/layout_api/type/#/layout_api/)
+{% for collection in site.collections %}
+{% if collection.label == 'layout_api' %}
+{% for doc in collection.docs %}
+  {% capture link %}{{ doc.title }}{% endcapture %}
+  {% capture url %}{{ doc.url }}#/{{ collection.label | downcase }}/{% endcapture %}
+- [{{ link }}]({{ site.baseurl }}{{ url }})
+{% endfor %}
+{% endif %}
+{% endfor %}
 
 
 
