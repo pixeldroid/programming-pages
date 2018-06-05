@@ -1,6 +1,5 @@
 ---
 layout: page
-content_param: { name: "content", type: "string", description: "auto-populated variable representing the page content being passed to the layout." }
 ---
 
 {% capture newline %}
@@ -60,13 +59,8 @@ layout: "{{ page.title }}"
 <div class="ui basic segment"><span class="anchor" id="parameters">&nbsp;</span>
 <h2 class="ui header">Parameters</h2>
 
-{% assign params = "" | split: "" | push: layout.content_param %}
-{% for p in page.parameters %}
-  {% assign params = params | push: p %}
-{% endfor %}
-
 <table class="ui striped definition table"><tbody>
-{% assign params = params | sort: 'name' %}
+{% assign params = page.parameters | sort: 'name' %}
 {% for p in params %}
   {% capture optional %}{% if p.optional %}<div class="ui horizontal label">optional</div>&nbsp;{% endif %}{% endcapture %}
   <tr><td class="collapsing"><code>{{ p.name }}</code></td><td>{{ optional }}{% if p.description %}{{ p.description | markdownify | remove: '<p>' | remove: '</p>' }}{% endif %}</td></tr>

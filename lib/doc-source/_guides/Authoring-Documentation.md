@@ -24,8 +24,8 @@ Content is authored in Markdown, optionally enhanced with [icons][svg-icons] or 
 <span><svg class="icon"><use xlink:href="#icon-info-circle" /></svg> <b>Info</b></span><br> See the [Markdown Sampler][markdown-sampler] for examples.
 {:.ui.info.message}
 
-<span><svg class="icon"><use xlink:href="#icon-exclamation-triangle" /></svg> <b>Warning</b></span><br> To use liquid tags, ensure the file starts with at least an empty [YAML front-matter block][front-matter].
-{:.ui.warning.message}
+<span><svg class="icon"><use xlink:href="#icon-check-circle" /></svg> <b>Tip</b></span><br> To use liquid tags, ensure the file starts with at least an empty [YAML front-matter block][front-matter].
+{:.ui.success.message}
 
 User-authored content is expected in the following places:
 
@@ -80,8 +80,6 @@ For a namespaced language this might look like:
 #### Examples
 
 Examples are for technical illustrations of how to implement something, ideally snippets of usable code with descriptive annotations.
-
-See [Samples][samples] for some sample examples.
 
 #### Guides
 

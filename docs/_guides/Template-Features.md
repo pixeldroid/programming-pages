@@ -9,9 +9,9 @@ order: 1
 **programming pages** offers the following:
 {:.larger.text}
 
-- pre-built [site structure](#overview), just add documentation
+- pre-built [site structure](#overview)&mdash;just add documentation
 - simple authoring syntax using [Markdown]({{ site.baseurl }}/examples/sampler/#/examples/) and [Liquid][liquid]
-- ready to use [layouts](#/layout_api), extensible to create new ones
+- ready-to-use [layouts](#/layout_api), extensible to create new ones
 - searchable content, with keyboard shortcuts (try `h`)
 - mobile-ready design browsable on multiple devices
 - styling for readability, leveraging [Semantic UI][semantic-ui]

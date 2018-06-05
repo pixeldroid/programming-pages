@@ -24,8 +24,8 @@ Content is authored in Markdown, optionally enhanced with [icons][svg-icons] or 
 <span><svg class="icon"><use xlink:href="#icon-info-circle" /></svg> <b>Info</b></span><br> See the [Markdown Sampler][markdown-sampler] for examples.
 {:.ui.info.message}
 
-<span><svg class="icon"><use xlink:href="#icon-exclamation-triangle" /></svg> <b>Warning</b></span><br> To use liquid tags, ensure the file starts with at least an empty [YAML front-matter block][front-matter].
-{:.ui.warning.message}
+<span><svg class="icon"><use xlink:href="#icon-check-circle" /></svg> <b>Tip</b></span><br> To use liquid tags, ensure the file starts with at least an empty [YAML front-matter block][front-matter].
+{:.ui.success.message}
 
 User-authored content is expected in the following places:
 
@@ -81,8 +81,6 @@ For a namespaced language this might look like:
 
 Examples are for technical illustrations of how to implement something, ideally snippets of usable code with descriptive annotations.
 
-See [Samples][samples] for some sample examples.
-
 #### Guides
 
 Guides are for explaining the concept of a topic, providing the context to be able to understand one or more examples.
@@ -103,14 +101,15 @@ title: Installing the site template
 
 Please see the individual layout pages for more detail:
 
-- [base]({{ site.baseurl }}/layout_api/base/#/layout_api/)
-- [compress]({{ site.baseurl }}/layout_api/compress/#/layout_api/)
-- [example]({{ site.baseurl }}/layout_api/example/#/layout_api/)
-- [guide-index]({{ site.baseurl }}/layout_api/guide-index/#/layout_api/)
-- [layout]({{ site.baseurl }}/layout_api/layout/#/layout_api/)
-- [package]({{ site.baseurl }}/layout_api/package/#/layout_api/)
-- [page]({{ site.baseurl }}/layout_api/page/#/layout_api/)
-- [type]({{ site.baseurl }}/layout_api/type/#/layout_api/)
+{% for collection in site.collections %}
+{% if collection.label == 'layout_api' %}
+{% for doc in collection.docs %}
+  {% capture link %}{{ doc.title }}{% endcapture %}
+  {% capture url %}{{ doc.url }}#/{{ collection.label | downcase }}/{% endcapture %}
+- [{{ link }}]({{ site.baseurl }}{{ url }})
+{% endfor %}
+{% endif %}
+{% endfor %}
 
 
 
