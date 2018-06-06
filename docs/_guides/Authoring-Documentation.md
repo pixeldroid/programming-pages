@@ -21,10 +21,10 @@ Use template layouts to take advantage of parameterized display structures like 
 
 Content is authored in Markdown, optionally enhanced with [icons][svg-icons] or [kramdown css extensions][kramdown-block-ial] to leverage [semantic ui styling][semantic-ui], or [Liquid tags][liquid] for programmatic content.
 
-<span><svg class="icon"><use xlink:href="#icon-info-circle" /></svg> <b>Info</b></span><br> See the [Markdown Sampler][markdown-sampler] for examples.
+<span>{% include icon.liquid id='info-circle' %} <b>Info</b></span><br> See the [Markdown Sampler][markdown-sampler] for examples.
 {:.ui.info.message}
 
-<span><svg class="icon"><use xlink:href="#icon-check-circle" /></svg> <b>Tip</b></span><br> To use liquid tags, ensure the file starts with at least an empty [YAML front-matter block][front-matter].
+<span>{% include icon.liquid id='lightbulb-outline' %} <b>Tip</b></span><br> To use liquid tags, ensure the file starts with at least an empty [YAML front-matter block][front-matter].
 {:.ui.success.message}
 
 User-authored content is expected in the following places:
@@ -61,7 +61,7 @@ title: My project
 
 Grouped documentation is called a _collection_ by Jekyll, and can be any folder of files that is named with an underscore and listed in the site configuration (`_config.yml`).
 
-<span><svg class="icon"><use xlink:href="#icon-info-circle" /></svg> <b>Info</b></span><br> See the [Site template files guide]({{ site.baseurl }}/guides/Installing-the-site-template/Template-files/#template-provided-configuration) for details about specifying collection folders in the site configuration file.
+<span>{% include icon.liquid id='info-circle' %} <b>Info</b></span><br> See the [Site template files guide]({{ site.baseurl }}/guides/Installing-the-site-template/Template-files/#template-provided-configuration) for details about specifying collection folders in the site configuration file.
 {:.ui.info.message}
 
 The programming pages template is pre-configured for three common collections (`_api`, `_examples`, `_guides`). To use one or more of them, simply create the collection folder and put content markdown files inside. Collections without a folder are ignored.

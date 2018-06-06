@@ -28,11 +28,11 @@ Elements of the site template are explained in detail in the sections below:
 ## Overview
 {:.no_toc}
 
-The site template provides a Home link (<span><svg class="icon"><use xlink:href="#icon-home" /></svg></span>) in the top left corner that returns to the [site entry page][homepage], and a navigation menu (<span><svg class="icon"><use xlink:href="#icon-bars" /></svg></span>) on the left side of the screen where content can be accessed via links under the collection tabs (e.g. [Layouts](#/layout_api "toggle the Layouts collection"), [Examples](#/examples "toggle the Examples collection"), or [Guides](#/guides "toggle the Guides collection")), or via the search box (<span><svg class="icon"><use xlink:href="#icon-magnifier" /></svg></span>).
+The site template provides a Home link (<span>{% include icon.liquid id='home' %}</span>) in the top left corner that returns to the [site entry page][homepage], and a navigation menu (<span>{% include icon.liquid id='bars' %}</span>) on the left side of the screen where content can be accessed via links under the collection tabs (e.g. [Layouts](#/layout_api "toggle the Layouts collection"), [Examples](#/examples "toggle the Examples collection"), or [Guides](#/guides "toggle the Guides collection")), or via the search box (<span>{% include icon.liquid id='magnifier' %}</span>).
 
 To search for content, focus the search input, and start typing a term to search for. A results box will populate with best matches. Select one to navigate to the page.
 
-<span><svg class="icon"><use xlink:href="#icon-info-circle" /></svg> <b>Info</b></span><br> On a desktop, open the help menu with the `h` key to see keyboard shortcuts for toggling navigation tabs and searching.
+<span>{% include icon.liquid id='info-circle' %} <b>Info</b></span><br> On a desktop, open the help menu with the `h` key to see keyboard shortcuts for toggling navigation tabs and searching.
 {:.ui.info.message}
 
 

@@ -30,7 +30,7 @@ See the [References](#references) section below for links to more details.
 | [Images](#images) | `![alt](url "title")` or (`![alt][id]` + `[id]: url "title"`) |
 | [Rules](#rules) | `---` or `***` or `___` |
 | [Emoji](#emoji) | `:emoji-id:` |
-| [Icons](#icons) | `<svg class="icon"><use xlink:href="#icon-id" /></svg>` |
+| [Icons](#icons) | {% raw %}`{% include icon.liquid id='<id>' %}`{% endraw %} |
 | [Messages](#messages) | `{:.ui.<size|type>.message}` |
 {:.ui.collapsing.compact.table}
 
@@ -547,27 +547,19 @@ Place an emoji id inside colons (`:id:`). Reference an [emoji cheat sheet][emoji
 
 ## Icons
 
-There is no markdown shortcut for icons, but the following are provided with the template ([svg.html][svg-file]) and can be included via regular html syntax.
+There is no markdown shortcut for icons, but the template provides a liquid macro for embedding svg icons that have been defined in [_data/svg_icons.yml][svg-file].
 
-Format: `<svg class="icon"><use xlink:href="#icon-id" /></svg>`
+Format: {% raw %}`{% include icon.liquid id='star' %}`{% endraw %} will render as: {% include icon.liquid id='star' %}
+
+The following icons are provided with the template:
 
 |:----:|-----------|
-| <svg class="icon"><use xlink:href="#icon-bars" /></svg> | `#icon-bars` |
-| <svg class="icon"><use xlink:href="#icon-cc-by" /></svg> | `#icon-cc-by` |
-| <svg class="icon"><use xlink:href="#icon-cc-cc" /></svg> | `#icon-cc-cc` |
-| <svg class="icon"><use xlink:href="#icon-check-circle" /></svg> | `#icon-check-circle` |
-| <svg class="icon"><use xlink:href="#icon-chevron-right" /></svg> | `#icon-chevron-right` |
-| <svg class="icon"><use xlink:href="#icon-exclamation-circle" /></svg> | `#icon-exclamation-circle` |
-| <svg class="icon"><use xlink:href="#icon-exclamation-triangle" /></svg> | `#icon-exclamation-triangle` |
-| <svg class="icon"><use xlink:href="#icon-file-outline" /></svg> | `#icon-file-outline` |
-| <svg class="icon"><use xlink:href="#icon-flow-line" /></svg> | `#icon-flow-line` |
-| <svg class="icon"><use xlink:href="#icon-flow-tree" /></svg> | `#icon-flow-tree` |
-| <svg class="icon"><use xlink:href="#icon-folder-outline" /></svg> | `#icon-folder-outline` |
-| <svg class="icon"><use xlink:href="#icon-home" /></svg> | `#icon-home` |
-| <svg class="icon"><use xlink:href="#icon-info-circle" /></svg> | `#icon-info-circle` |
-| <svg class="icon"><use xlink:href="#icon-interface" /></svg> | `#icon-interface` |
-| <svg class="icon"><use xlink:href="#icon-magnifier" /></svg> | `#icon-magnifier` |
-| <svg class="icon"><use xlink:href="#icon-star" /></svg> | `#icon-star` |
+{% assign icons = site.data.svg_icons | sort -%}
+{% for icon in icons %}
+  {%- assign id  = icon[0] -%}
+  {%- assign svg = icon[1] -%}
+| <svg version="1.1" class="icon" role="img" aria-hidden="true" viewBox="{{ svg.viewbox }}"><path d="{{ svg.path }}"/></svg> | `{{ id }}` |
+{% endfor %}
 
 > See also [Emoji](#emoji) as another way to insert pictograms.
 
@@ -578,7 +570,7 @@ Sized and/or semantically color-coded message blocks can be defined by leveragin
 Size and type can be used apart or together.
 Icons are optional.
 
-Format: `{:.ui.<size|type>.message}`, where size is any of:
+Format: `{:.ui.<size|type>.message}`, where `size` is any of:
 - `mini`
 - `tiny`
 - `small`
@@ -587,7 +579,7 @@ Format: `{:.ui.<size|type>.message}`, where size is any of:
 - `huge`
 - `massive`
 
-and type is any of:
+and `type` is any of:
 - `success`
 - `info`
 - `warning`
@@ -622,7 +614,7 @@ This text will appear as a huge message.
 {:.ui.attached.tertiary.inverted.tight.grey.segment}
 
 <div>
-    <span><svg class="icon"><use xlink:href="#icon-check-circle" /></svg> <b>Success</b></span><br> This text will appear in a big success block with an icon.
+    <span>{% include icon.liquid id='check-circle' %} <b>Success</b></span><br> This text will appear in a big success block with an icon.
     {:.ui.big.success.message}
 </div>
 {:.ui.attached.secondary.tight.segment}
@@ -633,7 +625,7 @@ This text will appear as a huge message.
 {:.ui.attached.secondary.inverted.tight.blue.segment}
 
 <div>
-<span><svg class="icon"><use xlink:href="#icon-check-circle" /></svg> <b>Success</b></span><br> This text will appear in a big success block with an icon.
+<span>{% include icon.liquid id='check-circle' %} <b>Success</b></span><br> This text will appear in a big success block with an icon.
 {:.ui.big.success.message}
 </div>
 {:.ui.attached.secondary.segment}
@@ -645,7 +637,7 @@ This text will appear as a huge message.
 {:.ui.attached.tertiary.inverted.tight.grey.segment}
 
 <div>
-    <span><svg class="icon"><use xlink:href="#icon-info-circle" /></svg> <b>Info</b></span><br> This text will appear in an info block with an icon.
+    <span>{% include icon.liquid id='info-circle' %} <b>Info</b></span><br> This text will appear in an info block with an icon.
     {:.ui.info.message}
 </div>
 {:.ui.attached.secondary.tight.segment}
@@ -656,7 +648,7 @@ This text will appear as a huge message.
 {:.ui.attached.secondary.inverted.tight.blue.segment}
 
 <div>
-<span><svg class="icon"><use xlink:href="#icon-info-circle" /></svg> <b>Info</b></span><br> This text will appear in an info block with an icon.
+<span>{% include icon.liquid id='info-circle' %} <b>Info</b></span><br> This text will appear in an info block with an icon.
 {:.ui.info.message}
 </div>
 {:.ui.attached.secondary.segment}
@@ -668,7 +660,7 @@ This text will appear as a huge message.
 {:.ui.attached.tertiary.inverted.tight.grey.segment}
 
 <div>
-    <span><svg class="icon"><use xlink:href="#icon-exclamation-triangle" /></svg> <b>Warning</b></span><br> This text will appear in a warning block with an icon.
+    <span>{% include icon.liquid id='exclamation-triangle' %} <b>Warning</b></span><br> This text will appear in a warning block with an icon.
     {:.ui.warning.message}
 </div>
 {:.ui.attached.secondary.tight.segment}
@@ -679,7 +671,7 @@ This text will appear as a huge message.
 {:.ui.attached.secondary.inverted.tight.blue.segment}
 
 <div>
-<span><svg class="icon"><use xlink:href="#icon-exclamation-triangle" /></svg> <b>Warning</b></span><br> This text will appear in a warning block with an icon.
+<span>{% include icon.liquid id='exclamation-triangle' %} <b>Warning</b></span><br> This text will appear in a warning block with an icon.
 {:.ui.warning.message}
 </div>
 {:.ui.attached.secondary.segment}
@@ -691,7 +683,7 @@ This text will appear as a huge message.
 {:.ui.attached.tertiary.inverted.tight.grey.segment}
 
 <div>
-    <span><svg class="icon"><use xlink:href="#icon-exclamation-circle" /></svg> <b>Error</b></span><br> This text will appear in an error block with an icon.
+    <span>{% include icon.liquid id='exclamation-circle' %} <b>Error</b></span><br> This text will appear in an error block with an icon.
     {:.ui.error.message}
 </div>
 {:.ui.attached.secondary.tight.segment}
@@ -702,7 +694,7 @@ This text will appear as a huge message.
 {:.ui.attached.secondary.inverted.tight.blue.segment}
 
 <div>
-<span><svg class="icon"><use xlink:href="#icon-exclamation-circle" /></svg> <b>Error</b></span><br> This text will appear in an error block with an icon.
+<span>{% include icon.liquid id='exclamation-circle' %} <b>Error</b></span><br> This text will appear in an error block with an icon.
 {:.ui.error.message}
 </div>
 {:.ui.attached.secondary.segment}

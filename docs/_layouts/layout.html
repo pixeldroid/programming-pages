@@ -11,12 +11,12 @@ layout: page
 {% if page.parent_layout %}
 <div class="ui list">
   <div class="item">
-    <svg class="icon"><use xlink:href="#icon-flow-line" /></svg>
+    {% include icon.liquid id='flow-line' %}
     <div class="content">
       <div class="ui breadcrumb">
         <span class="section active">{{ page.title }}</span>
         {% for ancestor in page.parent_layout %}
-        <svg class="icon divider"><use xlink:href="#icon-chevron-right" /></svg>
+        {% include icon.liquid id='chevron-right' class='divider' %}
         <a class="section" href="{{ site.base_url | append: site.module_root }}/{{ ancestor }}/#{{ site.module_root }}/">{{ ancestor }}</a>
         {% endfor %}
       </div>
