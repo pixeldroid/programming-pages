@@ -734,7 +734,7 @@ This text will appear as a huge message.
 [markdown-cheatsheet]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet "Markdown Cheatsheet"
 [rouge-hilighter]: http://rouge.jneen.net/ "an elegant, extendable code highlighter written in pure Ruby"
 [rouge-list]: https://github.com/jneen/rouge/wiki/List-of-supported-languages-and-lexers "list of supported languages and lexers in Rouge"
-[sampler-source]: https://raw.githubusercontent.com/pixeldroid/programming-pages/master/lib/doc/_examples/sampler.md "source code for this page"
+[sampler-source]: https://raw.githubusercontent.com/pixeldroid/programming-pages/master/lib/doc-source/_examples/sampler.md "source code for this page"
 [semantic-message]: https://semantic-ui.com/collections/message.html#warning "a message displays information that explains nearby content"
 [svg-file]: https://github.com/pixeldroid/programming-pages/blob/master/lib/src/_includes/styles/svg.html "source file for SVG icons provided by default"
 
