@@ -570,7 +570,7 @@ Sized and/or semantically color-coded message blocks can be defined by leveragin
 Size and type can be used apart or together.
 Icons are optional.
 
-Format: `{:.ui.<size|type>.message}`, where size is any of:
+Format: `{:.ui.<size|type>.message}`, where `size` is any of:
 - `mini`
 - `tiny`
 - `small`
@@ -579,7 +579,7 @@ Format: `{:.ui.<size|type>.message}`, where size is any of:
 - `huge`
 - `massive`
 
-and type is any of:
+and `type` is any of:
 - `success`
 - `info`
 - `warning`
