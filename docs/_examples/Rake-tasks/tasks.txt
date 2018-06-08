@@ -3,13 +3,14 @@ rake docs
     shorthand for 'rake docs:build'
 
 rake docs:build
-    builds the GitHub pages documentation site, under 'lib/source/_tasks/docs/'
-     first, any existing documentation site files are removed
-     then, files from DOC_TEMPLATE_DIR are copied in
-     then, files from DOC_SOURCE_DIR are copied over top
-     lastly, jekyll site config from DOC_SOURCE_DIR is merged over top of the template config
+    builds the GitHub pages documentation site, under 'docs/'
+      first, any existing documentation site files are removed
+      then, files from DOC_TEMPLATE_DIR are copied in
+      and, user files from DOC_SOURCE_DIR are copied over top
+      and, user defined fonts from DOC_SOURCE_DIR/_data/svg_icons.yml are merged onto the template fonts
+      and, jekyll site config from DOC_SOURCE_DIR/_config.yml is merged onto the template config
     if jekyll is installed, you can preview the doc site locally:
-      $ bundle exec jekyll serve -I -s lib/source/_tasks/docs -d lib/source/_tasks/_site
+      $ bundle exec jekyll serve -I -s docs -d _site
 
 rake template:update
     downloads the latest release from GitHub, installing to DOC_TEMPLATE_DIR

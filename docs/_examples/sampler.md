@@ -547,7 +547,9 @@ Place an emoji id inside colons (`:id:`). Reference an [emoji cheat sheet][emoji
 
 ## Icons
 
-There is no markdown shortcut for icons, but the template provides a liquid macro for embedding svg icons that have been defined in [_data/svg_icons.yml][svg-file].
+There is no markdown shortcut for icons, but the template provides a liquid macro for embedding svg icons that have been defined in [_data/svg_icons.yml][svg-file] by the template.
+
+> Users may also define their own icons and merge them into `_data/svg_icons.yml` at build time. See the [rake task example][rake-tasks] for one way to do this.
 
 Format: {% raw %}`{% include icon.liquid id='star' %}`{% endraw %} will render as: {% include icon.liquid id='star' %}
 
@@ -726,9 +728,10 @@ This text will appear as a huge message.
 [markdown-cheatsheet]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet "Markdown Cheatsheet"
 [rouge-hilighter]: http://rouge.jneen.net/ "an elegant, extendable code highlighter written in pure Ruby"
 [rouge-list]: https://github.com/jneen/rouge/wiki/List-of-supported-languages-and-lexers "list of supported languages and lexers in Rouge"
+[rake-tasks]: {{ site.baseurl }}/examples/Rake-tasks/#/examples/ "rake tasks provided by the template"
 [sampler-source]: https://raw.githubusercontent.com/pixeldroid/programming-pages/master/lib/doc-source/_examples/sampler.md "source code for this page"
 [semantic-message]: https://semantic-ui.com/collections/message.html#warning "a message displays information that explains nearby content"
-[svg-file]: https://github.com/pixeldroid/programming-pages/blob/master/lib/src/_includes/styles/svg.html "source file for SVG icons provided by default"
+[svg-file]: https://github.com/pixeldroid/programming-pages/blob/master/lib/source/_data/svg_icons.yml "source file for SVG icons provided by default"
 
 [reference-image]: https://dummyimage.com/600x400/70b7ec/000 "a 600x400 image"
 [reference-page]: http://en.wikipedia.org/wiki/Special:Randompage "link to a random Wikipedia page"

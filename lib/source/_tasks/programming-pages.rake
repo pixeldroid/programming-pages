@@ -26,6 +26,8 @@ end
 
 @template_config = nil
 @user_config = nil
+@template_fonts = nil
+@user_fonts = nil
 
 def template_config_file
   File.join(DOC_TEMPLATE_DIR, '_config.yml')
@@ -49,6 +51,30 @@ end
 
 def merged_config
   template_config.merge(user_config)
+end
+
+def template_font_file
+  File.join(DOC_TEMPLATE_DIR, '_data', 'svg_icons.yml')
+end
+
+def template_fonts
+  @template_fonts || (@template_fonts = ProgP.read_yaml(template_font_file))
+end
+
+def user_font_file
+  File.join(DOC_SOURCE_DIR, '_data', 'svg_icons.yml')
+end
+
+def user_fonts
+  @user_fonts || (@user_fonts = ProgP.read_yaml(user_font_file))
+end
+
+def merged_font_file
+  File.join(ghpages_dir, '_data', 'svg_icons.yml')
+end
+
+def merged_fonts
+  template_fonts.merge(user_fonts)
 end
 
 def ghpages_dir
@@ -115,10 +141,11 @@ namespace :docs do
 
   desc [
     "builds the GitHub pages documentation site, under '#{ProgP.from_pwd(ghpages_dir)}/'",
-    " first, any existing documentation site files are removed",
-    " then, files from DOC_TEMPLATE_DIR are copied in",
-    " then, files from DOC_SOURCE_DIR are copied over top",
-    " lastly, jekyll site config from DOC_SOURCE_DIR is merged over top of the template config",
+    "  first, any existing documentation site files are removed",
+    "  then, files from DOC_TEMPLATE_DIR are copied in",
+    "  and, user files from DOC_SOURCE_DIR are copied over top",
+    "  and, user defined fonts from DOC_SOURCE_DIR/_data/svg_icons.yml are merged onto the template fonts",
+    "  and, jekyll site config from DOC_SOURCE_DIR/_config.yml is merged onto the template config",
     "if jekyll is installed, you can preview the doc site locally:",
     "  $ #{jekyll_cmd}",
   ].join("\n")
@@ -133,9 +160,12 @@ namespace :docs do
     end
     puts "[#{t.name}] creating and populating #{target_dir}..."
 
+    puts "[#{t.name}]   adding template files..."
     FileUtils.cp_r(File.join(DOC_TEMPLATE_DIR, '.'), target_dir)
     FileUtils.rm_r(File.join(target_dir, '_tasks'))
+    puts "[#{t.name}]   adding user files..."
     FileUtils.cp_r(File.join(DOC_SOURCE_DIR, '.'), target_dir)
+    ProgP.write_yaml(merged_font_file, merged_fonts)
     ProgP.write_yaml(merged_config_file, merged_config)
 
     puts "[#{t.name}] task completed, find github pages ready site in #{target_dir}/"
