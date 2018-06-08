@@ -46,7 +46,7 @@ module ProgP
   end
 
   def read_yaml(file)
-    YAML.load(File.read(file))
+    File.file?(file) ? YAML.load(File.read(file)) : {}
   end
 
   def write_yaml(file, config)
