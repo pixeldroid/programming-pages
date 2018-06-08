@@ -616,7 +616,7 @@ This text will appear as a huge message.
 {:.ui.attached.tertiary.inverted.tight.grey.segment}
 
 <div>
-    <span>{% include icon.liquid id='check-circle' %} <b>Success</b></span><br> This text will appear in a big success block with an icon.
+    <span>{% raw %}{% include icon.liquid id='check-circle' %}{% endraw %} <b>Success</b></span><br> This text will appear in a big success block with an icon.
     {:.ui.big.success.message}
 </div>
 {:.ui.attached.secondary.tight.segment}
@@ -639,7 +639,7 @@ This text will appear as a huge message.
 {:.ui.attached.tertiary.inverted.tight.grey.segment}
 
 <div>
-    <span>{% include icon.liquid id='info-circle' %} <b>Info</b></span><br> This text will appear in an info block with an icon.
+    <span>{% raw %}{% include icon.liquid id='info-circle' %}{% endraw %} <b>Info</b></span><br> This text will appear in an info block with an icon.
     {:.ui.info.message}
 </div>
 {:.ui.attached.secondary.tight.segment}
@@ -662,7 +662,7 @@ This text will appear as a huge message.
 {:.ui.attached.tertiary.inverted.tight.grey.segment}
 
 <div>
-    <span>{% include icon.liquid id='exclamation-triangle' %} <b>Warning</b></span><br> This text will appear in a warning block with an icon.
+    <span>{% raw %}{% include icon.liquid id='exclamation-triangle' %}{% endraw %} <b>Warning</b></span><br> This text will appear in a warning block with an icon.
     {:.ui.warning.message}
 </div>
 {:.ui.attached.secondary.tight.segment}
@@ -685,7 +685,7 @@ This text will appear as a huge message.
 {:.ui.attached.tertiary.inverted.tight.grey.segment}
 
 <div>
-    <span>{% include icon.liquid id='exclamation-circle' %} <b>Error</b></span><br> This text will appear in an error block with an icon.
+    <span>{% raw %}{% include icon.liquid id='exclamation-circle' %}{% endraw %} <b>Error</b></span><br> This text will appear in an error block with an icon.
     {:.ui.error.message}
 </div>
 {:.ui.attached.secondary.tight.segment}
@@ -726,12 +726,12 @@ This text will appear as a huge message.
 [kramdown-syntax]: https://kramdown.gettalong.org/syntax.html "Kramdown syntax documentation"
 [kramdown-css]: https://kramdown.gettalong.org/quickref.html#block-attributes "css via block Inline Attribute Lists (IALs)"
 [markdown-cheatsheet]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet "Markdown Cheatsheet"
+[rake-tasks]: {{ site.baseurl }}/examples/Rake-tasks/#/examples/ "rake tasks provided by the template"
+[reference-image]: https://dummyimage.com/600x400/70b7ec/000 "a 600x400 image"
+[reference-page]: http://en.wikipedia.org/wiki/Special:Randompage "link to a random Wikipedia page"
 [rouge-hilighter]: http://rouge.jneen.net/ "an elegant, extendable code highlighter written in pure Ruby"
 [rouge-list]: https://github.com/jneen/rouge/wiki/List-of-supported-languages-and-lexers "list of supported languages and lexers in Rouge"
-[rake-tasks]: {{ site.baseurl }}/examples/Rake-tasks/#/examples/ "rake tasks provided by the template"
 [sampler-source]: https://raw.githubusercontent.com/pixeldroid/programming-pages/master/lib/doc-source/_examples/sampler.md "source code for this page"
 [semantic-message]: https://semantic-ui.com/collections/message.html#warning "a message displays information that explains nearby content"
 [svg-file]: https://github.com/pixeldroid/programming-pages/blob/master/lib/source/_data/svg_icons.yml "source file for SVG icons provided by default"
 
-[reference-image]: https://dummyimage.com/600x400/70b7ec/000 "a 600x400 image"
-[reference-page]: http://en.wikipedia.org/wiki/Special:Randompage "link to a random Wikipedia page"
