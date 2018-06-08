@@ -5,7 +5,7 @@ title: Introduction
 
 # {{ page.title }}
 
-**programming pages** is a site template for publishing documentation of code on [GitHub Pages][gh-pages]. This site is an example of the template in use.
+**programming pages** is a site template for publishing documentation of code on [GitHub Pages][gh-pages]. This site is an example of the template in use, rendering the markdown files found [here][site-source].
 {:.larger.text}
 
 With this template installed in your project, you can author documentation in [Markdown][markdown-sampler] files, and rely on the template to index them for browsing and search and render them in style.
@@ -36,3 +36,4 @@ Learn more about the template in the following guides:
 
 [gh-pages]: https://pages.github.com/ "Websites for you and your projects"
 [markdown-sampler]: {{ site.baseurl }}/examples/sampler/#/examples/ "Samples of the markdown supported by lsdoc and GitHub Pages"
+[site-source]: https://github.com/pixeldroid/programming-pages/tree/master/lib/doc-source "Source files for programming pages documentation"

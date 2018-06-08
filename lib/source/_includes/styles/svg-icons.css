@@ -22,14 +22,14 @@ specifically, by commented section:
 - States : same
 - Variations : same
 - Groups : same
-- Icons : removed (see svg.html for all symbol definitions and ids)
-- Outline Icons : removed (see svg.html for all symbol definitions and ids)
-- Brand Icons : removed (see svg.html for all symbol definitions and ids)
+- Icons : removed (see _data/svg_icons.yml for all symbol definitions and ids)
+- Outline Icons : removed (see _data/svg_icons.yml for all symbol definitions and ids)
+- Brand Icons : removed (see _data/svg_icons.yml for all symbol definitions and ids)
 
 Usage:
 
    font: <i class="info circle icon"></i>
-   svg : <svg class="icon"><use xlink:href="#icon-info-circle" /></svg>
+   svg : {% include icon.liquid id='info-circle' %}
 
 Why?
 

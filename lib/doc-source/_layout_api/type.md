@@ -28,7 +28,7 @@ description: |
     name: string
     type: string
   ```
-parent_layout: "base"
+parent_layout: [ "page", "base", "compress" ]
 parameters:
   - { name: "ancestors", type: "[ { module: string, name: string }, ..]", optional: true, description: "chain of ancestors this type inherits from, ordered with parent first, then grandparent, great grandparent, and so on." }
   - { name: "constructor", type: method_info, optional: true, description: "signature of the type constructor method (if it has one)" }

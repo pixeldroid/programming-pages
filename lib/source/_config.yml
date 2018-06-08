@@ -4,15 +4,18 @@ collections:
   api:
     output: true
     permalink: "/:collection/:path/"
-    title: Layouts
+    title: API
+    tab-order: 1
   examples:
     output: true
     permalink: "/:collection/:path/"
     title: Examples
+    tab-order: 2
   guides:
     output: true
     permalink: "/:collection/:path/"
     title: Guides
+    tab-order: 3
 highlighter: rouge
 permalink: pretty
 plugins:
@@ -24,7 +27,7 @@ project:
   version: "<project_version>"
 sass:
   style: compressed
-template_version: 0.5.3
+template_version: 0.5.4
 example_root: "/examples"
 guide_root: "/guides"
 module_root: "/api"
