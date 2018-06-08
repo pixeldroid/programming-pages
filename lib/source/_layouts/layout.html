@@ -5,8 +5,7 @@ layout: page
 {% capture newline %}
 {% endcapture %}
 
-<span class="anchor" id="heading">&nbsp;</span>
-<h1 class="ui dividing header">{{ page.title }}</h1>
+<h1 id="heading" class="ui dividing header">{{ page.title }}</h1>
 
 {% if page.parent_layout %}
 <div class="ui list">
@@ -36,8 +35,8 @@ layout: page
   {{ description | join: newline | markdownify }}
 </div>
 
-<div class="ui basic segment"><span class="anchor" id="usage">&nbsp;</span>
-<h2 class="ui header">Usage</h2>
+<div class="ui basic segment">
+<h2 id="usage" class="ui header">Usage</h2>
 
 {% capture md %}
 ```yaml
@@ -56,8 +55,8 @@ layout: "{{ page.title }}"
 </div>
 
 {% if page.parameters %}
-<div class="ui basic segment"><span class="anchor" id="parameters">&nbsp;</span>
-<h2 class="ui header">Parameters</h2>
+<div class="ui basic segment">
+<h2 id="parameters" class="ui header">Parameters</h2>
 
 <table class="ui striped definition table"><tbody>
 {% assign params = page.parameters | sort: 'name' %}
