@@ -16,7 +16,7 @@ layout: page
         <span class="section active">{{ page.title }}</span>
         {% for ancestor in page.parent_layout %}
         {% include icon.liquid id='chevron-right' class='divider' %}
-        <a class="section" href="{{ site.base_url | append: site.module_root }}/{{ ancestor }}/#{{ site.module_root }}/">{{ ancestor }}</a>
+        <a class="section" href="{{ site.baseurl | append: site.module_root }}/{{ ancestor }}/#{{ site.module_root }}/">{{ ancestor }}</a>
         {% endfor %}
       </div>
     </div>
