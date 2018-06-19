@@ -5,7 +5,9 @@ title: "layout"
 description: |
   Renders documentation of a Jekyll layout. This page is an example of a documented layout.
 
-  Page variables to be documented should be provided as an object with the following keys:
+  Parameterized Jekyll layouts are rendering functions for a particular page format and style. A Jekyll layout can read data defined via page variables for rendering. This layout renders documentation of page variables and the inheritance chain for a given layout.
+
+  Page variables to be documented should be provided as a yaml object with the following keys:
   ```yaml
   variable_info:
     attributes: [ string ]
@@ -13,6 +15,10 @@ description: |
     optional: boolean
     description: string
   ```
+
+  The inheritance chain should be provided as a yaml array named `parent_layout`.
+
+  See the usage section below for an illustration of how to invoke this layout in a documentation file.
 parent_layout: [ "page", "base", "compress" ]
 parameters:
   - { name: "title", type: "string", description: "filename of layout, without extension" }

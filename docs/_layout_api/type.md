@@ -10,6 +10,16 @@ description: |
   - inheritance tree (subclasses)
   - field, property, and method signatures
 
+  The _interface list_ provides links to all the interface summary pages implemented by the described type.
+
+  The _ancestor chain_ provides links to all the parent types in the type hierarchy, up to the base type.
+
+  The _inheritance tree_ provides links to all direct sub-types of the described type.
+
+  For every provided _field_, _property_, or _method_, the declaration signature is rendered, showing links to parameter and value types.
+
+  All documentation sections occur in two levels of detail: both a short synopsis and a filter detail section. The synopsis links to the detail further down the page.
+
   Some page variables use a _method info_ value, which is an object with the following keys:
   ```yaml
   method_info:

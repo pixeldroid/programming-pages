@@ -21,7 +21,7 @@ layout: page
 {% for doc in doc_list %}
   {% assign child = doc.path | split: '.' | first %}
   {% if parent == child %}{% continue %}{%endif%}
-  {% assign prefix = child | truncate: parent.size, "" %}
+  {% assign prefix = child | truncate: parent.size, '' %}
   {% if prefix == parent %}
   {% capture url %}{{ doc.url }}#/{{ doc.collection | downcase }}/{% endcapture %}
   <a class="item" href="{{ site.baseurl }}{{ doc.url }}">{{ doc.title }}</a>
