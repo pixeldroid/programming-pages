@@ -4,8 +4,6 @@
 </div>
 </div>
 
-{% assign log = '' | split: '' %}
-
 <div class="ui fitted inverted divider"></div>
 
 {% assign collection_list = site.collections %}
@@ -122,8 +120,7 @@ so our strategy is to:
 {%- comment %} fake a while loop with a fake infinite loop, being sure to bail when all nodes are processed {% endcomment -%}
 {%- assign enough = doc_list.size | times: 2 -%} {%- comment %} estimate the worst case number of iterations required {% endcomment -%}
 {%- for ever in (0..enough) -%}
-{%- assign ever_last = ever -%}
-{%- if stack.size == 0 %}{%- capture log_entry -%}"(done)"{%- endcapture -%}{%- assign log = log | push: log_entry -%}{% break %}{% endif -%}
+{%- if stack.size == 0 %}{% break %}{% endif -%}
   {%- comment %} if we have a current node, record it, push next sibling on the stack, and move on to first child {% endcomment -%}
   {%- if curr -%}
     {%- comment %} print curr {% endcomment -%}
@@ -132,10 +129,9 @@ so our strategy is to:
     {%- assign d = leveled[l][e] -%}                 {%- comment %} doc {% endcomment -%}
     {%- assign p = d.path | split: '/' -%}           {%- comment %} path parts {% endcomment -%}
     {%- assign t = p | last | split: '.' | first -%} {%- comment %} title, minus file extension {% endcomment -%}
-    {%- assign p = p | pop -%}                       {%- comment %} drop file part {% endcomment -%}
-    {%- assign s = p | last -%}                      {%- comment %} section (containing folder) {% endcomment -%}
+    {%- assign _ = p | pop -%}                       {%- comment %} drop file part {% endcomment -%}
+    {%- assign s = _ | last -%}                      {%- comment %} section (containing folder) {% endcomment -%}
 
-    {%- capture log_entry -%}"(current node) [{{l}}][{{e}}] {{s}}/{{t}} d.path: {{ d.path }}"{%- endcapture -%}{%- assign log = log | push: log_entry -%}
     {%- comment %} record node docs in visitation order {% endcomment -%}
     {%- assign guide_list = guide_list | push: d -%}
 
@@ -148,16 +144,13 @@ so our strategy is to:
     {%- for ei in (e1..en) -%} {%- comment %} look forward from current entry's index {% endcomment -%}
       {%- assign di = leveled[l][ei] -%}
       {%- assign pi = di.path | split: '/' -%}
-      {%- assign ti = pi | last | split: '.' | first -%}
       {%- assign pi = pi | pop -%}
       {%- assign si = pi | last -%}
       {%- if si == s %} {%- comment %} siblings share the same section {% endcomment -%}
-        {%- comment %} ..and each higher path component needs to match, too so we don't falsely match on a separate subtree using the same names {% endcomment -%}
-        {%- assign p = d.path | split: '/' -%}
+        {%- comment %} ..and each higher path component also needs to match so we don't falsely select a separate subtree using the same names {% endcomment -%}
         {%- assign full_match = true -%}
         {%- for i in (0..l) -%}{%- unless pi[i] == p[i] -%}{%- assign full_match = false -%}{%- break -%}{%- endunless -%}{%- endfor -%}
         {%- if full_match -%}
-          {%- capture log_entry -%}"(sibling to {{t}} / stack push) [{{l}}][{{ei}}] {{si}}/{{ti}} di.path: {{ di.path }}"{%- endcapture -%}{%- assign log = log | push: log_entry -%}
           {%- assign next_item = '' | split: '' -%}
           {%- assign next_item = next_item | push: l -%}
           {%- assign next_item = next_item | push: ei -%}
@@ -173,16 +166,11 @@ so our strategy is to:
       {%- assign ei = 0 -%} {%- comment %} start at beginning of entry group {% endcomment -%}
       {%- for di in leveled[l1] -%}
         {%- assign pi = di.path | split:'/' -%}
-        {%- assign ti = pi | last | split: '.' | first -%}
-        {%- assign pi = pi | pop -%}
-        {%- assign si = pi | last -%}
         {%- if pi[l1] == t %} {%- comment %} children are found in directories that match their parent's title {% endcomment -%}
-          {%- comment %} ..and each higher path component needs to match, too so we don't falsely match on a separate subtree using the same names {% endcomment -%}
-          {%- assign p = d.path | split: '/' -%}
+        {%- comment %} ..and each higher path component also needs to match so we don't falsely select a separate subtree using the same names {% endcomment -%}
           {%- assign full_match = true -%}
           {%- for i in (0..l) -%}{%- unless pi[i] == p[i] -%}{%- assign full_match = false -%}{%- break -%}{%- endunless -%}{%- endfor -%}
           {%- if full_match -%}
-            {%- capture log_entry -%}"(child of {{t}}) [{{l1}}][{{ei}}] {{si}}/{{ti}} di.path: {{ di.path }}"{%- endcapture -%}{%- assign log = log | push: log_entry -%}
             {%- assign curr = '' | split: '' -%}
             {%- assign curr = curr | push: l1 -%}
             {%- assign curr = curr | push: ei -%}
@@ -197,7 +185,6 @@ so our strategy is to:
   {%- else -%}
     {%- assign curr = stack | last -%}
     {%- assign stack = stack | pop %}
-    {%- capture log_entry -%}"(no entry, pop from stack)"{%- endcapture -%}{%- assign log = log | push: log_entry -%}
   {%- endif -%}
 {%- endfor -%}
 
@@ -224,16 +211,6 @@ so our strategy is to:
   <a class="very tight smaller text {{ item_class }}" href="{{ site.baseurl }}{{ url }}">{{ link }}</a>
 {% endfor %}
 
-
 </div>
 </div>
 {% endfor %}
-
-{% capture script_begin %}script type="text/javascript"{% endcapture %}
-{% capture script_end %}/script{% endcapture %}
-<{{ script_begin }}>
-  {% for entry in log %}console.log({{ entry }});
-  {% endfor %}
-<{{ script_end }}>
-
-<div class="ui blue horizontal label">{{ ever_last }}/{{ enough }} iterations to build guide list</div>
