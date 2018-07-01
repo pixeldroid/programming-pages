@@ -17,5 +17,5 @@ description: |
   The `page` template is designed to be inherited from. It only accepts a single parameter, and only for pages in the guides collection, to specify a relative order value that is used to sort against sibling guide pages.
 parent_layout: [ "base", "compress" ]
 parameters:
-  - { name: "order", type: "string", optional: true, description: "ordinal to be used for sorting. Only applies to guides; all other collections are sorted alphabetical by title." }
+  - { name: "order", type: "string", optional: true, description: "ordinal to be used for sorting. Only applies to guides; all other collections are sorted alphabetical by title. Ordering comparisons are only performed between siblings, not across folder heirarchy levels." }
 ---

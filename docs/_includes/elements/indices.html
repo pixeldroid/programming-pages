@@ -37,15 +37,158 @@
 {% assign doc_list = collection.docs %}
 
 {% if collection.label == 'guides' %}
-{% assign ordered = '' | split: '' %}
-{% assign unorder = '' | split: '' %}
+{% assign guide_list = '' | split: '' %}
+
+{%- comment %}
+for guides, we want to support user-defined ordering, but not require it in every guide.
+
+this means we have to create our own file tree, keeping children with parents as we re-sort
+the collection list from its default alphabetical order into user order, and for that,
+we want to perform a depth-first iterative visitation of the page tree.
+
+here's a psuedocode implementation in a javascript-like language; given root:
+
+  curr = root;
+  stack = [];
+  stack.push(root);
+  while (stack.length > 0) {
+    if (curr) {
+      print(curr);
+
+      if (curr.sibling)
+        stack.push(curr.sibling);
+
+      curr = curr.child;
+    }
+    else
+      curr = stack.pop();
+  }
+
+but liquid brings some interesting challenges:
+- no while loops
+- no infinite loops
+- no custom objects or hashes, just ordered arrays
+- no array mutation in place
+- no actual tree structure to start with, just a list of docs
+
+so our strategy is to:
+- start by bucketing the docs into levels, to get a tree-like context
+  - levels correspond to 'generations', but not always parent-child links
+    - parent-child relationships have to be tested by comparing path segments
+  - items in the same level are of the same generation, but not always siblings
+    - sibling relationships have to be tested by comparing path segments
+- use arrays for tree nodes so we can store state (a 2-tuple: level index, item index)
+- push state onto a stack made of an array and the push/pop operations from jekyll
+- use a pseudo-infinite range loop with large bounds and a break clause in place of a while loop
+{% endcomment -%}
+
+{%- comment %} first, calculate max_depth as deepest level index {% endcomment -%}
+{% assign max_depth = 0 %}
 {% for doc in doc_list %}
-{% if doc.order %}{% assign ordered = ordered | push: doc %}
-{% else %}{% assign unorder = unorder | push: doc %}
-{% endif %}
+  {% assign depth = doc.path | split:'/' | size | minus:2 %} {%- comment %} minus one to convert from length to index, minus two to ignore root collection directory (_guides/) {% endcomment -%}
+  {% if depth > max_depth %}{% assign max_depth = depth %}{% endif %}
 {% endfor %}
-{% assign ordered = ordered | sort: 'order' %}
-{% assign doc_list = ordered | concat: unorder %}
+
+{%- comment %} separate docs into levels, and sort by user-defined order value {% endcomment -%}
+{% assign leveled = '' | split: '' %}
+{% for i in (0..max_depth) %}
+  {% assign new = '' | split: '' %}
+  {% assign ordered = '' | split: '' %}
+  {% assign unorder = '' | split: '' %}
+  {% for doc in doc_list %}
+    {% assign depth = doc.path | split:'/' | size | minus:2 %}
+    {% if depth == i %}
+      {% if doc.order %}{% assign ordered = ordered | push: doc %}
+      {% else %}{% assign unorder = unorder | push: doc %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  {% assign ordered = ordered | sort: 'order' %}
+  {% assign new = ordered | concat: unorder %}
+  {% assign leveled = leveled | push: new %}
+{% endfor %}
+
+{%- comment %} set root and make current be root {% endcomment -%}
+{%- assign root = '' | split: '' -%}
+{%- assign root = root | push: 0 -%} {%- comment %} level index {% endcomment -%}
+{%- assign root = root | push: 0 -%} {%- comment %} group index {% endcomment -%}
+{%- assign curr = root -%}
+{%- comment %} create a stack and initialize it with the root node {% endcomment -%}
+{%- assign stack = '' | split: '' -%}
+{%- assign stack = stack | push: root -%}
+
+{%- comment %} fake a while loop with a fake infinite loop, being sure to bail when all nodes are processed {% endcomment -%}
+{%- assign enough = doc_list.size | times: 2 -%} {%- comment %} estimate the worst case number of iterations required {% endcomment -%}
+{%- for ever in (0..enough) -%}
+{%- if stack.size == 0 %}{% break %}{% endif -%}
+  {%- comment %} if we have a current node, record it, push next sibling on the stack, and move on to first child {% endcomment -%}
+  {%- if curr -%}
+    {%- comment %} print curr {% endcomment -%}
+    {%- assign l = curr[0] -%}                       {%- comment %} level {% endcomment -%}
+    {%- assign e = curr[1] -%}                       {%- comment %} entry {% endcomment -%}
+    {%- assign d = leveled[l][e] -%}                 {%- comment %} doc {% endcomment -%}
+    {%- assign p = d.path | split: '/' -%}           {%- comment %} path parts {% endcomment -%}
+    {%- assign t = p | last | split: '.' | first -%} {%- comment %} title, minus file extension {% endcomment -%}
+    {%- assign _ = p | pop -%}                       {%- comment %} drop file part {% endcomment -%}
+    {%- assign s = _ | last -%}                      {%- comment %} section (containing folder) {% endcomment -%}
+
+    {%- comment %} record node docs in visitation order {% endcomment -%}
+    {%- assign guide_list = guide_list | push: d -%}
+
+    {%- comment %} clear current node now that it's recorded {% endcomment -%}
+    {%- assign curr = nil -%}
+
+    {%- comment %} find and push next sibling in current group (if any) {% endcomment -%}
+    {%- assign e1 = e | plus: 1 -%}
+    {%- assign en = leveled[l].size | minus: 1 -%}
+    {%- for ei in (e1..en) -%} {%- comment %} look forward from current entry's index {% endcomment -%}
+      {%- assign di = leveled[l][ei] -%}
+      {%- assign pi = di.path | split: '/' -%}
+      {%- assign pi = pi | pop -%}
+      {%- assign si = pi | last -%}
+      {%- if si == s %} {%- comment %} siblings share the same section {% endcomment -%}
+        {%- comment %} ..and each higher path component also needs to match so we don't falsely select a separate subtree using the same names {% endcomment -%}
+        {%- assign full_match = true -%}
+        {%- for i in (0..l) -%}{%- unless pi[i] == p[i] -%}{%- assign full_match = false -%}{%- break -%}{%- endunless -%}{%- endfor -%}
+        {%- if full_match -%}
+          {%- assign next_item = '' | split: '' -%}
+          {%- assign next_item = next_item | push: l -%}
+          {%- assign next_item = next_item | push: ei -%}
+          {%- assign stack = stack | push: next_item -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- comment %} find and set curr to first matching child in next level group (if any) {% endcomment -%}
+    {%- if l < max_depth -%}
+      {%- assign l1 = l | plus: 1 -%}
+      {%- assign ei = 0 -%} {%- comment %} start at beginning of entry group {% endcomment -%}
+      {%- for di in leveled[l1] -%}
+        {%- assign pi = di.path | split:'/' -%}
+        {%- if pi[l1] == t %} {%- comment %} children are found in directories that match their parent's title {% endcomment -%}
+        {%- comment %} ..and each higher path component also needs to match so we don't falsely select a separate subtree using the same names {% endcomment -%}
+          {%- assign full_match = true -%}
+          {%- for i in (0..l) -%}{%- unless pi[i] == p[i] -%}{%- assign full_match = false -%}{%- break -%}{%- endunless -%}{%- endfor -%}
+          {%- if full_match -%}
+            {%- assign curr = '' | split: '' -%}
+            {%- assign curr = curr | push: l1 -%}
+            {%- assign curr = curr | push: ei -%}
+            {%- break -%}
+          {%- endif -%}
+        {%- endif -%}
+        {%- assign ei = ei | plus: 1 -%}
+      {%- endfor -%}
+    {%- endif -%}
+
+  {%- comment %} if no current node, pop from stack and start the loop over {% endcomment -%}
+  {%- else -%}
+    {%- assign curr = stack | last -%}
+    {%- assign stack = stack | pop %}
+  {%- endif -%}
+{%- endfor -%}
+
+{% assign doc_list = guide_list %}
 {% endif %}
 
 {% for doc in doc_list %}
@@ -67,6 +210,7 @@
   {% endcase %}
   <a class="very tight smaller text {{ item_class }}" href="{{ site.baseurl }}{{ url }}">{{ link }}</a>
 {% endfor %}
+
 </div>
 </div>
 {% endfor %}
