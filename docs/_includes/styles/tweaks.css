@@ -130,10 +130,14 @@ li code, p code, td code, .ui.list .item code {
   background-color: #f5f4e8;
   border-radius: 4px;
   overflow-x: auto;
+  width: fit-content;
+  max-width: 100%;
 }
 pre.highlight {
   line-height: 1.18em;
   overflow-x: auto;
+  width: fit-content;
+  max-width: 100%;
 }
 .larger.text {
   font-size: 150%;
