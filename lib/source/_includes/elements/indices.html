@@ -9,16 +9,21 @@
 {% assign collection_list = site.collections %}
 
 {% assign ordered = '' | split: '' %}
+{% assign endered = '' | split: '' %}
 {% assign unorder = '' | split: '' %}
 {% for collection in collection_list %}
-{% unless collection.label == 'posts' or collection.docs.size == 0 %}
-{% if collection.tab-order %}{% assign ordered = ordered | push: collection %}
-{% else %}{% assign unorder = unorder | push: collection %}
-{% endif %}
-{% endunless %}
+  {% unless collection.label == 'posts' or collection.docs.size == 0 %}
+    {% if collection.tab-order %}
+      {% if collection.tab-order < 0 %}{% assign endered = endered | push: collection %}
+      {% else %}{% assign ordered = ordered | push: collection %}
+      {% endif %}
+    {% else %}{% assign unorder = unorder | push: collection %}
+    {% endif %}
+  {% endunless %}
 {% endfor %}
 {% assign ordered = ordered | sort: 'tab-order' %}
-{% assign collection_list = ordered | concat: unorder %}
+{% assign endered = endered | sort: 'tab-order' | reverse %}
+{% assign collection_list = ordered | concat: unorder | concat: endered %}
 
 <div id="collection-tabs" class="ui inverted stackable pointing secondary menu">
 {% for collection in collection_list %}
@@ -90,21 +95,30 @@ so our strategy is to:
 {% endfor %}
 
 {%- comment %} separate docs into levels, and sort by user-defined order value {% endcomment -%}
+{%- comment %} ordering: 0 is first, -1 is last, undefined orders in the middle alphabetically
+                first ---------> middle ----------------------> last --------->|
+                [0..positive N]..[no order defined, use alpha]..[negative N..-1]
+{% endcomment -%}
 {% assign leveled = '' | split: '' %}
 {% for i in (0..max_depth) %}
   {% assign new = '' | split: '' %}
   {% assign ordered = '' | split: '' %}
+  {% assign endered = '' | split: '' %}
   {% assign unorder = '' | split: '' %}
   {% for doc in doc_list %}
     {% assign depth = doc.path | split:'/' | size | minus:2 %}
     {% if depth == i %}
-      {% if doc.order %}{% assign ordered = ordered | push: doc %}
+      {% if doc.order %}
+        {% if doc.order < 0 %}{% assign endered = endered | push: doc %}
+        {% else %}{% assign ordered = ordered | push: doc %}
+        {% endif %}
       {% else %}{% assign unorder = unorder | push: doc %}
       {% endif %}
     {% endif %}
   {% endfor %}
   {% assign ordered = ordered | sort: 'order' %}
-  {% assign new = ordered | concat: unorder %}
+  {% assign endered = endered | sort: 'order' | reverse %}
+  {% assign new = ordered | concat: unorder | concat: endered %}
   {% assign leveled = leveled | push: new %}
 {% endfor %}
 

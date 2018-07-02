@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Site build info
-order: 999
+order: -1
 ---
 
 # {{ page.title }}
@@ -79,17 +79,22 @@ depth order   name : path
 {% for i in (0..max_depth) %}
   {% assign new = '' | split: '' %}
   {% assign ordered = '' | split: '' %}
+  {% assign endered = '' | split: '' %}
   {% assign unorder = '' | split: '' %}
   {% for doc in guides.docs %}
     {% assign depth = doc.path | split:'/' | size | minus:2 %}
     {% if depth == i %}
-      {% if doc.order %}{% assign ordered = ordered | push: doc %}
+      {% if doc.order %}
+        {% if doc.order < 0 %}{% assign endered = endered | push: doc %}
+        {% else %}{% assign ordered = ordered | push: doc %}
+        {% endif %}
       {% else %}{% assign unorder = unorder | push: doc %}
       {% endif %}
     {% endif %}
   {% endfor %}
   {% assign ordered = ordered | sort: 'order' %}
-  {% assign new = ordered | concat: unorder %}
+  {% assign endered = endered | sort: 'order' | reverse %}
+  {% assign new = ordered | concat: unorder | concat: endered %}
   {% assign leveled = leveled | push: new %}
 {% endfor %}
 
