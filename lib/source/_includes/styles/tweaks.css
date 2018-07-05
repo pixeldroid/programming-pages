@@ -56,12 +56,21 @@
 #site-title .header {
   height: 3.5rem;
 }
-#site-title .header .text {
-  max-width: 12em;
-}
 #site-title a.borderless.item svg.icon {
   top: -.06em;
   margin-right: .18em;
+}
+/* tighten things up as viewport shrinks */
+#site-title {
+  font-size: /* 12 - 16px */ calc(12px + 4 * ((100vw - 320px) / (1910 - 320)));
+}
+#site-title .header .text {
+  max-width: calc(40vw); /* not to exceed 40% of viewport width */
+  width: min-content;    /* but shrink to the smallest width needed by content, after wrapping */
+}
+#site-title .borderless.item {
+  padding-left: /* 1.5 - 3.5em */ calc(1.5em + 2 * ((100vw - 320px) / (1910 - 320)));
+  padding-right: .25em;
 }
 
 /* tweaks to existing semantic-ui rules */
