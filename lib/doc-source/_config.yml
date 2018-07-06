@@ -19,5 +19,5 @@ project:
   name: programming pages
   owner: pixeldroid
   repo: https://github.com/pixeldroid/programming-pages
-  version: 0.5.4
+  version: 0.5.5
 module_root: "/layout_api"
