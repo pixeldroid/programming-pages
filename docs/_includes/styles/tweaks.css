@@ -79,6 +79,22 @@
   padding-right: .25em;
 }
 
+/* responsive adjustments to attribution footer */
+#site-attribution .table {
+  font-size: /* 14 - 18px */ calc(14px + 4 * ((100vw - 320px) / (1910 - 320)));
+}
+#site-attribution .table .license {
+  float: left;
+  padding-right: .25em;
+  margin-top: -.125em;
+}
+#site-attribution .table .license .larger.text {
+  font-size: 220%;
+}
+#site-attribution .table .project-repo {
+  font-size: /* 10 - 14px */ calc(10px + 4 * ((100vw - 320px) / (1910 - 320)));
+}
+
 /* tweaks to existing semantic-ui rules */
 #sidebar-retractable.ui.push.sidebar {
   z-index: 100; /* underneath top fixed menu */
