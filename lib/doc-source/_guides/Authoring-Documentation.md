@@ -85,6 +85,10 @@ Examples are for technical illustrations of how to implement something, ideally 
 
 Guides are for explaining the concept of a topic, providing the context to be able to understand one or more examples.
 
+By default, guides are listed alphabetically. This can be overridden for some, or all guides, by adding the `order` variable with an ordinal value to the page's front matter.
+
+See the [page layout][page-layout] documentation for details of the layout used by guide pages.
+
 
 ## Layouts
 
@@ -117,5 +121,6 @@ Please see the individual layout pages for more detail:
 [kramdown-block-ial]: https://kramdown.gettalong.org/quickref.html#block-attributes "kramdown block attributes"
 [liquid]: https://shopify.github.io/liquid/ "Safe, customer-facing template language for flexible web apps"
 [markdown-sampler]: {{ site.baseurl }}/examples/sampler/#/examples/ "Samples of the markdown supported by lsdoc and GitHub Pages"
+[page-layout]: {{ site.baseurl }}/layout_api/page/#/layout_api/ "Documentation for the page layout"
 [semantic-ui]: https://semantic-ui.com/globals/site.html "Semantic is a development framework that helps create beautiful, responsive layouts using human-friendly HTML"
 [svg-icons]: {{ site.baseurl }}/examples/sampler/#icons "A small set of svg iocns are included in the template"

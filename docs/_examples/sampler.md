@@ -216,7 +216,7 @@ Using `-`, `+`, or `*`, indent each level by three spaces.
 
 ### Ordered Lists
 
-Using any digit followed by a period (`.`), indent each level by three spaces.
+Using any digit followed by a period (`.`), indent each level by three spaces. Actual number values are ignored.
 
 #### markdown
 {:.ui.attached.tertiary.inverted.tight.grey.segment}
@@ -226,7 +226,7 @@ Using any digit followed by a period (`.`), indent each level by three spaces.
        1. ordered item
           1. ordered item
     95. ordered item
-    123. ordered item
+    7. ordered item
 </div>
 {:.ui.attached.secondary.tight.segment}
 
@@ -240,7 +240,7 @@ Using any digit followed by a period (`.`), indent each level by three spaces.
    1. ordered item
       1. ordered item
 95. ordered item
-123. ordered item
+7. ordered item
 </div>
 {:.ui.attached.secondary.segment}
 
@@ -301,7 +301,7 @@ Indent code blocks with four spaces.
 
 ### Fenced code
 
-Use triple backticks (<code>```</code>), and an optional syntax hint, on lines before and after the code block to render syntax-highlighted code. Github Pages uses the [rouge highlighter][rouge-list] for syntax coloring.
+Use triple backticks (<code>```</code>) on lines before and after the code block to render syntax-highlighted code. Provide an optional syntax hint on the first line specify a specific language highlighter. Github Pages uses the [rouge highlighter][rouge-list] for syntax coloring.
 
 #### markdown
 {:.ui.attached.tertiary.inverted.tight.grey.segment}

@@ -12,24 +12,27 @@ With this template installed in your project, you can author documentation in [M
 
 Learn more about the template in the following guides:
 
-{% for collection in site.collections %}
-{% if collection.label == 'guides' %}
+{% assign collection = site.collections | where: 'label','guides' | first %}
 {% assign doc_list = collection.docs %}
+{% assign top_level = '' | split: '' %}
 {% assign ordered = '' | split: '' %}
 {% assign unorder = '' | split: '' %}
+
 {% for doc in doc_list %}
-{% if doc.order %}{% assign ordered = ordered | push: doc %}
-{% else %}{% assign unorder = unorder | push: doc %}
-{% endif %}
+  {% assign depth = doc.path | split: '/' | size | minus: 2 %}
+  {% if depth == 0 %}
+    {% if doc.order %}{% assign ordered = ordered | push: doc %}
+    {% else %}{% assign unorder = unorder | push: doc %}
+    {% endif %}
+  {% endif %}
 {% endfor %}
 {% assign ordered = ordered | sort: 'order' %}
-{% assign doc_list = ordered | concat: unorder %}
-{% for doc in doc_list %}
+{% assign top_level = ordered | concat: unorder %}
+
+{% for doc in top_level %}
   {% capture link %}{{ doc.title }}{% endcapture %}
   {% capture url %}{{ doc.url }}#/{{ collection.label | downcase }}/{% endcapture %}
 - [{{ link }}]({{ site.baseurl }}{{ url }})
-{% endfor %}
-{% endif %}
 {% endfor %}
 
 

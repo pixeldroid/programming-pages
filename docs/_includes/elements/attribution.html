@@ -2,24 +2,24 @@
 <tbody>
 
 <tr>
-  <td class="center aligned column" style="padding-right: 0;">
-  <div class="ui huge header">
-    <a rel="license" href="https://creativecommons.org/licenses/by/4.0/" title="Creative Commons Attribution 4.0 International license">
+  <td>
+  <div class="license">
+    <a class="larger text" rel="license" href="https://creativecommons.org/licenses/by/4.0/" title="Creative Commons Attribution 4.0 International license">
     {% include icon.liquid id='cc-cc' %}{% include icon.liquid id='cc-by' %}
     </a>
   </div>
-  </td>
 
-  <td class="column" style="padding-left: .25em;">
+  <div>
     <strong>{{ site.project.name }}</strong>
     {{ "now" | date: "%Y" }} {{ site.project.owner }}
     <br>
-    <a href="{{ site.project.repo }}">{{ site.project.repo }}</a>
+    <a class="project-repo" href="{{ site.project.repo }}">{{ site.project.repo }}</a>
+  </div>
   </td>
 </tr>
 
 <tr>
-  <td colspan="2" class="smaller text">
+  <td class="smaller text">
   <strong>programming pages</strong> template v{{ site.template_version }} (<a href="https://github.com/pixeldroid/programming-pages" title="a documentation template for GitHub Pages">https://github.com/pixeldroid/programming-pages</a>)
   </td>
 </tr>
