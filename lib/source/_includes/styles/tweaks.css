@@ -62,11 +62,17 @@
 }
 /* tighten things up as viewport shrinks */
 #site-title {
-  font-size: /* 12 - 16px */ calc(12px + 4 * ((100vw - 320px) / (1910 - 320)));
+  font-size: /* 14 - 18px */ calc(14px + 4 * ((100vw - 320px) / (1910 - 320)));
 }
 #site-title .header .text {
   max-width: calc(40vw); /* not to exceed 40% of viewport width */
   width: min-content;    /* but shrink to the smallest width needed by content, after wrapping */
+}
+@media only screen and (min-width: 768px) {
+  #site-title .header .text {
+    max-width: calc(60vw); /* grant up to 60% of viewport width */
+    width: max-content;    /* and contract to the smallest width needed by content without wrapping */
+  }
 }
 #site-title .borderless.item {
   padding-left: /* 1.5 - 3.5em */ calc(1.5em + 2 * ((100vw - 320px) / (1910 - 320)));
