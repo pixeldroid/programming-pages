@@ -164,27 +164,27 @@ namespace :docs do
     "if jekyll is installed, you can preview the doc site locally:",
     "  $ #{jekyll_cmd}",
   ].join("\n")
-  task :build do |t, args|
-    target_dir = ghpages_dir
-
+  task :build => ['docs:clean_docs_dir'] do |t, args|
     ProgP.fail('please ensure the template is installed before running this task') unless Dir.exists?(DOC_TEMPLATE_DIR)
 
-    if (Dir.exists?(target_dir))
-      puts "[#{t.name}] removing existing #{target_dir}..."
-      FileUtils.rm_r(target_dir)
-    end
-    puts "[#{t.name}] creating and populating #{target_dir}..."
+    puts "[#{t.name}] adding template files..."
+    FileUtils.cp_r(File.join(DOC_TEMPLATE_DIR, '.'), ghpages_dir)
+    FileUtils.rm_r(File.join(ghpages_dir, '_tasks'))
 
-    puts "[#{t.name}]   adding template files..."
-    FileUtils.cp_r(File.join(DOC_TEMPLATE_DIR, '.'), target_dir)
-    FileUtils.rm_r(File.join(target_dir, '_tasks'))
-    puts "[#{t.name}]   adding user files..."
-    FileUtils.cp_r(File.join(DOC_SOURCE_DIR, '.'), target_dir)
+    puts "[#{t.name}] adding user files..."
+    FileUtils.cp_r(File.join(DOC_SOURCE_DIR, '.'), ghpages_dir)
     ProgP.write_yaml(merged_font_file, merged_fonts)
     ProgP.write_yaml(merged_config_file, merged_config)
 
-    puts "[#{t.name}] task completed, find github pages ready site in #{target_dir}/"
+    puts "[#{t.name}] task completed, find github pages ready site in #{ghpages_dir}/"
     puts "[#{t.name}] preview locally: #{jekyll_cmd}" if (ProgP.path_to_exe('jekyll'))
+  end
+
+  task :clean_docs_dir do |t, args|
+    if (Dir.exists?(ghpages_dir))
+      puts "[#{t.name}] emptying #{ghpages_dir} to start clean..."
+      FileUtils.rm_r(Dir.glob(File.join(ghpages_dir, '*')))
+    end
   end
 
 end
