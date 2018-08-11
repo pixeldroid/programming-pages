@@ -167,11 +167,11 @@ namespace :docs do
   task :build => ['docs:clean_docs_dir'] do |t, args|
     ProgP.fail('please ensure the template is installed before running this task') unless Dir.exists?(DOC_TEMPLATE_DIR)
 
-    puts "[#{t.name}] adding template files..."
+    puts "[#{t.name}] adding template files from #{DOC_TEMPLATE_DIR}..."
     FileUtils.cp_r(File.join(DOC_TEMPLATE_DIR, '.'), ghpages_dir)
     FileUtils.rm_r(File.join(ghpages_dir, '_tasks'))
 
-    puts "[#{t.name}] adding user files..."
+    puts "[#{t.name}] adding user files from #{DOC_SOURCE_DIR}..."
     FileUtils.cp_r(File.join(DOC_SOURCE_DIR, '.'), ghpages_dir)
     ProgP.write_yaml(merged_font_file, merged_fonts)
     ProgP.write_yaml(merged_config_file, merged_config)
