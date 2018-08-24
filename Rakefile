@@ -105,7 +105,7 @@ task :list_targets do |t, args|
 end
 
 desc [
-  "reports template version",
+  "reports library version",
 ].join("\n")
 task :version do |t, args|
   puts "#{PROJECT} v#{lib_version}"

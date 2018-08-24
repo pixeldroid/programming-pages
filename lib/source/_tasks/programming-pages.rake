@@ -37,6 +37,10 @@ def template_config
   @template_config || (@template_config = ProgP.read_yaml(template_config_file))
 end
 
+def template_version
+  template_config['template_version']
+end
+
 def user_config_file
   File.join(DOC_SOURCE_DIR, '_config.yml')
 end
@@ -59,6 +63,20 @@ end
 
 def template_fonts
   @template_fonts || (@template_fonts = ProgP.read_yaml(template_font_file))
+end
+
+def template_download_url
+  uri = URI(ProgP::RELEASE_API)
+
+  begin
+    response = Net::HTTP.get_response(uri)
+    ProgP.fail("#{response.code} - failed to access GitHub API at '#{ProgP::RELEASE_API}'") unless (response.code == '200')
+  rescue SocketError
+    ProgP.fail("failed to connect; is there network access?")
+  end
+
+  result = JSON.parse(response.body)
+  result['assets'].first['browser_download_url']
 end
 
 def user_font_file
@@ -92,20 +110,12 @@ end
 
 namespace :template do
 
-  task :get_latest do |t, args|
+  desc [
+    "downloads the latest release from GitHub, installing to DOC_TEMPLATE_DIR",
+  ].join("\n")
+  task :update do |t, args|
     puts "[#{t.name}] asking GitHub for latest release.."
-
-    uri = URI(ProgP::RELEASE_API)
-
-    begin
-      response = Net::HTTP.get_response(uri)
-      ProgP.fail("#{response.code} - failed to access GitHub API at '#{ProgP::RELEASE_API}'") unless (response.code == '200')
-    rescue SocketError
-      ProgP.fail("failed to connect; is there network access?")
-    end
-
-    result = JSON.parse(response.body)
-    asset_url = result['assets'].first['browser_download_url']
+    asset_url = template_download_url
     puts "[#{t.name}] found asset at '#{asset_url}'"
 
     FileUtils.remove_dir(DOC_TEMPLATE_DIR) if (Dir.exists?(DOC_TEMPLATE_DIR))
@@ -131,9 +141,14 @@ namespace :template do
   end
 
   desc [
-    "downloads the latest release from GitHub, installing to DOC_TEMPLATE_DIR",
+    "reports installed and available versions of programming pages template",
+    "latest available version is retrieved from github (requires internet connection)",
   ].join("\n")
-  task :update => ['template:get_latest']
+  task :version do |t, args|
+    zipfile = File.basename(template_download_url, '.zip')
+    latest_version = zipfile.split('_v').last
+    puts "v#{template_version} (latest available: v#{latest_version})"
+  end
 
 end
 
@@ -149,27 +164,27 @@ namespace :docs do
     "if jekyll is installed, you can preview the doc site locally:",
     "  $ #{jekyll_cmd}",
   ].join("\n")
-  task :build do |t, args|
-    target_dir = ghpages_dir
-
+  task :build => ['docs:clean_docs_dir'] do |t, args|
     ProgP.fail('please ensure the template is installed before running this task') unless Dir.exists?(DOC_TEMPLATE_DIR)
 
-    if (Dir.exists?(target_dir))
-      puts "[#{t.name}] removing existing #{target_dir}..."
-      FileUtils.rm_r(target_dir)
-    end
-    puts "[#{t.name}] creating and populating #{target_dir}..."
+    puts "[#{t.name}] adding template files from #{DOC_TEMPLATE_DIR}..."
+    FileUtils.cp_r(File.join(DOC_TEMPLATE_DIR, '.'), ghpages_dir)
+    FileUtils.rm_r(File.join(ghpages_dir, '_tasks'))
 
-    puts "[#{t.name}]   adding template files..."
-    FileUtils.cp_r(File.join(DOC_TEMPLATE_DIR, '.'), target_dir)
-    FileUtils.rm_r(File.join(target_dir, '_tasks'))
-    puts "[#{t.name}]   adding user files..."
-    FileUtils.cp_r(File.join(DOC_SOURCE_DIR, '.'), target_dir)
+    puts "[#{t.name}] adding user files from #{DOC_SOURCE_DIR}..."
+    FileUtils.cp_r(File.join(DOC_SOURCE_DIR, '.'), ghpages_dir)
     ProgP.write_yaml(merged_font_file, merged_fonts)
     ProgP.write_yaml(merged_config_file, merged_config)
 
-    puts "[#{t.name}] task completed, find github pages ready site in #{target_dir}/"
+    puts "[#{t.name}] task completed, find github pages ready site in #{ghpages_dir}/"
     puts "[#{t.name}] preview locally: #{jekyll_cmd}" if (ProgP.path_to_exe('jekyll'))
+  end
+
+  task :clean_docs_dir do |t, args|
+    if (Dir.exists?(ghpages_dir))
+      puts "[#{t.name}] emptying #{ghpages_dir} to start clean..."
+      FileUtils.rm_r(Dir.glob(File.join(ghpages_dir, '*')))
+    end
   end
 
 end
