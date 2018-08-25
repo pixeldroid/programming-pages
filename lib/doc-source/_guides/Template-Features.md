@@ -80,15 +80,7 @@ The site template provides several pre-defined layouts for rendering different k
 
 Please see the individual layout pages for more detail:
 
-{% for collection in site.collections %}
-{% if collection.label == 'layout_api' %}
-{% for doc in collection.docs %}
-  {% capture link %}{{ doc.title }}{% endcapture %}
-  {% capture url %}{{ doc.url }}#/{{ collection.label | downcase }}/{% endcapture %}
-- [{{ link }}]({{ site.baseurl }}{{ url }})
-{% endfor %}
-{% endif %}
-{% endfor %}
+{% include ordered_child_list.liquid docs=site.layout_api %}
 
 
 
