@@ -6,34 +6,12 @@ PROJECT = 'programming-pages'
 
 # define these three constants before loading the programming-pages rake tasks
 PROJECT_ROOT = File.dirname(__FILE__)
-DOC_TEMPLATE_DIR = File.join(PROJECT_ROOT, 'lib', 'doc-template')
-DOC_SOURCE_DIR = File.join(PROJECT_ROOT, 'lib', 'doc-source')
+DOC_TEMPLATE_DIR = File.join(PROJECT_ROOT, 'build', 'doc-template')
+DOC_SOURCE_DIR = File.join(PROJECT_ROOT, 'build', 'doc-source')
 # load the rake tasks and include the module
-load File.join(PROJECT_ROOT, 'lib', 'source', '_tasks', 'programming-pages.rake')
-require File.join(PROJECT_ROOT, 'lib', 'source', '_tasks', 'progp')
+load File.join(PROJECT_ROOT, '_tasks', 'programming-pages.rake')
+require File.join(PROJECT_ROOT, '_tasks', 'progp')
 include ProgP
-
-def lib_dir
-  File.join(PROJECT_ROOT, 'lib')
-end
-
-def src_dir
-  File.join(lib_dir, 'source')
-end
-
-def semantic_build_dir
-  File.join(lib_dir, 'semantic-build')
-end
-
-def semantic_attribution(version)
-  [
-    '/*!',
-    "* Semantic UI #{version}",
-    '* http://github.com/semantic-org/semantic-ui/',
-    '* http://opensource.org/licenses/MIT',
-    "*/\n",
-  ].join("\n")
-end
 
 [
   'docs',
@@ -60,12 +38,47 @@ Rake::Task[:clobber].enhance { FileUtils.rm_r(Dir.glob("#{PROJECT}_*.zip")) } # 
 
 @template_source_config = nil
 
+def src_dir
+  PROJECT_ROOT
+end
+
+def build_dir
+  File.join(PROJECT_ROOT, 'build')
+end
+
+def semantic_build_dir
+  File.join(build_dir, 'semantic-build')
+end
+
+def semantic_attribution(version)
+  [
+    '/*!',
+    "* Semantic UI #{version}",
+    '* http://github.com/semantic-org/semantic-ui/',
+    '* http://opensource.org/licenses/MIT',
+    "*/\n",
+  ].join("\n")
+end
+
 def template_source_config_file
   File.join(src_dir, '_config.yml')
 end
 
 def template_source_config
   @template_source_config || (@template_source_config = ProgP.read_yaml(template_source_config_file))
+end
+
+def template_source_files
+  Dir[
+    '_config.yml',
+    '_data/**/*',
+    '_includes/**/*',
+    '_layouts/**/*',
+    '_tasks/**/*',
+    'assets/**/*',
+    'favicon.png',
+    base: src_dir
+  ]
 end
 
 def lib_version
@@ -111,6 +124,16 @@ task :version do |t, args|
   puts "#{PROJECT} v#{lib_version}"
 end
 
+def cp_src(dst_dir)
+  template_source_files.each do |f|
+    fa = File.absolute_path(File.join(src_dir, f))
+    next unless File.file?(fa)
+
+    fb = File.join(dst_dir, f)
+    FileUtils.mkdir_p(File.dirname(fb))
+    FileUtils.cp(fa, fb)
+  end
+end
 
 namespace :lib do
 
@@ -118,11 +141,9 @@ namespace :lib do
     "deploys the current local source files into DOC_TEMPLATE_DIR",
   ].join("\n")
   task :build do |t, args|
-    source_dir = File.absolute_path(src_dir)
-
     puts "[#{t.name}] replacing contents of DOC_TEMPLATE_DIR with template source files"
     FileUtils.rm_rf(File.join(DOC_TEMPLATE_DIR, '.'))
-    FileUtils.cp_r(File.join(source_dir, '.'), DOC_TEMPLATE_DIR)
+    cp_src(DOC_TEMPLATE_DIR)
 
     puts "[#{t.name}] task completed, template updated at #{DOC_TEMPLATE_DIR}"
   end
@@ -145,7 +166,7 @@ namespace :lib do
     Dir.mktmpdir do |tmp_dir|
       Dir.chdir(tmp_dir) do
         Dir.mkdir(PROJECT)
-        FileUtils.cp_r(File.join(source_dir, '.'), File.join(tmp_dir, PROJECT))
+        cp_src(File.join(tmp_dir, PROJECT))
         zip_exclusions = exclusions.map { |e| "--exclude \"#{e}\"" }.join(' ')
         cmd = "zip --quiet --recurse-paths #{released_template} #{PROJECT} #{zip_exclusions}"
         ProgP.try(cmd, "unable to create #{template_release}")

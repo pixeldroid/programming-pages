@@ -1,5 +1,5 @@
-_site
 .jekyll-metadata
+_site
+build/doc-template
 Gemfile.lock
 programming-pages_v*.zip
-lib/doc-template
