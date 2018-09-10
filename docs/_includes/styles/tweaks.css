@@ -62,6 +62,7 @@
 }
 /* tighten things up as viewport shrinks */
 #site-title {
+  background-color: #eee;
   font-size: /* 14 - 18px */ calc(14px + 4 * ((100vw - 320px) / (1910 - 320)));
 }
 #site-title .header .text {
