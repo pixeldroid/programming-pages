@@ -33,7 +33,9 @@ Rake::Task[:clobber].add_description([
   "removes all generated artifacts to restore project to checkout-like state",
   "removes the following folders:\n  #{CLOBBER.join("\n  ")}",
 ].join("\n"))
-Rake::Task[:clobber].enhance { FileUtils.rm_r(Dir.glob("#{PROJECT}_*.zip")) } # not sure why this glob pattern does not work in the clobber filelist
+# not sure why these glob patterns do not work in the clobber filelist
+Rake::Task[:clobber].enhance { FileUtils.rm_r(Dir.glob("#{PROJECT}_*.zip")) }
+Rake::Task[:clobber].enhance { FileUtils.rm_r(Dir.glob("#{PROJECT}*.gem")) }
 
 
 @template_source_config = nil
