@@ -149,6 +149,35 @@ namespace :lib do
   end
 
   desc [
+    "packages #{PROJECT} files for release as a ruby gem",
+    "the gem is based on #{PROJECT}.gemspec,",
+    "if :publish? is true, a push to rubygems.org will be attempted",
+    " this requires an api key at ~/.gem/credentials",
+    " see: https://guides.rubygems.org/publishing/#publishing-to-rubygemsorg",
+  ].join("\n")
+  task :gem , [:publish?] do |t, args|
+    args.with_defaults(:publish? => nil)
+    publish = (args[:publish?] == 'true')
+    if publish
+      credentials = File.join(Dir.home, '.gem', 'credentials')
+      ProgP.fail("cannot publish without api key at #{credentials}\n  see: https://guides.rubygems.org/publishing/#publishing-to-rubygemsorg") unless File.exists?(credentials)
+    end
+
+    # TODO: extract to file task?
+    cmd = "gem build #{PROJECT}.gemspec"
+    ProgP.try(cmd, "unable to create gem")
+
+    if publish
+      puts "[#{t.name}] publishing gem to rubygems.org..."
+      puts "[#{t.name}] j/k"
+    else
+      puts "[#{t.name}] publish step not requested, skipping."
+    end
+
+    puts "[#{t.name}] task completed, find gem in ./"
+  end
+
+  desc [
     "packages #{PROJECT} files for release as a zip archive",
     "the zip archive is created in a temp directory,",
     " and delivered to #{PROJECT_ROOT}",
