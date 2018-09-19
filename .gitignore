@@ -3,3 +3,4 @@ _site
 build/doc-template
 Gemfile.lock
 programming-pages_v*.zip
+*.gem
