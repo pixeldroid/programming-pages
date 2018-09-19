@@ -28,6 +28,7 @@ Gem::Specification.new do |gem|
     '_tasks/**/*',
     'assets/**/*',
     'favicon.png',
+    'index.md',
   ]
   gem.files += %w(
     LICENSE
