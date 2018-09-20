@@ -273,6 +273,7 @@ desc [
 task :lib => ['lib:build']
 
 desc [
-  "generate a new release candidate, by updating the lib, docs, and package",
+  "generate a new release candidate by updating the lib, docs, package, and gem",
+  "runs clobber first",
 ].join("\n")
-task :release => ['lib:build', 'docs:build', 'lib:package']
+task :release => ['clobber', 'lib:build', 'docs:build', 'lib:package', 'lib:gem']
