@@ -6,34 +6,12 @@ PROJECT = 'programming-pages'
 
 # define these three constants before loading the programming-pages rake tasks
 PROJECT_ROOT = File.dirname(__FILE__)
-DOC_TEMPLATE_DIR = File.join(PROJECT_ROOT, 'lib', 'doc-template')
-DOC_SOURCE_DIR = File.join(PROJECT_ROOT, 'lib', 'doc-source')
+DOC_TEMPLATE_DIR = File.join(PROJECT_ROOT, 'build', 'doc-template')
+DOC_SOURCE_DIR = File.join(PROJECT_ROOT, 'build', 'doc-source')
 # load the rake tasks and include the module
-load File.join(PROJECT_ROOT, 'lib', 'source', '_tasks', 'programming-pages.rake')
-require File.join(PROJECT_ROOT, 'lib', 'source', '_tasks', 'progp')
+load File.join(PROJECT_ROOT, '_tasks', 'programming-pages.rake')
+require File.join(PROJECT_ROOT, '_tasks', 'progp')
 include ProgP
-
-def lib_dir
-  File.join(PROJECT_ROOT, 'lib')
-end
-
-def src_dir
-  File.join(lib_dir, 'source')
-end
-
-def semantic_build_dir
-  File.join(lib_dir, 'semantic-build')
-end
-
-def semantic_attribution(version)
-  [
-    '/*!',
-    "* Semantic UI #{version}",
-    '* http://github.com/semantic-org/semantic-ui/',
-    '* http://opensource.org/licenses/MIT',
-    "*/\n",
-  ].join("\n")
-end
 
 [
   'docs',
@@ -55,10 +33,34 @@ Rake::Task[:clobber].add_description([
   "removes all generated artifacts to restore project to checkout-like state",
   "removes the following folders:\n  #{CLOBBER.join("\n  ")}",
 ].join("\n"))
-Rake::Task[:clobber].enhance { FileUtils.rm_r(Dir.glob("#{PROJECT}_*.zip")) } # not sure why this glob pattern does not work in the clobber filelist
+# not sure why these glob patterns do not work in the clobber filelist
+Rake::Task[:clobber].enhance { FileUtils.rm_r(Dir.glob("#{PROJECT}_*.zip")) }
+Rake::Task[:clobber].enhance { FileUtils.rm_r(Dir.glob("#{PROJECT}*.gem")) }
 
 
 @template_source_config = nil
+
+def src_dir
+  PROJECT_ROOT
+end
+
+def build_dir
+  File.join(PROJECT_ROOT, 'build')
+end
+
+def semantic_build_dir
+  File.join(build_dir, 'semantic-build')
+end
+
+def semantic_attribution(version)
+  [
+    '/*!',
+    "* Semantic UI #{version}",
+    '* http://github.com/semantic-org/semantic-ui/',
+    '* http://opensource.org/licenses/MIT',
+    "*/\n",
+  ].join("\n")
+end
 
 def template_source_config_file
   File.join(src_dir, '_config.yml')
@@ -66,6 +68,19 @@ end
 
 def template_source_config
   @template_source_config || (@template_source_config = ProgP.read_yaml(template_source_config_file))
+end
+
+def template_source_files
+  Dir[
+    '_config.yml',
+    '_data/**/*',
+    '_includes/**/*',
+    '_layouts/**/*',
+    '_tasks/**/*',
+    'assets/**/*',
+    'favicon.png',
+    base: src_dir
+  ]
 end
 
 def lib_version
@@ -111,6 +126,16 @@ task :version do |t, args|
   puts "#{PROJECT} v#{lib_version}"
 end
 
+def cp_src(dst_dir)
+  template_source_files.each do |f|
+    fa = File.absolute_path(File.join(src_dir, f))
+    next unless File.file?(fa)
+
+    fb = File.join(dst_dir, f)
+    FileUtils.mkdir_p(File.dirname(fb))
+    FileUtils.cp(fa, fb)
+  end
+end
 
 namespace :lib do
 
@@ -118,13 +143,40 @@ namespace :lib do
     "deploys the current local source files into DOC_TEMPLATE_DIR",
   ].join("\n")
   task :build do |t, args|
-    source_dir = File.absolute_path(src_dir)
-
     puts "[#{t.name}] replacing contents of DOC_TEMPLATE_DIR with template source files"
     FileUtils.rm_rf(File.join(DOC_TEMPLATE_DIR, '.'))
-    FileUtils.cp_r(File.join(source_dir, '.'), DOC_TEMPLATE_DIR)
+    cp_src(DOC_TEMPLATE_DIR)
 
     puts "[#{t.name}] task completed, template updated at #{DOC_TEMPLATE_DIR}"
+  end
+
+  desc [
+    "packages #{PROJECT} files for release as a ruby gem",
+    "the gem is based on #{PROJECT}.gemspec,",
+    "if :publish? is true, a push to rubygems.org will be attempted",
+    " this requires an api key at ~/.gem/credentials",
+    " see: https://guides.rubygems.org/publishing/#publishing-to-rubygemsorg",
+  ].join("\n")
+  task :gem , [:publish?] do |t, args|
+    args.with_defaults(:publish? => nil)
+    publish = (args[:publish?] == 'true')
+    if publish
+      credentials = File.join(Dir.home, '.gem', 'credentials')
+      ProgP.fail("cannot publish without api key at #{credentials}\n  see: https://guides.rubygems.org/publishing/#publishing-to-rubygemsorg") unless File.exists?(credentials)
+    end
+
+    # TODO: extract to file task?
+    cmd = "gem build #{PROJECT}.gemspec"
+    ProgP.try(cmd, "unable to create gem")
+
+    if publish
+      puts "[#{t.name}] publishing gem to rubygems.org..."
+      puts "[#{t.name}] j/k"
+    else
+      puts "[#{t.name}] publish step not requested, skipping."
+    end
+
+    puts "[#{t.name}] task completed, find gem in ./"
   end
 
   desc [
@@ -145,7 +197,7 @@ namespace :lib do
     Dir.mktmpdir do |tmp_dir|
       Dir.chdir(tmp_dir) do
         Dir.mkdir(PROJECT)
-        FileUtils.cp_r(File.join(source_dir, '.'), File.join(tmp_dir, PROJECT))
+        cp_src(File.join(tmp_dir, PROJECT))
         zip_exclusions = exclusions.map { |e| "--exclude \"#{e}\"" }.join(' ')
         cmd = "zip --quiet --recurse-paths #{released_template} #{PROJECT} #{zip_exclusions}"
         ProgP.try(cmd, "unable to create #{template_release}")
@@ -221,6 +273,7 @@ desc [
 task :lib => ['lib:build']
 
 desc [
-  "generate a new release candidate, by updating the lib, docs, and package",
+  "generate a new release candidate by updating the lib, docs, package, and gem",
+  "runs clobber first",
 ].join("\n")
-task :release => ['lib:build', 'docs:build', 'lib:package']
+task :release => ['clobber', 'lib:build', 'docs:build', 'lib:package', 'lib:gem']
