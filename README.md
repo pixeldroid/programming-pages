@@ -14,6 +14,35 @@ a site template for publishing code documentation to GitHub pages
 
 ## installation
 
+### as a remote theme
+
+Specify `pixeldroid/programming-pages` as your remote theme in `_config.yml`:
+
+```yml
+plugins:
+  - jekyll-remote-theme
+
+remote_theme: pixeldroid/programming-pages
+```
+
+### as a gem
+
+Follow the Jekyll directions for [installing a gem-based theme][jekyll-theme]
+
+`Gemfile`:
+
+```ruby
+gem 'programming-pages'
+```
+
+`_config.yml`:
+
+```yml
+theme: programming-pages
+```
+
+### as a local copy of the files
+
 1. Download the latest [release][releases]
 1. Extract it into your project under a folder of your choice (e.g. `docs/`)
 
@@ -116,6 +145,7 @@ This project excludes the following unused modules to reduce file size:
 [ghpages-install]: https://github.com/github/pages-gem "GitHub Pages Ruby Gem"
 [jekyll]: https://jekyllrb.com/ "Simple, blog-aware, static sites"
 [jekyll-install]: https://jekyllrb.com/docs/installation/ "How to install Jekyll"
+[jekyll-theme]: https://jekyllrb.com/docs/themes/#installing-a-theme "Installing a gem-based theme"
 [jquery]: https://github.com/jquery/jquery#how-to-build-your-own-jquery "jQuery is a fast, small, and feature-rich JavaScript library"
 [jquery-build]: https://github.com/jquery/jquery#how-to-build-your-own-jquery "How to build your own jQuery"
 [programming-pages-docs]: https://pixeldroid.github.io/programming-pages/ "A site template for publishing code documentation to GitHub pages"
