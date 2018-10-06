@@ -3,39 +3,16 @@ require 'rake/clean'
 
 
 PROJECT = 'programming-pages'
+GEM = "#{PROJECT}.gem" # actual filename will have version in it; this will cause build of gem every time (intentional)
 
 # define these three constants before loading the programming-pages rake tasks
 PROJECT_ROOT = File.dirname(__FILE__)
-DOC_TEMPLATE_DIR = File.join(PROJECT_ROOT, 'build', 'doc-template')
+DOC_TEMPLATE_DIR = PROJECT_ROOT # here the template _is_ the project
 DOC_SOURCE_DIR = File.join(PROJECT_ROOT, 'build', 'doc-source')
 # load the rake tasks and include the module
 load File.join(PROJECT_ROOT, '_tasks', 'programming-pages.rake')
 require File.join(PROJECT_ROOT, '_tasks', 'progp')
 include ProgP
-
-[
-  'docs',
-  DOC_TEMPLATE_DIR,
-].each { |f| CLEAN << f }
-Rake::Task[:clean].clear_comments()
-Rake::Task[:clean].add_description([
-  "removes intermediate files to ensure a clean build",
-  "running now would delete the following:\n  #{CLEAN.resolve.join("\n  ")}",
-].join("\n"))
-
-[
-  '_site',
-  'docs',
-  DOC_TEMPLATE_DIR,
-].each { |f| CLOBBER << f }
-Rake::Task[:clobber].clear_comments()
-Rake::Task[:clobber].add_description([
-  "removes all generated artifacts to restore project to checkout-like state",
-  "removes the following folders:\n  #{CLOBBER.join("\n  ")}",
-].join("\n"))
-# not sure why these glob patterns do not work in the clobber filelist
-Rake::Task[:clobber].enhance { FileUtils.rm_r(Dir.glob("#{PROJECT}_*.zip")) }
-Rake::Task[:clobber].enhance { FileUtils.rm_r(Dir.glob("#{PROJECT}*.gem")) }
 
 
 @template_source_config = nil
@@ -62,25 +39,13 @@ def semantic_attribution(version)
   ].join("\n")
 end
 
+# TODO: redundant? same as programming-pages::template_config_file
 def template_source_config_file
   File.join(src_dir, '_config.yml')
 end
 
 def template_source_config
   @template_source_config || (@template_source_config = ProgP.read_yaml(template_source_config_file))
-end
-
-def template_source_files
-  Dir[
-    '_config.yml',
-    '_data/**/*',
-    '_includes/**/*',
-    '_layouts/**/*',
-    '_tasks/**/*',
-    'assets/**/*',
-    'favicon.png',
-    base: src_dir
-  ]
 end
 
 def lib_version
@@ -109,6 +74,35 @@ def exclusions
   ]
 end
 
+
+[
+  'docs',
+].each { |f| CLEAN << f }
+Rake::Task[:clean].clear_comments()
+Rake::Task[:clean].add_description([
+  "removes intermediate files to ensure a clean build",
+  "running now would delete the following:\n  #{CLEAN.resolve.join("\n  ")}",
+].join("\n"))
+
+[
+  '_site',
+  'docs',
+].each { |f| CLOBBER << f }
+Rake::Task[:clobber].clear_comments()
+Rake::Task[:clobber].add_description([
+  "removes all generated artifacts to restore project to checkout-like state",
+  "removes the following folders:\n  #{CLOBBER.join("\n  ")}",
+].join("\n"))
+# not sure why these glob patterns do not work in the clobber filelist
+Rake::Task[:clobber].enhance { FileUtils.rm_r(Dir.glob("#{PROJECT}_*.zip")) }
+Rake::Task[:clobber].enhance { FileUtils.rm_r(Dir.glob("#{PROJECT}*.gem")) }
+
+file GEM do |t, args|
+  puts "[file] creating #{t.name}..."
+
+  cmd = "gem build #{PROJECT}.gemspec"
+  ProgP.try(cmd, 'unable to create .gem')
+end
 
 task :default => [:list_targets]
 
@@ -140,43 +134,32 @@ end
 namespace :lib do
 
   desc [
-    "deploys the current local source files into DOC_TEMPLATE_DIR",
+    "packages #{PROJECT} files for release as a ruby gem",
+    "the gem is built from #{PROJECT}.gemspec",
   ].join("\n")
-  task :build do |t, args|
-    puts "[#{t.name}] replacing contents of DOC_TEMPLATE_DIR with template source files"
-    FileUtils.rm_rf(File.join(DOC_TEMPLATE_DIR, '.'))
-    cp_src(DOC_TEMPLATE_DIR)
-
-    puts "[#{t.name}] task completed, template updated at #{DOC_TEMPLATE_DIR}"
+  task :gem => [GEM] do |t, args|
+    puts "[#{t.name}] task completed, find gem in ./"
   end
 
   desc [
-    "packages #{PROJECT} files for release as a ruby gem",
-    "the gem is based on #{PROJECT}.gemspec,",
-    "if :publish? is true, a push to rubygems.org will be attempted",
-    " this requires an api key at ~/.gem/credentials",
+    "pushes #{PROJECT}.gem to rubygems.org",
+    " this requires an api key file at ~/.gem/credentials,",
+    " and optionally a key name, if the credentials file has multiple keys",
+    " (default name is :rubygems_api_key)",
     " see: https://guides.rubygems.org/publishing/#publishing-to-rubygemsorg",
   ].join("\n")
-  task :gem , [:publish?] do |t, args|
-    args.with_defaults(:publish? => nil)
-    publish = (args[:publish?] == 'true')
-    if publish
-      credentials = File.join(Dir.home, '.gem', 'credentials')
-      ProgP.fail("cannot publish without api key at #{credentials}\n  see: https://guides.rubygems.org/publishing/#publishing-to-rubygemsorg") unless File.exists?(credentials)
-    end
+  task :gem_push, [:key_name] => ['lib:gem'] do |t, args|
+    args.with_defaults(:key_name => ':rubygems_api_key')
+    key_name = args[:key_name]
 
-    # TODO: extract to file task?
-    cmd = "gem build #{PROJECT}.gemspec"
-    ProgP.try(cmd, "unable to create gem")
+    credentials = File.join(Dir.home, '.gem', 'credentials')
+    ProgP.fail("cannot publish without api key file at #{credentials}\n  see: https://guides.rubygems.org/publishing/#publishing-to-rubygemsorg") unless File.exists?(credentials)
 
-    if publish
-      puts "[#{t.name}] publishing gem to rubygems.org..."
-      puts "[#{t.name}] j/k"
-    else
-      puts "[#{t.name}] publish step not requested, skipping."
-    end
+    cmd = "gem push --key #{key_name} #{PROJECT}.gem"
+    puts "[#{t.name}] publishing gem..."
+    ProgP.try(cmd, 'unable to push .gem')
 
-    puts "[#{t.name}] task completed, find gem in ./"
+    puts "[#{t.name}] task completed"
   end
 
   desc [
@@ -184,7 +167,7 @@ namespace :lib do
     "the zip archive is created in a temp directory,",
     " and delivered to #{PROJECT_ROOT}",
   ].join("\n")
-  task :package do |t, args|
+  task :zip do |t, args|
     template_release = "#{PROJECT}_v#{lib_version}.zip"
     source_dir = File.absolute_path(src_dir)
     release_dir = PROJECT_ROOT
@@ -268,12 +251,17 @@ namespace :lib do
 end
 
 desc [
-  "shorthand for 'rake lib:build'",
+  "shorthand for 'rake lib:gem'",
 ].join("\n")
-task :lib => ['lib:build']
+task :gem => ['lib:gem']
 
 desc [
-  "generate a new release candidate by updating the lib, docs, package, and gem",
+  "shorthand for 'rake lib:zip'",
+].join("\n")
+task :zip => ['lib:zip']
+
+desc [
+  "generate a new release candidate by updating the docs and zip and gem packages",
   "runs clobber first",
 ].join("\n")
-task :release => ['clobber', 'lib:build', 'docs:build', 'lib:package', 'lib:gem']
+task :release => ['clobber', 'docs:build', 'lib:zip', 'lib:gem']

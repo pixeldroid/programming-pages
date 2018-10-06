@@ -1,5 +1,12 @@
 ---
-code_indent: "  "
+# default site settings
+# configure these values for your project
+project:
+  name: "{project_name}"
+  owner: "{project_owner}"
+  repo: "{project_repo}"
+  version: "{project_version}"
+
 collections:
   api:
     output: true
@@ -16,31 +23,18 @@ collections:
     permalink: "/:collection/:path/"
     title: Guides
     tab-order: 3
-exclude:
-  - _tasks
-  - build
-  - docs
-  - CODE_OF_CONDUCT.md
-  - CONTRIBUTING.md
-  - Gemfile
-  - Gemfile.lock
-  - LICENSE
-  - programming-pages.gemspec
-  - Rakefile
-  - README.md
-  - screenshot.png
-highlighter: rouge
-permalink: pretty
-plugins:
-  - jemoji
-project:
-  name: "{project_name}"
-  owner: "{project_owner}"
-  repo: "{project_repo}"
-  version: "{project_version}"
-sass:
-  style: compressed
-template_version: 0.5.7
+
+module_root: "/api"
 example_root: "/examples"
 guide_root: "/guides"
-module_root: "/api"
+
+code_indent: "  "
+highlighter: rouge
+permalink: pretty
+sass:
+  style: compressed
+
+plugins:
+  - jemoji
+  - jekyll-remote-theme
+remote_theme: pixeldroid/programming-pages

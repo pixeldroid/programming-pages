@@ -3,7 +3,7 @@
 require 'yaml'
 
 
-GEM_CONFIG = YAML.load(File.read(File.expand_path('../build/doc-source/_config.yml', __FILE__)))
+GEM_CONFIG = YAML.load(File.read(File.expand_path('../docs/_config.yml', __FILE__)))
 
 Gem::Specification.new do |gem|
   gem.name     = 'programming-pages'
@@ -22,10 +22,8 @@ Gem::Specification.new do |gem|
 
   gem.files = Dir[
     '_config.yml',
-    '_data/**/*',
     '_includes/**/*',
     '_layouts/**/*',
-    '_tasks/**/*',
     'assets/**/*',
     'favicon.png',
     'index.md',
@@ -36,10 +34,8 @@ Gem::Specification.new do |gem|
     README.md screenshot.png
   )
 
-  gem.add_runtime_dependency 'jekyll', '~> 3.7'
-  gem.add_runtime_dependency 'jemoji', '~> 0.10'
+  gem.add_runtime_dependency 'github-pages', '>= 192'
 
   gem.add_development_dependency 'bundler', '~> 1.16'
-  gem.add_development_dependency 'github-pages', '~> 191'
   gem.add_development_dependency 'rake', '~> 12.0'
 end
