@@ -549,18 +549,21 @@ Place an emoji id inside colons (`:id:`). Reference an [emoji cheat sheet][emoji
 
 There is no markdown shortcut for icons, but the template provides a liquid macro for embedding svg icons that have been defined in [_data/svg_icons.yml][svg-file] by the template.
 
-> Users may also define their own icons and merge them into `_data/svg_icons.yml` at build time. See the [rake task example][rake-tasks] for one way to do this.
+> Users may also define icons of their own, simply by adding additional icon data files under `_data/icons/`.
 
 Format: {% raw %}`{% include icon.liquid id='star' %}`{% endraw %} will render as: {% include icon.liquid id='star' %}
 
-The following icons are provided with the template:
+The following icons were loaded during the building of this site:
 
 |:----:|-----------|
-{% assign icons = site.data.svg_icons | sort -%}
-{% for icon in icons %}
-  {%- assign id  = icon[0] -%}
-  {%- assign svg = icon[1] -%}
+{% for set in site.data.icons -%}
+| | _**{{ set[0] }}**_ |
+  {% assign icons = set[1] | sort -%}
+  {% for icon in icons %}
+    {%- assign id  = icon[0] -%}
+    {%- assign svg = icon[1] -%}
 | <svg version="1.1" class="icon" role="img" aria-hidden="true" viewBox="{{ svg.viewbox }}"><path d="{{ svg.path }}"/></svg> | `{{ id }}` |
+  {% endfor %}
 {% endfor %}
 
 > See also [Emoji](#emoji) as another way to insert pictograms.

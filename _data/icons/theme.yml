@@ -1,7 +1,7 @@
 ##
-##  SVG icon data file
+##  SVG icon data file for the programming pages theme
 ##
-##  access in liquid templates via {% site.data.svg_icons[<id>] %}
+##  retrieve via liquid: {% site.data.icons_template[<id>] %}
 ##  each icon has the following properties:
 ##    - viewbox
 ##    - path

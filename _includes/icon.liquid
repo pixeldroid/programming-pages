@@ -4,13 +4,18 @@ icon
   embeds an svg icon for a provided id,
   optionally with additional css classes applied
 
+  icon data is retrieved from _data/icons/*.yml
+
 params:
   id=<icon-id>
   class=<css-class-string> (optional)
 
 {%- endcomment -%}
 {%- if include.id -%}
-  {% assign svg = site.data.svg_icons[include.id] -%}
+  {% assign svg = nil -%}
+  {% for set in site.data.icons -%}
+    {% if set[1][include.id] %}{% assign svg = set[1][include.id] %}{% break %}{% endif -%}
+  {% endfor -%}
   {%- if svg -%}
     <svg version="1.1" class="icon{% if include.class %} {{ include.class }}{% endif %}" role="img" aria-hidden="true" viewBox="{{ svg.viewbox }}"><path d="{{ svg.path }}"/></svg>
   {%- endif -%}
