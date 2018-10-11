@@ -71,8 +71,7 @@ you'll need to be able to build them from source.
 > 1. [install jekyll][jekyll-install] and the [github-pages gem][ghpages-install]: `bundle install`
 
 ```console
-rake build:docs
-bundle exec jekyll serve -I -s ./docs -d ./_site
+rake docs
 open http://localhost:4000/
 ```
 
@@ -83,7 +82,7 @@ open http://localhost:4000/
 > 1. check out the [programming-pages branch of the pixeldroid fork][semantic-custom] of semantic ui
 
 ```console
-rake build:semantic['/path/to/programming-pages-semantic']
+rake semantic['/path/to/programming-pages-semantic']
 ```
 
 #### semantic ui modules
@@ -100,7 +99,7 @@ grunt custom:-ajax,-wrap remove_map_comment
 cp /path/to/jquery/dist/jquery.min.js /path/to/programming-pages/lib/src/_includes/scripts/jquery/jquery-<version>.custom.min.js
 ```
 
-Don't forget to update `lib/src/scripts/site.js` with the new filename.
+Don't forget to update `assets/site.js` with the new filename.
 
 #### jQuery modules
 
