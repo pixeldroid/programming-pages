@@ -4,7 +4,6 @@ project:
   owner: pixeldroid
   repo: https://github.com/pixeldroid/programming-pages
   version: 0.5.7
-
 collections:
   guides:
     output: true
@@ -21,18 +20,15 @@ collections:
     permalink: "/:collection/:path/"
     title: Layout API
     tab-order: 3
-
 guide_root: "/guides"
 example_root: "/examples"
 module_root: "/layout_api"
-
 code_indent: "  "
 highlighter: rouge
 permalink: pretty
 sass:
   style: compressed
-
 plugins:
-  - jemoji
+- jemoji
 #   - jekyll-remote-theme
 # remote_theme: pixeldroid/programming-pages
