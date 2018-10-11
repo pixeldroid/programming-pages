@@ -22,6 +22,7 @@ Gem::Specification.new do |gem|
 
   gem.files = Dir[
     '_config.yml',
+    '_data/**/*',
     '_includes/**/*',
     '_layouts/**/*',
     'assets/**/*',
@@ -34,7 +35,7 @@ Gem::Specification.new do |gem|
     README.md screenshot.png
   )
 
-  gem.add_runtime_dependency 'github-pages', '>= 192'
+  gem.add_runtime_dependency 'github-pages', '~> 192'
 
   gem.add_development_dependency 'bundler', '~> 1.16'
   gem.add_development_dependency 'rake', '~> 12.0'
