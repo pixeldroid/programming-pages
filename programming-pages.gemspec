@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.version  = GEM_CONFIG['project']['version']
   gem.author   = GEM_CONFIG['project']['owner']
   gem.homepage = GEM_CONFIG['project']['repo']
-  gem.summary  = 'a site template for publishing code documentation to GitHub pages'
+  gem.summary  = 'a Jekyll theme for publishing code documentation to GitHub pages'
   gem.license  = 'MIT'
 
   gem.metadata = {

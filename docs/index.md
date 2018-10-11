@@ -5,10 +5,11 @@ title: Introduction
 
 # {{ page.title }}
 
-**programming pages** is a site theme for publishing documentation of code on [GitHub Pages][gh-pages]. This site is an example of the theme in use, rendering the markdown files found [here][site-docs].
+**programming pages** is a Jekyll theme for publishing documentation of code on [GitHub Pages][gh-pages]. This site is an example of the theme in use, rendering the markdown files found [here][site-docs].
 {:.larger.text}
 
-With this theme applied to your project, you can author documentation in [Markdown][markdown-sampler] files, and rely on the theme layouts to index them for browsing and search and render them in style.
+With this theme applied to your project, you can author documentation in [Markdown][markdown-sampler] files and rely on the theme layouts to index them for browsing and search and render them in style.
+{:.larger.text}
 
 Learn more about this theme in the following guides:
 

@@ -1,6 +1,6 @@
 # programming-pages
 
-a site template for publishing code documentation to GitHub pages
+a Jekyll theme for publishing code documentation to GitHub pages
 
 > See **programming pages** used to document itself here: https://pixeldroid.github.io/programming-pages/
 
@@ -148,7 +148,7 @@ This project excludes the following unused modules to reduce file size:
 [jekyll-theme]: https://jekyllrb.com/docs/themes/#installing-a-theme "Installing a gem-based theme"
 [jquery]: https://github.com/jquery/jquery#how-to-build-your-own-jquery "jQuery is a fast, small, and feature-rich JavaScript library"
 [jquery-build]: https://github.com/jquery/jquery#how-to-build-your-own-jquery "How to build your own jQuery"
-[programming-pages-docs]: https://pixeldroid.github.io/programming-pages/ "A site template for publishing code documentation to GitHub pages"
+[programming-pages-docs]: https://pixeldroid.github.io/programming-pages/ "a Jekyll theme for publishing code documentation to GitHub pages"
 [pull-requests]: https://github.com/pixeldroid/programming-pages/pulls "Pull requests for the Programming Pages template project"
 [push-to-github]: https://help.github.com/articles/pushing-to-a-remote/ "Pushing to a remote"
 [releases]: https://github.com/pixeldroid/programming-pages/releases "Packaged releases of the Programming Pages template"
