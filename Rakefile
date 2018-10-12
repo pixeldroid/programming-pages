@@ -180,6 +180,7 @@ desc [
 ].join("\n")
 task :docs do |t, args|
   begin                 # run jekyll
+    puts jekyll_cmd
     system(jekyll_cmd)
   rescue Exception => e # capture the interrupt signal from a quit app
     puts ' (quit)'
