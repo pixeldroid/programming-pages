@@ -87,7 +87,7 @@ rake semantic['/path/to/programming-pages-semantic']
 
 #### semantic ui modules
 
-The Semantic UI modules required by this project are declared in `lib/semantic-build/semantic.json`.
+The Semantic UI modules required by this project are declared in `build/semantic/semantic.json`.
 
 ### generating the jQuery file
 

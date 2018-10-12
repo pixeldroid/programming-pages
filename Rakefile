@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require 'fileutils'
+require 'json'
 require 'pathname'
 require 'rake/clean'
 require "rubygems"
@@ -111,7 +112,7 @@ def project_config_file
 end
 
 def semantic_build_dir
-  File.join(PROJECT_ROOT, 'build', 'semantic-build')
+  File.join(PROJECT_ROOT, 'build', 'semantic')
 end
 
 def semantic_attribution(version)
@@ -239,14 +240,14 @@ task :semantic, [:dir] do |t, args|
 
   puts "[#{t.name}] copying generated files from semantic dist_dir..."
   components_dir = File.join(args.dir, 'dist', 'components')
-  scripts_dir = File.join(src_dir, '_includes', 'scripts', 'semantic-ui')
-  styles_dir = File.join(src_dir, '_includes', 'styles', 'semantic-ui')
+  scripts_dir = File.join(PROJECT_ROOT, '_includes', 'scripts', 'semantic-ui')
+  styles_dir = File.join(PROJECT_ROOT, '_includes', 'styles', 'semantic-ui')
 
-  puts "[#{t.name}]  updating #{scripts_dir}"
+  puts "[#{t.name}]  updating #{relative_path(Pathname.pwd, scripts_dir)}"
   FileUtils.rm_rf(File.join(scripts_dir, '.'))
   FileUtils.cp(Dir.glob(File.join(components_dir, '*.min.js')), scripts_dir)
 
-  puts "[#{t.name}]  updating #{styles_dir}"
+  puts "[#{t.name}]  updating #{relative_path(Pathname.pwd, styles_dir)}"
   FileUtils.rm_rf(File.join(styles_dir, '.'))
   FileUtils.cp(Dir.glob(File.join(components_dir, '*.min.css')), styles_dir)
 
