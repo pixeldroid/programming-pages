@@ -224,23 +224,25 @@ desc [
   " semantic.json - limits the components built",
   " src/site/globals/site.variables - customizes global styles",
 ].join("\n")
-task :semantic, [:dir] do |t, args|
-  args.with_defaults(:dir => nil)
-  fail("cannot find semantic ui project at '#{args.dir}'") unless (args.dir && Dir.exists?(args.dir))
+task :semantic, [:sui_dir] do |t, args|
+  args.with_defaults(:sui_dir => nil)
+  sui_dir = args[:sui_dir]
 
-  puts "[#{t.name}] copying custom build files to #{args.dir}..."
-  FileUtils.cp_r(File.join(semantic_build_dir, '.'), args.dir)
+  fail("cannot find semantic ui project at '#{sui_dir}'") unless (sui_dir && Dir.exists?(sui_dir))
+
+  puts "[#{t.name}] copying custom build files to #{sui_dir}..."
+  FileUtils.cp_r(File.join(semantic_build_dir, '.'), sui_dir)
 
   puts "[#{t.name}] running semantic build..."
   cmd = 'gulp clean && gulp build'
   build_success = false
-  Dir.chdir(args.dir) do
+  Dir.chdir(sui_dir) do
     build_success = (system(cmd) == true)
   end
   fail('semantic build failed') unless build_success
 
   puts "[#{t.name}] copying generated files from semantic dist_dir..."
-  components_dir = File.join(args.dir, 'dist', 'components')
+  components_dir = File.join(sui_dir, 'dist', 'components')
   scripts_dir = File.join(PROJECT_ROOT, '_includes', 'scripts', 'semantic-ui')
   styles_dir = File.join(PROJECT_ROOT, '_includes', 'styles', 'semantic-ui')
 
@@ -252,7 +254,7 @@ task :semantic, [:dir] do |t, args|
   FileUtils.rm_rf(File.join(styles_dir, '.'))
   FileUtils.cp(Dir.glob(File.join(components_dir, '*.min.css')), styles_dir)
 
-  sui_p = JSON.parse(File.read(File.join(args.dir, 'package.json')))
+  sui_p = JSON.parse(File.read(File.join(sui_dir, 'package.json')))
   sui_v = sui_p['version']
   puts "[#{t.name}] updating version in semantic license attributions to #{sui_v}..."
   File.open(File.join(scripts_dir, '_version.js'), 'w') { |f| f.write(semantic_attribution(sui_v)) }
