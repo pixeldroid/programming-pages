@@ -1,6 +1,6 @@
 # programming-pages
 
-a site template for publishing code documentation to GitHub pages
+a Jekyll theme for publishing code documentation to GitHub pages
 
 > See **programming pages** used to document itself here: https://pixeldroid.github.io/programming-pages/
 
@@ -71,8 +71,7 @@ you'll need to be able to build them from source.
 > 1. [install jekyll][jekyll-install] and the [github-pages gem][ghpages-install]: `bundle install`
 
 ```console
-rake build:docs
-bundle exec jekyll serve -I -s ./docs -d ./_site
+rake docs
 open http://localhost:4000/
 ```
 
@@ -83,12 +82,12 @@ open http://localhost:4000/
 > 1. check out the [programming-pages branch of the pixeldroid fork][semantic-custom] of semantic ui
 
 ```console
-rake build:semantic['/path/to/programming-pages-semantic']
+rake semantic['/path/to/programming-pages-semantic']
 ```
 
 #### semantic ui modules
 
-The Semantic UI modules required by this project are declared in `lib/semantic-build/semantic.json`.
+The Semantic UI modules required by this project are declared in `build/semantic/semantic.json`.
 
 ### generating the jQuery file
 
@@ -100,7 +99,7 @@ grunt custom:-ajax,-wrap remove_map_comment
 cp /path/to/jquery/dist/jquery.min.js /path/to/programming-pages/lib/src/_includes/scripts/jquery/jquery-<version>.custom.min.js
 ```
 
-Don't forget to update `lib/src/scripts/site.js` with the new filename.
+Don't forget to update `assets/site.js` with the new filename.
 
 #### jQuery modules
 
@@ -148,7 +147,7 @@ This project excludes the following unused modules to reduce file size:
 [jekyll-theme]: https://jekyllrb.com/docs/themes/#installing-a-theme "Installing a gem-based theme"
 [jquery]: https://github.com/jquery/jquery#how-to-build-your-own-jquery "jQuery is a fast, small, and feature-rich JavaScript library"
 [jquery-build]: https://github.com/jquery/jquery#how-to-build-your-own-jquery "How to build your own jQuery"
-[programming-pages-docs]: https://pixeldroid.github.io/programming-pages/ "A site template for publishing code documentation to GitHub pages"
+[programming-pages-docs]: https://pixeldroid.github.io/programming-pages/ "a Jekyll theme for publishing code documentation to GitHub pages"
 [pull-requests]: https://github.com/pixeldroid/programming-pages/pulls "Pull requests for the Programming Pages template project"
 [push-to-github]: https://help.github.com/articles/pushing-to-a-remote/ "Pushing to a remote"
 [releases]: https://github.com/pixeldroid/programming-pages/releases "Packaged releases of the Programming Pages template"

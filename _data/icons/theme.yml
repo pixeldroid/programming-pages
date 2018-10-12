@@ -1,11 +1,12 @@
 ##
-##  SVG icon data file
+##  SVG icon data file for the programming pages theme
 ##
-##  access in liquid templates via {% site.data.svg_icons[<id>] %}
 ##  each icon has the following properties:
 ##    - viewbox
 ##    - path
 ##
+##  to embed via the icon macro: {% include icon.liquid id='<id>' %}
+##  to retrieve this data directly via liquid: {% site.data.icons.theme[<id>] %}
 
 
 # Glyphicon Halflings in Bootstrap by Jan Kovařík - http://getbootstrap.com/components/#glyphicons

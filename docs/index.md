@@ -5,38 +5,17 @@ title: Introduction
 
 # {{ page.title }}
 
-**programming pages** is a site template for publishing documentation of code on [GitHub Pages][gh-pages]. This site is an example of the template in use, rendering the markdown files found [here][site-source].
+**programming pages** is a Jekyll theme for publishing documentation of code on [GitHub Pages][gh-pages]. This site is an example of the theme in use, rendering the markdown files found [here][site-docs].
 {:.larger.text}
 
-With this template installed in your project, you can author documentation in [Markdown][markdown-sampler] files, and rely on the template to index them for browsing and search and render them in style.
+With this theme applied to your project, you can author documentation in [Markdown][markdown-sampler] files and rely on the theme layouts to index them for browsing and search and render them in style.
+{:.larger.text}
 
-Learn more about the template in the following guides:
+Learn more about this theme in the following guides:
 
-{% assign collection = site.collections | where: 'label','guides' | first %}
-{% assign doc_list = collection.docs %}
-{% assign top_level = '' | split: '' %}
-{% assign ordered = '' | split: '' %}
-{% assign unorder = '' | split: '' %}
-
-{% for doc in doc_list %}
-  {% assign depth = doc.path | split: '/' | size | minus: 2 %}
-  {% if depth == 0 %}
-    {% if doc.order %}{% assign ordered = ordered | push: doc %}
-    {% else %}{% assign unorder = unorder | push: doc %}
-    {% endif %}
-  {% endif %}
-{% endfor %}
-{% assign ordered = ordered | sort: 'order' %}
-{% assign top_level = ordered | concat: unorder %}
-
-{% for doc in top_level %}
-  {% capture link %}{{ doc.title }}{% endcapture %}
-  {% capture url %}{{ doc.url }}#/{{ collection.label | downcase }}/{% endcapture %}
-- [{{ link }}]({{ site.baseurl }}{{ url }})
-{% endfor %}
-
+{% include ordered_child_list.liquid docs=site.guides %}
 
 
 [gh-pages]: https://pages.github.com/ "Websites for you and your projects"
 [markdown-sampler]: {{ site.baseurl }}/examples/sampler/#/examples/ "Samples of the markdown supported by lsdoc and GitHub Pages"
-[site-source]: https://github.com/pixeldroid/programming-pages/tree/master/lib/doc-source "Source files for programming pages documentation"
+[site-docs]: https://github.com/pixeldroid/programming-pages/tree/master/docs "Source files for programming pages documentation"

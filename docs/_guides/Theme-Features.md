@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Template features
+title: Theme features
 order: 1
 ---
 

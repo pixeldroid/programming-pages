@@ -1,5 +1,10 @@
 ##
-##  SVG icon data file to supplement the icons provided by the programming pages template
+##  SVG icon data customizations
+##
+##  retrieve via liquid: {% site.data.icons.custom[<id>] %}
+##  ensure each icon has the following properties:
+##    - viewbox
+##    - path
 ##
 
 

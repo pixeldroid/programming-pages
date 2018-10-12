@@ -9,7 +9,7 @@ order: 3
 Create collections of guides, examples, and API references by writing markdown files and organizing them under folders.
 {:.larger.text}
 
-Use template layouts to take advantage of parameterized display structures like package listings or guide indices.
+Use theme layouts to take advantage of parameterized display structures like package listings or guide indices.
 {:.larger.text}
 
 - TOC
@@ -38,9 +38,9 @@ User-authored content is expected in the following places:
 
 ### Project Configuration
 
-The [title]({{ site.baseurl }}/guides/Template-Features/#title-bar) and [attribution]({{ site.baseurl }}/guides/Template-Features/#attribution) elements of the template use metadata defined in `_config.yml`.
+The [title]({{ site.baseurl }}/guides/Theme-Features/#title-bar) and [attribution]({{ site.baseurl }}/guides/Theme-Features/#attribution) elements of the theme use metadata defined in `_config.yml`.
 
-See the [Site template files](http://localhost:4000/guides/Installing-the-site-template/Template-files/#user-provided-configuration) guide for more details.
+See the [Site theme files]({{ site.baseurl }}/guides/Installing-the-theme/Theme-files/#user-provided-configuration) guide for more details.
 
 ### Homepage
 
@@ -61,10 +61,10 @@ title: My project
 
 Grouped documentation is called a _collection_ by Jekyll, and can be any folder of files that is named with an underscore and listed in the site configuration (`_config.yml`).
 
-<span>{% include icon.liquid id='info-circle' %} <b>Info</b></span><br> See the [Site template files guide]({{ site.baseurl }}/guides/Installing-the-site-template/Template-files/#template-provided-configuration) for details about specifying collection folders in the site configuration file.
+<span>{% include icon.liquid id='info-circle' %} <b>Info</b></span><br> See the [Site theme files guide]({{ site.baseurl }}/guides/Installing-the-theme/Theme-files/#theme-provided-configuration) for details about specifying collection folders in the site configuration file.
 {:.ui.info.message}
 
-The programming pages template is pre-configured for three common collections (`_api`, `_examples`, `_guides`). To use one or more of them, simply create the collection folder and put content markdown files inside. Collections without a folder are ignored.
+The programming pages theme is pre-configured for three common collections (`_api`, `_examples`, `_guides`). To use one or more of them, simply create the collection folder and put content markdown files inside. Collections without a folder are ignored.
 
 #### API reference
 
@@ -92,14 +92,14 @@ See the [page layout][page-layout] documentation for details of the layout used 
 
 ## Layouts
 
-The site template provides several pre-defined layouts for rendering different kinds of documentation content.
+The theme provides several pre-defined layouts for rendering different kinds of documentation content.
 
 To use a layout, specify its name in the [YAML front-matter][front-matter] of the page:
 
 ```yaml
 ---
 layout: guide-index
-title: Installing the site template
+title: Installing the theme
 ---
 ```
 
@@ -123,4 +123,4 @@ Please see the individual layout pages for more detail:
 [markdown-sampler]: {{ site.baseurl }}/examples/sampler/#/examples/ "Samples of the markdown supported by lsdoc and GitHub Pages"
 [page-layout]: {{ site.baseurl }}/layout_api/page/#/layout_api/ "Documentation for the page layout"
 [semantic-ui]: https://semantic-ui.com/globals/site.html "Semantic is a development framework that helps create beautiful, responsive layouts using human-friendly HTML"
-[svg-icons]: {{ site.baseurl }}/examples/sampler/#icons "A small set of svg iocns are included in the template"
+[svg-icons]: {{ site.baseurl }}/examples/sampler/#icons "A small set of svg icons are included in the theme"
