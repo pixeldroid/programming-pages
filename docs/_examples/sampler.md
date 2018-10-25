@@ -370,15 +370,16 @@ Surround columns with pipes (`|`). Provide a header separator row of hyphens (`-
 
 ## Links
 
-### Anchor Links
+### Inline URL Links
 
-Format: `[text](#anchor "hover text")`
+Format: `[text](url "hover text")` or `[text](#anchor "hover text")`
 
 #### markdown
 {:.ui.attached.tertiary.inverted.tight.grey.segment}
 
 <div>
-    [references](#references "jump to the references section")
+    - [random Wikipedia page](http://en.wikipedia.org/wiki/Special:Randompage "link to a random Wikipedia page")
+    - [references](#references "jump to the references section")
 </div>
 {:.ui.attached.secondary.tight.segment}
 
@@ -388,35 +389,13 @@ Format: `[text](#anchor "hover text")`
 {:.ui.attached.secondary.inverted.tight.blue.segment}
 
 <div>
-[references](#references "jump to the references section")
+- [random Wikipedia page](http://en.wikipedia.org/wiki/Special:Randompage "link to a random Wikipedia page")
+- [references](#references "jump to the references section on this page")
 </div>
 {:.ui.attached.secondary.segment}
 
 
-### URL Links
-
-Format: `[text](url "hover text")`
-
-#### markdown
-{:.ui.attached.tertiary.inverted.tight.grey.segment}
-
-<div>
-    [random Wikipedia page](http://en.wikipedia.org/wiki/Special:Randompage "link to a random Wikipedia page")
-</div>
-{:.ui.attached.secondary.tight.segment}
-
-<br>
-
-#### result
-{:.ui.attached.secondary.inverted.tight.blue.segment}
-
-<div>
-[random Wikipedia page](http://en.wikipedia.org/wiki/Special:Randompage "link to a random Wikipedia page")
-</div>
-{:.ui.attached.secondary.segment}
-
-
-### Reference Links
+### Reference URL Links
 
 Format: `[text][reference-id]` <br>
 Reference Format: `[reference-id]: url "hover text"`
@@ -425,9 +404,11 @@ Reference Format: `[reference-id]: url "hover text"`
 {:.ui.attached.tertiary.inverted.tight.grey.segment}
 
 <div>
-    [random Wikipedia page][reference-page]
+    - [random Wikipedia page][random-page]
+    - [references]
 
-    [reference-page]: http://en.wikipedia.org/wiki/Special:Randompage "link to a random Wikipedia page"
+    [random-page]: http://en.wikipedia.org/wiki/Special:Randompage "link to a random Wikipedia page"
+    [references]: #references "jump to the references section on this page"
 </div>
 {:.ui.attached.secondary.tight.segment}
 
@@ -437,14 +418,15 @@ Reference Format: `[reference-id]: url "hover text"`
 {:.ui.attached.secondary.inverted.tight.blue.segment}
 
 <div>
-[random Wikipedia page][reference-page]
+- [random Wikipedia page][random-page]
+- [references]
 </div>
 {:.ui.attached.secondary.segment}
 
 
 ## Images
 
-### URL Images
+### Inline Image Links
 
 Format: `![alt text](url "hover text")`
 
@@ -467,7 +449,7 @@ Format: `![alt text](url "hover text")`
 {:.ui.attached.secondary.segment}
 
 
-### Reference Images
+### Reference Image Links
 
 Format: `![alt text][reference-id]` <br>
 Reference Format: `[reference-id]: url "hover text"`
@@ -476,9 +458,9 @@ Reference Format: `[reference-id]: url "hover text"`
 {:.ui.attached.tertiary.inverted.tight.grey.segment}
 
 <div>
-    ![sample image][reference-image]
+    ![sample image][dummy-image]
 
-    [reference-image]: https://dummyimage.com/600x400/70b7ec/000 "a 600x400 image"
+    [dummy-image]: https://dummyimage.com/600x400/70b7ec/000 "a 600x400 image"
 </div>
 {:.ui.attached.secondary.tight.segment}
 
@@ -488,7 +470,7 @@ Reference Format: `[reference-id]: url "hover text"`
 {:.ui.attached.secondary.inverted.tight.blue.segment}
 
 <div>
-![sample image][reference-image]
+![sample image][dummy-image]
 </div>
 {:.ui.attached.secondary.segment}
 
@@ -730,8 +712,9 @@ This text will appear as a huge message.
 [kramdown-css]: https://kramdown.gettalong.org/quickref.html#block-attributes "css via block Inline Attribute Lists (IALs)"
 [markdown-cheatsheet]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet "Markdown Cheatsheet"
 [rake-tasks]: {{ site.baseurl }}/examples/Rake-tasks/#/examples/ "rake tasks provided by the template"
-[reference-image]: https://dummyimage.com/600x400/70b7ec/000 "a 600x400 image"
-[reference-page]: http://en.wikipedia.org/wiki/Special:Randompage "link to a random Wikipedia page"
+[dummy-image]: https://dummyimage.com/600x400/70b7ec/000 "a 600x400 image"
+[random-page]: http://en.wikipedia.org/wiki/Special:Randompage "link to a random Wikipedia page"
+[references]: #references "jump to the references section on this page"
 [rouge-hilighter]: http://rouge.jneen.net/ "an elegant, extendable code highlighter written in pure Ruby"
 [rouge-list]: https://github.com/jneen/rouge/wiki/List-of-supported-languages-and-lexers "list of supported languages and lexers in Rouge"
 [sampler-source]: https://raw.githubusercontent.com/pixeldroid/programming-pages/master/lib/doc-source/_examples/sampler.md "source code for this page"
