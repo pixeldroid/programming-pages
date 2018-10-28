@@ -37,7 +37,7 @@ See the [References](#references) section below for links to more details.
 </div>
 {:.ui.compact.segment}
 
-Each section on this page illustrates markdown syntax that can be used to author content with the **programming pages** template.
+Each section on this page illustrates markdown syntax that can be used to author content with the **programming pages** theme.
 {:.larger.text}
 
 
@@ -529,7 +529,7 @@ Place an emoji id inside colons (`:id:`). Reference an [emoji cheat sheet][emoji
 
 ## Icons
 
-There is no markdown shortcut for icons, but the template provides a liquid macro for embedding svg icons that have been defined in [_data/svg_icons.yml][svg-file] by the template.
+There is no markdown shortcut for icons, but the theme provides a liquid macro for embedding svg icons that have been defined in [_data/svg_icons.yml][svg-file].
 
 > Users may also define icons of their own, simply by adding additional icon data files under `_data/icons/`.
 
@@ -711,7 +711,7 @@ This text will appear as a huge message.
 [kramdown-syntax]: https://kramdown.gettalong.org/syntax.html "Kramdown syntax documentation"
 [kramdown-css]: https://kramdown.gettalong.org/quickref.html#block-attributes "css via block Inline Attribute Lists (IALs)"
 [markdown-cheatsheet]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet "Markdown Cheatsheet"
-[rake-tasks]: {{ site.baseurl }}/examples/Rake-tasks/#/examples/ "rake tasks provided by the template"
+[rake-tasks]: {{ site.baseurl }}/examples/Rake-tasks/#/examples/ "rake tasks provided by the theme"
 [dummy-image]: https://dummyimage.com/600x400/70b7ec/000 "a 600x400 image"
 [random-page]: http://en.wikipedia.org/wiki/Special:Randompage "link to a random Wikipedia page"
 [references]: #references "jump to the references section on this page"
@@ -719,5 +719,4 @@ This text will appear as a huge message.
 [rouge-list]: https://github.com/jneen/rouge/wiki/List-of-supported-languages-and-lexers "list of supported languages and lexers in Rouge"
 [sampler-source]: https://raw.githubusercontent.com/pixeldroid/programming-pages/master/lib/doc-source/_examples/sampler.md "source code for this page"
 [semantic-message]: https://semantic-ui.com/collections/message.html#warning "a message displays information that explains nearby content"
-[svg-file]: https://github.com/pixeldroid/programming-pages/blob/master/lib/source/_data/svg_icons.yml "source file for SVG icons provided by default"
-
+[svg-file]: https://github.com/pixeldroid/programming-pages/blob/master/lib/source/_data/icons/theme.yml "source file for SVG icons provided by default"
