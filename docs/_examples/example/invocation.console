@@ -1,0 +1,3 @@
+
+$ dot -Tpng -Gdpi=72 -O workflow.dot
+// creates workflow.dot.png at screen res (72dpi)
