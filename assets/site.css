@@ -29,9 +29,8 @@ layout: compress
 {% include styles/semantic-ui/table.min.css %}
 {% include styles/semantic-ui/transition.min.css %}
 
-{% include themes/syntax.min.css %}
-
 {% capture _css %}
 {% include styles/svg-icons.css %}
 {% include styles/tweaks.css %}
+{% include themes/syntax.css %}
 {% endcapture %}{{ _css | scssify }}
