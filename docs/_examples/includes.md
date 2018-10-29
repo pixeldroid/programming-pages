@@ -14,8 +14,6 @@ Each section on this page illustrates liquid syntax that can be used to invoke m
 {:.larger.text}
 
 
-## TOC
-
 - TOC (this line will be replaced by the table of contents)
 {::options toc_levels="2,3" /}
 {:toc}

@@ -30,8 +30,10 @@ Content is authored in Markdown, optionally enhanced with [icons][svg-icons] or 
 User-authored content is expected in the following places:
 
     ├─_config.yml       / project configuration values
+    ├─favicon.png       / (optional) user provided browser icon
     ├─index.md          / user provided homepage
     ├─_api/             / (optional collection) user provided api reference
+    ├─_data/            / svg icon definitions
     ├─_examples/        / (optional collection) user provided examples
     └─_guides/          / (optional collection) user provided guides
 

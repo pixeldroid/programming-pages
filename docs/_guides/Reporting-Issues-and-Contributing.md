@@ -5,7 +5,7 @@ title: Reporting Issues and Contributing
 
 # {{ page.title }}
 
-The source for this template is [hosted on GitHub][programming-pages]
+The source for this theme is [hosted on GitHub][programming-pages]
 {:.larger.text}
 
 If you'd like to report a bug, please provide steps to reproduce in an [issue][issues].

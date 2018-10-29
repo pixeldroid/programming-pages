@@ -32,15 +32,16 @@ The programming pages theme comprises the following main pieces, discussed in de
     │ │ ├─semantic-ui/  / css framework files
     │ └─themes/         / css theme files
     ├─_layouts/         / Jekyll page layouts
-    ├─scripts/          / javascript aggregation into single file
-    └─styles/           / css aggregation into single file
+    └─assets/           / javascript and css aggregated files
 
 User authored content should include a homepage and some combination of API documentation, examples, and/or guides:
 
-    ├─index.md          / user provided homepage
     ├─_api/             / (optional) user provided api reference
+    ├─_data/            / svg icon definitions
     ├─_examples/        / (optional) user provided examples
-    └─_guides/          / (optional) user provided guides
+    ├─_guides/          / (optional) user provided guides
+    ├─favicon.png       / (optional) user provided browser icon
+    └─index.md          / user provided homepage
 
 
 ## Jekyll configuration
@@ -111,17 +112,17 @@ Pages often utilize [liquid][liquid] templates to process lists of data into htm
 
 Each of the theme features has an accompanying javascript partial that is defined under `_includes/scripts` and included by the [page][layout-page] layout.
 
-Global scripts like the [jQuery][jquery] and [Semantic UI][semantic-ui] libraries are stored under their own folders in the `_includes/` directory, are aggregated by `scripts/site.js`, and are included by the [base][layout-base] layout.
+Global scripts like the [jQuery][jquery] and [Semantic UI][semantic-ui] libraries are stored under their own folders in the `_includes/` directory, are aggregated by `assets/site.js`, and are included by the [base][layout-base] layout.
 
 ### Styles
 
-Programming pages uses portions of the [Semantic UI][semantic-ui] framework for styling and navigation. The components used are stored under `_includes/styles/semantic-ui`, are aggregated by `styles/site.css`, and are included by the [base][layout-base] layout.
+Programming pages uses portions of the [Semantic UI][semantic-ui] framework for styling and navigation. The components used are stored under `_includes/styles/semantic-ui`, are aggregated by `assets/site.css`, and are included by the [base][layout-base] layout.
 
 Also under `_includes/styles/` are the css customizations unique to the programming pages theme.
 
 ### SVG Icons
 
-In `_data/svg_icons.yml` are the [svg icon][svg-icons] definitions used by the theme, via the `icon.liquid` include macro.
+In `_data/icons/theme.yml` are the [svg icon][svg-icons] definitions used by the theme, via the `icon.liquid` include macro.
 
 
 

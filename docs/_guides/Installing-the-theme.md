@@ -11,7 +11,7 @@ cmd_jekyll_serve: 'bundle exec jekyll serve --source ./docs --layouts ./docs/_la
 As a shortcut, you can have GitHub manage the installation of theme files by [using the remote_theme key][remote-theme] in your site config file.
 {:.larger.text}
 
-- TOC
+- TOC (this line will be replaced by the table of contents)
 {:toc}
 
 
