@@ -10,7 +10,7 @@ order: 1
 {:.larger.text}
 
 - pre-built [site structure](#overview)&mdash;just add documentation
-- simple authoring syntax using [Markdown]({{ site.baseurl }}/examples/sampler/#/examples/) and [Liquid][liquid]
+- simple authoring syntax using [Markdown]({{site.baseurl}}/examples/sampler/#/examples/) and [Liquid][liquid]
 - ready-to-use [layouts](#/layout_api), extensible to create new ones
 - searchable content, with keyboard shortcuts (try `h`)
 - mobile-ready design browsable on multiple devices
@@ -86,7 +86,7 @@ Please see the individual layout pages for more detail:
 
 [cc-by]: https://creativecommons.org/licenses/by/4.0/ "Creative Commons Attribution 4.0 International (CC BY 4.0)"
 [ghpages]: https://pages.github.com/ "Websites for you and your projects. Hosted directly from your GitHub repository"
-[homepage]: {{ site.baseurl }}/guides/Authoring-Documentation/#homepage "User-authored homepage"
+[homepage]: {{site.baseurl}}/guides/Authoring-Documentation/#homepage "User-authored homepage"
 [liquid]: https://shopify.github.io/liquid/ "Safe, customer-facing template language for flexible web apps"
 [lighthouse]: https://developers.google.com/web/tools/lighthouse/ "Lighthouse is an open-source, automated tool for improving the quality of web pages"
 [semantic-ui]: https://semantic-ui.com/ "Semantic is a development framework that helps create beautiful, responsive layouts using human-friendly HTML"

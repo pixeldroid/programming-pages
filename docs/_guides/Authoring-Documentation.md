@@ -38,9 +38,9 @@ User-authored content is expected in the following places:
 
 ### Project Configuration
 
-The [title]({{ site.baseurl }}/guides/Theme-Features/#title-bar) and [attribution]({{ site.baseurl }}/guides/Theme-Features/#attribution) elements of the theme use metadata defined in `_config.yml`.
+The [title]({{site.baseurl}}/guides/Theme-Features/#title-bar) and [attribution]({{site.baseurl}}/guides/Theme-Features/#attribution) elements of the theme use metadata defined in `_config.yml`.
 
-See the [Site theme files]({{ site.baseurl }}/guides/Installing-the-theme/Theme-files/#user-provided-configuration) guide for more details.
+See the [Site theme files]({{site.baseurl}}/guides/Installing-the-theme/Theme-files/#user-provided-configuration) guide for more details.
 
 ### Homepage
 
@@ -61,7 +61,7 @@ title: My project
 
 Grouped documentation is called a _collection_ by Jekyll, and can be any folder of files that is named with an underscore and listed in the site configuration (`_config.yml`).
 
-<span>{% include icon.liquid id='info-circle' %} <b>Info</b></span><br> See the [Site theme files guide]({{ site.baseurl }}/guides/Installing-the-theme/Theme-files/#theme-provided-configuration) for details about specifying collection folders in the site configuration file.
+<span>{% include icon.liquid id='info-circle' %} <b>Info</b></span><br> See the [Site theme files guide]({{site.baseurl}}/guides/Installing-the-theme/Theme-files/#theme-provided-configuration) for details about specifying collection folders in the site configuration file.
 {:.ui.info.message}
 
 The programming pages theme is pre-configured for three common collections (`_api`, `_examples`, `_guides`). To use one or more of them, simply create the collection folder and put content markdown files inside. Collections without a folder are ignored.
@@ -110,7 +110,7 @@ Please see the individual layout pages for more detail:
 {% for doc in collection.docs %}
   {% capture link %}{{ doc.title }}{% endcapture %}
   {% capture url %}{{ doc.url }}#/{{ collection.label | downcase }}/{% endcapture %}
-- [{{ link }}]({{ site.baseurl }}{{ url }})
+- [{{ link }}]({{site.baseurl}}{{ url }})
 {% endfor %}
 {% endif %}
 {% endfor %}
@@ -120,7 +120,7 @@ Please see the individual layout pages for more detail:
 [front-matter]: https://jekyllrb.com/docs/frontmatter/ "YAML front matter is at minimum a set of triple-dashed lines"
 [kramdown-block-ial]: https://kramdown.gettalong.org/quickref.html#block-attributes "kramdown block attributes"
 [liquid]: https://shopify.github.io/liquid/ "Safe, customer-facing template language for flexible web apps"
-[markdown-sampler]: {{ site.baseurl }}/examples/sampler/#/examples/ "Samples of the markdown supported by lsdoc and GitHub Pages"
-[page-layout]: {{ site.baseurl }}/layout_api/page/#/layout_api/ "Documentation for the page layout"
+[markdown-sampler]: {{site.baseurl}}/examples/sampler/#/examples/ "Samples of the markdown supported by lsdoc and GitHub Pages"
+[page-layout]: {{site.baseurl}}/layout_api/page/#/layout_api/ "Documentation for the page layout"
 [semantic-ui]: https://semantic-ui.com/globals/site.html "Semantic is a development framework that helps create beautiful, responsive layouts using human-friendly HTML"
-[svg-icons]: {{ site.baseurl }}/examples/sampler/#icons "A small set of svg icons are included in the theme"
+[svg-icons]: {{site.baseurl}}/examples/sampler/#icons "A small set of svg icons are included in the theme"

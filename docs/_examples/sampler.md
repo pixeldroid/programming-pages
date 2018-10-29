@@ -711,7 +711,7 @@ This text will appear as a huge message.
 [kramdown-syntax]: https://kramdown.gettalong.org/syntax.html "Kramdown syntax documentation"
 [kramdown-css]: https://kramdown.gettalong.org/quickref.html#block-attributes "css via block Inline Attribute Lists (IALs)"
 [markdown-cheatsheet]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet "Markdown Cheatsheet"
-[rake-tasks]: {{ site.baseurl }}/examples/Rake-tasks/#/examples/ "rake tasks provided by the theme"
+[rake-tasks]: {{site.baseurl}}/examples/Rake-tasks/#/examples/ "rake tasks provided by the theme"
 [dummy-image]: https://dummyimage.com/600x400/70b7ec/000 "a 600x400 image"
 [random-page]: http://en.wikipedia.org/wiki/Special:Randompage "link to a random Wikipedia page"
 [references]: #references "jump to the references section on this page"
