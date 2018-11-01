@@ -3,7 +3,7 @@ project:
   name: programming pages
   owner: pixeldroid
   repo: https://github.com/pixeldroid/programming-pages
-  version: 0.5.7
+  version: 0.5.8
 collections:
   guides:
     output: true
