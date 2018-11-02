@@ -168,7 +168,7 @@ Rake::Task[:clobber].add_description([
 file GEM do |t, args|
   puts "[file] creating #{t.name}..."
 
-  cmd = "gem build #{GEMSPEC}"
+  cmd = "bundle exec gem build #{GEMSPEC}"
   try(cmd, 'unable to create .gem')
 end
 
@@ -216,17 +216,17 @@ desc [
   "pushes #{PROJECT}.gem to rubygems.org",
   " this requires an api key file at ~/.gem/credentials,",
   " and optionally a key name, if the credentials file has multiple keys",
-  " (default name is :rubygems_api_key)",
+  " (default name is 'rubygems', matching ':rubygems_api_key:' in file)",
   " see: https://guides.rubygems.org/publishing/#publishing-to-rubygemsorg",
 ].join("\n")
-task :gem_push, [:key_name] => ['lib:gem'] do |t, args|
-  args.with_defaults(:key_name => ':rubygems_api_key')
+task :gem_push, [:key_name] => ['gem'] do |t, args|
+  args.with_defaults(:key_name => 'rubygems') # why a string different than the symbol found in file? ?! https://stackoverflow.com/a/36161249/3029276
   key_name = args[:key_name]
 
   credentials = File.join(Dir.home, '.gem', 'credentials')
   fail("cannot publish without api key file at #{credentials}\n  see: https://guides.rubygems.org/publishing/#publishing-to-rubygemsorg") unless File.exists?(credentials)
 
-  cmd = "gem push --key #{key_name} #{PROJECT}.gem"
+  cmd = "bundle exec gem push #{PROJECT}-#{lib_version}.gem --key #{key_name}"
   puts "[#{t.name}] publishing gem..."
   try(cmd, 'unable to push .gem')
 
