@@ -32,15 +32,16 @@ The programming pages theme comprises the following main pieces, discussed in de
     │ │ ├─semantic-ui/  / css framework files
     │ └─themes/         / css theme files
     ├─_layouts/         / Jekyll page layouts
-    ├─scripts/          / javascript aggregation into single file
-    └─styles/           / css aggregation into single file
+    └─assets/           / javascript and css aggregated files
 
 User authored content should include a homepage and some combination of API documentation, examples, and/or guides:
 
-    ├─index.md          / user provided homepage
     ├─_api/             / (optional) user provided api reference
+    ├─_data/            / svg icon definitions
     ├─_examples/        / (optional) user provided examples
-    └─_guides/          / (optional) user provided guides
+    ├─_guides/          / (optional) user provided guides
+    ├─favicon.png       / (optional) user provided browser icon
+    └─index.md          / user provided homepage
 
 
 ## Jekyll configuration
@@ -111,26 +112,26 @@ Pages often utilize [liquid][liquid] templates to process lists of data into htm
 
 Each of the theme features has an accompanying javascript partial that is defined under `_includes/scripts` and included by the [page][layout-page] layout.
 
-Global scripts like the [jQuery][jquery] and [Semantic UI][semantic-ui] libraries are stored under their own folders in the `_includes/` directory, are aggregated by `scripts/site.js`, and are included by the [base][layout-base] layout.
+Global scripts like the [jQuery][jquery] and [Semantic UI][semantic-ui] libraries are stored under their own folders in the `_includes/` directory, are aggregated by `assets/site.js`, and are included by the [base][layout-base] layout.
 
 ### Styles
 
-Programming pages uses portions of the [Semantic UI][semantic-ui] framework for styling and navigation. The components used are stored under `_includes/styles/semantic-ui`, are aggregated by `styles/site.css`, and are included by the [base][layout-base] layout.
+Programming pages uses portions of the [Semantic UI][semantic-ui] framework for styling and navigation. The components used are stored under `_includes/styles/semantic-ui`, are aggregated by `assets/site.css`, and are included by the [base][layout-base] layout.
 
 Also under `_includes/styles/` are the css customizations unique to the programming pages theme.
 
 ### SVG Icons
 
-In `_data/svg_icons.yml` are the [svg icon][svg-icons] definitions used by the theme, via the `icon.liquid` include macro.
+In `_data/icons/theme.yml` are the [svg icon][svg-icons] definitions used by the theme, via the `icon.liquid` include macro.
 
 
 
-[authoring-documentation]: {{ site.baseurl }}/guides/Authoring-Documentation/#/guides/ "Authoring documentation with the programming pages theme"
-[feature-attribution]: {{ site.baseurl }}/guides/Theme-Features/#attribution "attribution feature"
-[feature-collections]: {{ site.baseurl }}/guides/Theme-Features/#collection-indices "collections feature"
-[feature-help]: {{ site.baseurl }}/guides/Theme-Features/#help-overlay "help feature"
-[feature-search]: {{ site.baseurl }}/guides/Theme-Features/#search-input "search feature"
-[feature-title]: {{ site.baseurl }}/guides/Theme-Features/#title-bar "title bar feature"
+[authoring-documentation]: {{site.baseurl}}/guides/Authoring-Documentation/#/guides/ "Authoring documentation with the programming pages theme"
+[feature-attribution]: {{site.baseurl}}/guides/Theme-Features/#attribution "attribution feature"
+[feature-collections]: {{site.baseurl}}/guides/Theme-Features/#collection-indices "collections feature"
+[feature-help]: {{site.baseurl}}/guides/Theme-Features/#help-overlay "help feature"
+[feature-search]: {{site.baseurl}}/guides/Theme-Features/#search-input "search feature"
+[feature-title]: {{site.baseurl}}/guides/Theme-Features/#title-bar "title bar feature"
 [ghjekyll]: https://help.github.com/articles/using-jekyll-as-a-static-site-generator-with-github-pages/ "Using Jekyll as a static site generator with GitHub Pages"
 [ghpages-jemoji]: https://help.github.com/articles/emoji-on-github-pages/ "Emoji on GitHub Pages"
 [ghpages-rouge]: https://help.github.com/articles/using-syntax-highlighting-on-github-pages/ "Using syntax highlighting on GitHub Pages"
@@ -139,10 +140,10 @@ In `_data/svg_icons.yml` are the [svg icon][svg-icons] definitions used by the t
 [jekyll-permalink]: https://jekyllrb.com/docs/permalinks/#builtinpermalinkstyles "Built-in permalink styles"
 [jekyll-scssify]: https://jekyllrb.com/docs/templates/#filters "Jekyll sassify filter"
 [jquery]: https://jquery.com/ "jQuery javascript library"
-[layout-base]: {{ site.baseurl }}/layout_api/base/#/layout_api/ "base layout"
-[layout-compress]: {{ site.baseurl }}/layout_api/compress/#/layout_api/ "compress layout"
-[layout-page]: {{ site.baseurl }}/layout_api/page/#/layout_api/ "page layout"
+[layout-base]: {{site.baseurl}}/layout_api/base/#/layout_api/ "base layout"
+[layout-compress]: {{site.baseurl}}/layout_api/compress/#/layout_api/ "compress layout"
+[layout-page]: {{site.baseurl}}/layout_api/page/#/layout_api/ "page layout"
 [liquid]: http://shopify.github.io/liquid/ "Liquid is an open-source template language used by Jekyll"
 [semantic-ui]: https://semantic-ui.com/ "Semantic UI css and javascript framework"
-[reporting-issues]: {{ site.baseurl }}/guides/Reporting-Issues-and-Contributing/#/guides/ "Reporting issues and contributing"
-[svg-icons]: {{ site.baseurl }}/examples/sampler/#icons "SVG icons provided by the programming pages theme"
+[reporting-issues]: {{site.baseurl}}/guides/Reporting-Issues-and-Contributing/#/guides/ "Reporting issues and contributing"
+[svg-icons]: {{site.baseurl}}/examples/sampler/#icons "SVG icons provided by the programming pages theme"

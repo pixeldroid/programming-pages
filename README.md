@@ -96,7 +96,7 @@ The Semantic UI modules required by this project are declared in `build/semantic
 
 ```console
 grunt custom:-ajax,-wrap remove_map_comment
-cp /path/to/jquery/dist/jquery.min.js /path/to/programming-pages/lib/src/_includes/scripts/jquery/jquery-<version>.custom.min.js
+cp /path/to/jquery/dist/jquery.min.js /path/to/programming-pages/_includes/scripts/jquery/jquery-<version>.custom.min.js
 ```
 
 Don't forget to update `assets/site.js` with the new filename.

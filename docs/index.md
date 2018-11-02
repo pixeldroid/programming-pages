@@ -17,5 +17,5 @@ Learn more about this theme in the following guides:
 
 
 [gh-pages]: https://pages.github.com/ "Websites for you and your projects"
-[markdown-sampler]: {{ site.baseurl }}/examples/sampler/#/examples/ "Samples of the markdown supported by lsdoc and GitHub Pages"
+[markdown-sampler]: {{site.baseurl}}/examples/sampler/#/examples/ "Samples of the markdown supported by lsdoc and GitHub Pages"
 [site-docs]: https://github.com/pixeldroid/programming-pages/tree/master/docs "Source files for programming pages documentation"

@@ -6,5 +6,12 @@ order: 0
 
 # {{ page.title }}
 
-The **programming pages** template considers Jekyll layouts as a rendering API.
-Each layout accepts one or more parameters that influences the rendered result.
+The **programming pages** theme treats Jekyll layouts as rendering APIs&mdash;each layout accepts as [page variables] one or more parameters that influences the rendered result.
+{:.larger.text}
+
+The pages in this collection document the layout API of the programming pages theme.
+{:.larger.text}
+
+
+
+[page variables]: https://jekyllrb.com/docs/variables/#page-variables "ProTip™: Use Custom Front Matter"

@@ -12,7 +12,7 @@ Documentation authored with the programming pages theme is compatible with [GitH
 
 _Once:_
 
-- [Install the theme]({{ site.baseurl }}/guides/Installing-the-theme/#/guides/)
+- [Install the theme]({{site.baseurl}}/guides/Installing-the-theme/#/guides/)
 - [Configure a publishing source for GitHub Pages][ghpages-howto] so GitHub knows where to find your documentation.
 
 _Then:_
@@ -27,5 +27,5 @@ _Then:_
 [ghpages]: https://pages.github.com/ "Websites for you and your projects. Hosted directly from your GitHub repository"
 [ghpages-howto]: https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/ "How to Configure a publishing source for GitHub Pages"
 [push-to-github]: https://help.github.com/articles/pushing-to-a-remote/ "Pushing to a remote"
-[install-theme]: {{ site.baseurl }}/guides/Installing-the-theme/#/guides/ "Installing the theme"
-[write-documentation]: {{ site.baseurl }}/guides/Authoring-Documentation/#/guides/ "Authoring documentation using the programming pages theme"
+[install-theme]: {{site.baseurl}}/guides/Installing-the-theme/#/guides/ "Installing the theme"
+[write-documentation]: {{site.baseurl}}/guides/Authoring-Documentation/#/guides/ "Authoring documentation using the programming pages theme"

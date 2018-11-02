@@ -1,0 +1,57 @@
+digraph workflow {
+  ranksep=0.25;
+  edge [color=grey55]
+  node [fontname="helvetica"]
+
+  node [shape=hexagon];
+    P [label="ruby" color=grey55 fontcolor=grey55];
+  node [shape=circle];
+    J1 [label="ready"];
+    J2 [label="refine"];
+  node [shape=diamond style="filled" fillcolor=grey96];
+    D1 [label="new site?"];
+    D2 [label="looks good?"];
+  node [shape=box style="filled,rounded" fillcolor=black];
+    S [label="start" fontcolor=white fontname="helvetica bold"]
+    E [label="end" fontcolor=white fontname="helvetica bold"];
+  node [shape=box style=""];
+    T1 [label="gem install jekyll bundler" fontname=times];
+    T2 [label="jekyll new <site-name>" fontname=times];
+    T3 [shape=note label=" \n⬇\n" fontcolor=grey55];
+    T4 [shape=note label="- theme: minima\l+ remote_theme: pixeldroid/programming-pages\l" fontname=times];
+    T5 [label="bundle exec jekyll serve" fontname=times];
+    T6 [label="open http://localhost:4000" fontname=times];
+    T7 [label="edit files"];
+    T8 [label="add files"];
+    T9 [label="save"];
+    T10 [label="git push" fontname=times];
+    T11 [label="open https://<user>.github.io/<project>" fontname=times];
+
+  { P -> S -> D1; rank=same; }
+  D1 -> T1 [taillabel="yes       " labeldistance=1 penwidth=2 color=grey35];
+  D1 -> T5 [taillabel="              no" labeldistance=1.5 penwidth=2 style=dashed color=grey35];
+  subgraph cluster_setup {
+    color=grey;
+    fontcolor=grey;
+    style="dashed,rounded"
+    label="initial setup";
+    T1 -> T2;
+    T2 -> T3 [label="install theme.yml\lto _data/icons/\l"];
+    T2 -> T4 [label="  edit _config.yml"];
+    {T3 T4} -> J1;
+  }
+  J1 -> T5;
+  { T5 -> T6; rank=same; }
+  subgraph cluster_revise {
+    color=grey;
+    fontcolor=grey;
+    style="rounded"
+    label="revision cycle";
+    T6 -> D2 [constraint=false];
+    D2 -> T10 [taillabel="     yes" penwidth=2 color=grey35];
+    D2 -> J2 [taillabel="no\n " labeldistance=3.5 penwidth=2 style=dashed color=grey35];
+    J2 -> {T7 T8} -> {T9} -> T6;
+    T10 -> T11;
+    T11 -> E;
+  }
+}

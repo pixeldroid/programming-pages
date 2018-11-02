@@ -11,7 +11,7 @@ cmd_jekyll_serve: 'bundle exec jekyll serve --source ./docs --layouts ./docs/_la
 As a shortcut, you can have GitHub manage the installation of theme files by [using the remote_theme key][remote-theme] in your site config file.
 {:.larger.text}
 
-- TOC
+- TOC (this line will be replaced by the table of contents)
 {:toc}
 
 
@@ -150,13 +150,13 @@ There are three ways to install the theme for your site:
 
 
 
-[author]: {{ site.baseurl }}/guides/Authoring-Documentation/#/guides/ "Authoring documentation"
+[author]: {{site.baseurl}}/guides/Authoring-Documentation/#/guides/ "Authoring documentation"
 [bundler]: http://bundler.io/ "Manage your Ruby application's gem dependencies"
-[customize]: {{ site.baseurl }}/guides/Customizing/#/guides/ "Customizing the theme"
+[customize]: {{site.baseurl}}/guides/Customizing/#/guides/ "Customizing the theme"
 [pages-versions]: https://pages.github.com/versions/ "version dependencies for GitHub pages"
 [programming-pages-gem]: https://rubygems.org/gems/programming-pages "programming pages gem on rubygems.org"
-[publish]: {{ site.baseurl }}/guides/Publishing-to-GitHub-Pages/#/guides/ "Publishing to GitHub Pages"
-[rake-tasks]: {{ site.baseurl }}/examples/Rake-tasks/#/examples/ "Rake tasks"
+[publish]: {{site.baseurl}}/guides/Publishing-to-GitHub-Pages/#/guides/ "Publishing to GitHub Pages"
+[rake-tasks]: {{site.baseurl}}/examples/Rake-tasks/#/examples/ "Rake tasks"
 [releases]: https://github.com/pixeldroid/programming-pages/releases "Packaged releases of the Programming Pages template"
 [remote-theme]: http://talk.jekyllrb.com/t/remote-themes-on-github-pages/1214 "announcing remote themes on github pages"
 [remote-theme-gem]: https://rubygems.org/gems/jekyll-remote-theme "Jekyll plugin for building Jekyll sites with any GitHub-hosted theme"

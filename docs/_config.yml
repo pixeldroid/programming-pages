@@ -3,7 +3,7 @@ project:
   name: programming pages
   owner: pixeldroid
   repo: https://github.com/pixeldroid/programming-pages
-  version: 0.5.7
+  version: 0.5.8
 collections:
   guides:
     output: true
@@ -30,5 +30,5 @@ sass:
   style: compressed
 plugins:
 - jemoji
-#   - jekyll-remote-theme
-# remote_theme: pixeldroid/programming-pages
+- jekyll-remote-theme
+remote_theme: pixeldroid/programming-pages
