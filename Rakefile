@@ -95,8 +95,16 @@ def exclusions
   ]
 end
 
-def jekyll_cmd
-  "bundle exec jekyll serve --source #{docs_dir} --layouts #{docs_dir}/_layouts"
+def jekyll_cmd(verb)
+  "bundle exec jekyll #{verb} --source #{docs_dir} --layouts #{docs_dir}/_layouts"
+end
+
+def jekyll_build
+  jekyll_cmd('build')
+end
+
+def jekyll_serve
+  jekyll_cmd('serve')
 end
 
 def lib_version
@@ -176,15 +184,24 @@ end
 
 desc [
   "calls jekyll to generate and serve the docs site",
-  "  cmd: #{jekyll_cmd}",
+  "  cmd: #{jekyll_serve}",
 ].join("\n")
 task :docs do |t, args|
   begin                 # run jekyll
-    puts jekyll_cmd
-    system(jekyll_cmd)
+    puts jekyll_serve
+    system(jekyll_serve)
   rescue Exception => e # capture the interrupt signal from a quit app
     puts ' (quit)'
   end
+end
+
+desc [
+  "calls jekyll to [just] generate the docs site",
+  "  cmd: #{jekyll_build}",
+].join("\n")
+task :docs_build do |t, args|
+  try(jekyll_build, 'unable to create docs')
+  puts "[#{t.name}] task completed, find updated docs in ./_site"
 end
 
 desc [
@@ -212,6 +229,22 @@ task :gem_push, [:key_name] => ['lib:gem'] do |t, args|
   cmd = "gem push --key #{key_name} #{PROJECT}.gem"
   puts "[#{t.name}] publishing gem..."
   try(cmd, 'unable to push .gem')
+
+  puts "[#{t.name}] task completed"
+end
+
+desc [
+  "updates the README screenshot",
+  " relies on the puppeteer-core npm module and a compatible browser",
+  " Puppeteer is on GitHub: https://github.com/GoogleChrome/puppeteer#puppeteer-core",
+].join("\n")
+task :screenshot do |t, args|
+  np = 'NODE_PATH="$(npm root -g):$NODE_PATH"'
+  bp = 'BROWSER_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"'
+  dim = 'WIDTH=850 HEIGHT=800'
+  cmd = "#{np} #{bp} #{dim} node ./build/screenshots/take_screenshot.js"
+  puts "[#{t.name}] asking puppeteer to take a screenshot..."
+  try(cmd, 'unable to take screenshot')
 
   puts "[#{t.name}] task completed"
 end
@@ -311,7 +344,7 @@ task :zip do |t, args|
 end
 
 desc [
-  "generate a new release candidate by updating the docs and zip and gem packages",
-  "runs clobber first",
+  "generate a new release candidate: update docs, screenshot, zip and gem packages",
+  "runs clean first",
 ].join("\n")
-task :release => ['clean', 'zip', 'gem']
+task :release => ['clean', 'docs_build', 'screenshot', 'zip', 'gem']
