@@ -3,7 +3,18 @@ project:
   name: programming pages
   owner: pixeldroid
   repo: https://github.com/pixeldroid/programming-pages
-  version: 0.5.8
+  version: 0.5.9
+attributions:
+  entypo-pictograms: Daniel Bruce
+  font-awesome: Dave Gandy
+  glyphicon-halflings: Jan Kovařík
+  jquery: https://github.com/jquery/jquery
+  jquery-address: https://github.com/Semantic-Org/Semantic-UI-Docs/blob/master/server/files/javascript/library/history.js
+  loadcss: https://github.com/filamentgroup/loadCSS
+  monokai-colors: Wimer Hazenberg
+  mousetrap: https://craig.is/killing/mice
+  semantic-ui: https://github.com/Semantic-Org/Semantic-UI
+  svg-icon: https://leungwensen.github.io/svg-icon/
 collections:
   guides:
     output: true
@@ -20,9 +31,6 @@ collections:
     permalink: "/:collection/:path/"
     title: Layout API
     tab-order: 3
-guide_root: "/guides"
-example_root: "/examples"
-module_root: "/layout_api"
 code_indent: "  "
 highlighter: rouge
 permalink: pretty

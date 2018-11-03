@@ -1,0 +1,15 @@
+{%- comment -%}
+
+page_root
+  extracts first component of page url
+
+params:
+  page=<page-object>
+
+{%- endcomment -%}
+{%- assign url_pieces = include.page.url | split: '/' -%}
+{%- for piece in url_pieces -%}
+  {%- unless piece.size > 0 -%}{%- continue -%}{%- endunless -%}
+  /{{ piece }}
+  {%- break -%}
+{%- endfor -%}

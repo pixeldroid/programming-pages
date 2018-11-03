@@ -24,10 +24,6 @@ collections:
     title: Guides
     tab-order: 3
 
-module_root: "/api"
-example_root: "/examples"
-guide_root: "/guides"
-
 code_indent: "  "
 highlighter: rouge
 permalink: pretty
