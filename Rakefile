@@ -9,6 +9,7 @@ require 'tmpdir'
 require 'yaml'
 
 EXIT_OK = 0
+FRONT_MATTER_REGEX = /\A(---\s*\n.*?\n?)^((---|\.\.\.)\s*$\n?)/m # https://github.com/jekyll/jekyll/blob/1ac9c21956ed7e31be6fd8f0083f6414b6220684/lib/jekyll/document.rb#L10
 
 PROJECT = 'programming-pages'
 PROJECT_ROOT = File.dirname(__FILE__)
@@ -38,6 +39,20 @@ end
 
 def write_yaml(file, config)
   IO.write(file, config.to_yaml)
+end
+
+def update_front_matter(file, data)
+  return 0 unless File.file?(file)
+
+  contents = File.read(file)
+  if contents =~ FRONT_MATTER_REGEX
+    front_matter = YAML.load(Regexp.last_match(0))
+    file_remains = Regexp.last_match.post_match
+    front_matter = front_matter.merge(data)
+    return IO.write(file, front_matter.to_yaml + "---\n\n" + file_remains)
+  end
+
+  return 0
 end
 
 def path_to_exe(cmd)
@@ -72,7 +87,6 @@ def linux?
   return true if RbConfig::CONFIG['host_os'] =~ /linux/
   false
 end
-
 
 def cp_src(dst_dir)
   @spec.files.each do |f|
@@ -113,6 +127,10 @@ end
 
 def load_spec
   Gem::Specification::load(GEMSPEC)
+end
+
+def layout_version_file
+  File.join(PROJECT_ROOT, '_layouts', 'page.html')
 end
 
 def project_config_file
@@ -234,7 +252,7 @@ task :gem_push, [:key_name] => ['gem'] do |t, args|
 end
 
 desc [
-  "updates the README screenshot",
+  "updates the README screenshot via npm and puppeteer",
   " relies on the puppeteer-core npm module and a compatible browser",
   " Puppeteer is on GitHub: https://github.com/GoogleChrome/puppeteer#puppeteer-core",
 ].join("\n")
@@ -304,7 +322,10 @@ task :version do |t, args|
 end
 
 desc [
-  "sets the theme version number into '#{relative_path(Pathname.pwd, project_config_file)}'",
+  "updates the theme version number",
+  "changes the following files:",
+  " '#{relative_path(Pathname.pwd, layout_version_file)}'",
+  " '#{relative_path(Pathname.pwd, project_config_file)}'",
 ].join("\n")
 task :set_version, [:v] do |t, args|
   args.with_defaults(:v => nil)
@@ -312,6 +333,9 @@ task :set_version, [:v] do |t, args|
 
   lib_version = args.v
   update_lib_version(project_config_file, lib_version)
+
+  version_hash = { 'theme_version' => args.v }
+  update_front_matter(layout_version_file, version_hash)
 
   puts "[#{t.name}] task completed, lib version updated to #{lib_version}"
 end
