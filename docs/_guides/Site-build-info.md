@@ -13,16 +13,22 @@ built {{ site.time | date_to_rfc822 }}
 {::options toc_levels="2,3" /}
 {:toc}
 
+## site.attributions
+
+{% for v in site.attributions %}
+- {{ v[0] }} : `{{ v[1] }}`
+{% endfor%}
+
 ## site.baseurl
 
 ```liquid
 '{{ site.baseurl }}'
 ```
 
-{% if site.github %}
 ## site.github
 
-### versions
+{% if site.github %}
+### site.github.versions
 
 {% for v in site.github.versions %}
 - {{ v[0] }} : `{{ v[1] }}`

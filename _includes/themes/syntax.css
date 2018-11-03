@@ -1,5 +1,6 @@
 /*!
- * monokai theme modified from: https://github.com/richleland/pygments-css/blob/master/monokai.css
+ * monokai original author: Wimer Hazenberg
+ * theme modified from: https://github.com/richleland/pygments-css/blob/master/monokai.css
  * rules synced with rouge token types (see: https://github.com/jneen/rouge/blob/master/lib/rouge/token.rb)
  */
 pre.highlight {
