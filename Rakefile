@@ -270,6 +270,7 @@ end
 
 desc [
   "updates the README screenshot via npm and puppeteer",
+  " requires the site available at http://localhost:4000/",
   " relies on the puppeteer-core npm module and a compatible browser",
   " Puppeteer is on GitHub: https://github.com/GoogleChrome/puppeteer#puppeteer-core",
 ].join("\n")
@@ -359,7 +360,7 @@ end
 
 desc [
   "packages #{PROJECT} files for release as a zip archive",
-  "the zip archive is created in a temp directory,",
+  " the zip archive is created in a temp directory,",
   " and delivered to #{PROJECT_ROOT}",
 ].join("\n")
 task :zip do |t, args|
@@ -385,7 +386,7 @@ task :zip do |t, args|
 end
 
 desc [
-  "generate a new release candidate: update docs, screenshot, zip and gem packages",
-  "runs clean first",
+  "generate a new release candidate: updates screenshot, zip and gem packages",
+  " runs clean first",
 ].join("\n")
-task :release => ['clean', 'docs_build', 'screenshot', 'zip', 'gem']
+task :release => ['clean', 'screenshot', 'zip', 'gem']
