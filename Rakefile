@@ -121,6 +121,10 @@ def jekyll_serve
   jekyll_cmd('serve')
 end
 
+def jekyll_serve_only
+  "bundle exec jekyll serve --skip-initial-build --no-watch"
+end
+
 def lib_version
   @spec.version
 end
@@ -220,6 +224,19 @@ desc [
 task :docs_build do |t, args|
   try(jekyll_build, 'unable to create docs')
   puts "[#{t.name}] task completed, find updated docs in ./_site"
+end
+
+desc [
+  "calls jekyll to serve the docs site, without first building it",
+  "  cmd: #{jekyll_serve_only}",
+].join("\n")
+task :docs_serve do |t, args|
+  begin                 # run jekyll
+    puts jekyll_serve_only
+    system(jekyll_serve_only)
+  rescue Exception => e # capture the interrupt signal from a quit app
+    puts ' (quit)'
+  end
 end
 
 desc [
