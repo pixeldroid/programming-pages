@@ -65,10 +65,7 @@ The theme defines the following configuration values:
 
 - `code_indent` : _used by the theme_ &mdash; Number of spaces to use when indenting lines of code in doc comments
 - `collections` : _used by Jekyll_ &mdash; [Collection][jekyll-collection] folders to expect api docs, examples, and guides to live in
-- `example_root` : _used by the theme_ &mdash; Site variable used in layouts to reference the examples path value
-- `guide_root` : _used by the theme_ &mdash; Site variable used in layouts to reference the guides path value
 - `highlighter` : _used by Jekyll_ &mdash; Specifies the [code hilighting engine used by GitHub Pages][ghpages-rouge] (Rouge), so local execution matches remote
-- `module_root` : _used by the theme_ &mdash; Site variable used in layouts to reference the api docs path value
 - `permalink` : _used by Jekyll_ &mdash; Specifies the 'pretty' permalink style (see [Built-in permalink styles][jekyll-permalink])
 - `plugins` : _used by Jekyll_ &mdash; Requests enablement of the [jemoji plugin][ghpages-jemoji]
 - `sass` : _used by Jekyll_ &mdash; Specifies compressed css when processed by the [scssify filter][jekyll-scssify]

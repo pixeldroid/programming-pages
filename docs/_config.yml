@@ -31,9 +31,6 @@ collections:
     permalink: "/:collection/:path/"
     title: Layout API
     tab-order: 3
-guide_root: "/guides"
-example_root: "/examples"
-module_root: "/layout_api"
 code_indent: "  "
 highlighter: rouge
 permalink: pretty

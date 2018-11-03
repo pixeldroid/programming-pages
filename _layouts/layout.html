@@ -5,6 +5,8 @@ layout: page
 {% capture newline %}
 {% endcapture %}
 
+{% capture collection_root %}{% include page_root.liquid page=page %}{% endcapture %}
+
 <h1 id="heading" class="ui dividing header">{{ page.title }}</h1>
 
 {% if page.parent_layout %}
@@ -16,7 +18,7 @@ layout: page
         <span class="section active">{{ page.title }}</span>
         {% for ancestor in page.parent_layout %}
         {% include icon.liquid id='chevron-right' class='divider' %}
-        <a class="section" href="{{ site.baseurl | append: site.module_root }}/{{ ancestor }}/#{{ site.module_root }}/">{{ ancestor }}</a>
+        <a class="section" href="{{ site.baseurl | append: collection_root }}/{{ ancestor }}/#{{ collection_root }}/">{{ ancestor }}</a>
         {% endfor %}
       </div>
     </div>
