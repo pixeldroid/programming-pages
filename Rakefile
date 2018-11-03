@@ -285,7 +285,7 @@ task :semantic, [:sui_dir] do |t, args|
   FileUtils.cp_r(File.join(semantic_build_dir, '.'), sui_dir)
 
   puts "[#{t.name}] running semantic build..."
-  cmd = 'gulp clean && gulp build'
+  cmd = 'npm update --dev && gulp clean && gulp build'
   build_success = false
   Dir.chdir(sui_dir) do
     build_success = (system(cmd) == true)
