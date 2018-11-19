@@ -203,25 +203,8 @@ so our strategy is to:
 {% assign doc_list = ordered_doc_list %}
 {% endunless %}
 
-{% for doc in doc_list %}
-  {% capture link %}{{ doc.title }}{% endcapture %}
-  {% capture url %}{{ doc.url }}#/{{ collection.label | downcase }}/{% endcapture %}
-  {% capture item_class %}{% if doc.title == page.title %}active {% endif %}item{% endcapture %}
-  {% case doc.layout %}
-    {% when 'package' %}
-      {% capture link %}{% include icon.liquid id='folder-outline' %} {% include package_shortener.liquid package=doc.module %}{% endcapture %}
-    {% when 'type' %}
-      {% capture pkg %}{{ doc.module }}.{{ doc.name }}{% endcapture %}
-      {% capture link %}{% include package_shortener.liquid package=pkg %}{% endcapture %}
-    {% when 'page' %}
-      {% assign path_bits = doc.relative_path | split: '.' | first | split: '/' %}
-      {% assign n = path_bits.size | minus: 2 %}
-      {% if n > 3 %}{% assign n = 3 %}{% endif %}
-      {% capture indent %}{% for i in (1..n) %}&ensp;{% endfor %}{% endcapture %}
-      {% capture link %}{{ indent }}{{ doc.title }}{% endcapture %}
-  {% endcase %}
-  <a class="very tight smaller text {{ item_class }}" href="{{ site.baseurl }}{{ url }}">{{ link }}</a>
-{% endfor %}
+{%- comment %} delegate to extension point for actual rendering of link list {% endcomment -%}
+{% include render_indices.liquid doc_list=doc_list collection_label=collection.label page_title=page.title %}
 
 </div>
 </div>
