@@ -72,6 +72,32 @@ Each section on this page illustrates liquid syntax that can be used to invoke m
 {::options parse_block_html="true" /}
 
 
+## page\_root.liquid
+
+> extracts the first component of a page url: <br>
+> `{{ page.url }}` &rarr; `{% include page_root.liquid page=page %}`
+
+#### markdown
+{:.ui.attached.tertiary.inverted.tight.grey.segment}
+
+<div>
+    {% raw %}
+    {% include page_root.liquid page=page %}
+    {% endraw %}
+</div>
+{:.ui.attached.secondary.tight.segment}
+
+<br>
+
+#### result
+{:.ui.attached.secondary.inverted.tight.blue.segment}
+
+<div>
+{% include page_root.liquid page=page %}
+</div>
+{:.ui.attached.secondary.segment}
+
+
 ## package\_shortener.liquid
 
 > abbreviates intermediary package names to their first letter: <br>
@@ -100,6 +126,43 @@ Each section on this page illustrates liquid syntax that can be used to invoke m
 {% for pkg in packages %}
 - {% include package_shortener.liquid package=pkg %}
 {% endfor %}
+</div>
+{:.ui.attached.secondary.segment}
+
+
+## render\_indices.liquid
+
+> creates the individual links in the sidebar. <br>
+> pages, layouts, and guide-indexes are indented when parented
+
+<span>{% include icon.liquid id='info-circle' %} <b>Note</b></span><br> This include is made available for override, so that a site can customize how (or if) it renders the items in the side nav.
+{:.ui.info.message}
+
+#### markdown
+{:.ui.attached.tertiary.inverted.tight.grey.segment}
+
+<div>
+    {% raw %}
+    <div class="ui link list">
+    {% assign collection = site.collections | where:"title","Examples" | first %}
+    {% include render_indices.liquid doc_list=collection.docs collection_label=collection.label page_title=page.title %}
+    </div>
+    {% endraw %}
+</div>
+{:.ui.attached.secondary.tight.segment}
+
+<br>
+
+#### result
+{:.ui.attached.secondary.inverted.tight.blue.segment}
+
+{::options parse_block_html="false" /}
+
+<div>
+<div class="ui link list">
+{% assign collection = site.collections | where:"title","Examples" | first %}
+{% include render_indices.liquid doc_list=collection.docs collection_label=collection.label page_title=page.title %}
+</div>
 </div>
 {:.ui.attached.secondary.segment}
 
