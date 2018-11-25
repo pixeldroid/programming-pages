@@ -26,6 +26,12 @@ Each section on this page illustrates liquid syntax that can be used to invoke m
 <span>{% include icon.liquid id='check-circle' %} <b>Tip</b></span><br> Users may also define icons of their own, by adding additional icon data files under `_data/icons/`. See the [source comments][svg-file] for more details.
 {:.ui.success.message}
 
+| parameter | description |
+|-----------|-------------|
+| `id`      | icon name from yaml data file |
+| `class`   | (optional) css class string to apply to the embedded svg element in addition to `icon` |
+{:.ui.celled.table}
+
 #### markdown
 {:.ui.attached.tertiary.inverted.tight.grey.segment}
 
@@ -51,6 +57,12 @@ Each section on this page illustrates liquid syntax that can be used to invoke m
 > only first-level children are listed, grandchildren and beyond are ignored.
 > order: `0` is first, `-1` is last, undefined orders go in the middle alphabetically
 
+| parameter | description |
+|-----------|-------------|
+| `docs` | reference to list of Jekyll collection docs |
+| `page` | (optional) reference to scoping page, restricting the list to children of the page |
+{:.ui.celled.table}
+
 #### markdown
 {:.ui.attached.tertiary.inverted.tight.grey.segment}
 
@@ -72,36 +84,16 @@ Each section on this page illustrates liquid syntax that can be used to invoke m
 {::options parse_block_html="true" /}
 
 
-## page\_root.liquid
-
-> extracts the first component of a page url: <br>
-> `{{ page.url }}` &rarr; `{% include page_root.liquid page=page %}`
-
-#### markdown
-{:.ui.attached.tertiary.inverted.tight.grey.segment}
-
-<div>
-    {% raw %}
-    {% include page_root.liquid page=page %}
-    {% endraw %}
-</div>
-{:.ui.attached.secondary.tight.segment}
-
-<br>
-
-#### result
-{:.ui.attached.secondary.inverted.tight.blue.segment}
-
-<div>
-{% include page_root.liquid page=page %}
-</div>
-{:.ui.attached.secondary.segment}
-
-
 ## package\_shortener.liquid
 
 > abbreviates intermediary package names to their first letter: <br>
 > `foo.bar.bat.Baz` &rarr; `foo.b.b.Baz`
+
+| parameter   | description |
+|-------------|-------------|
+| `package`   | fully qualified package name |
+| `threshold` | (optional) number of components to leave unabbreviated. defaults to 2 |
+{:.ui.celled.table}
 
 #### markdown
 {:.ui.attached.tertiary.inverted.tight.grey.segment}
@@ -130,6 +122,37 @@ Each section on this page illustrates liquid syntax that can be used to invoke m
 {:.ui.attached.secondary.segment}
 
 
+## page\_root.liquid
+
+> extracts the first component of a page url: <br>
+> `{{ page.url }}` &rarr; `{% include page_root.liquid page=page %}`
+
+| parameter | description |
+|-----------|-------------|
+| `page` | reference to a Jekyll page object to extract the url root from |
+{:.ui.celled.table}
+
+#### markdown
+{:.ui.attached.tertiary.inverted.tight.grey.segment}
+
+<div>
+    {% raw %}
+    {% include page_root.liquid page=page %}
+    {% endraw %}
+</div>
+{:.ui.attached.secondary.tight.segment}
+
+<br>
+
+#### result
+{:.ui.attached.secondary.inverted.tight.blue.segment}
+
+<div>
+{% include page_root.liquid page=page %}
+</div>
+{:.ui.attached.secondary.segment}
+
+
 ## render\_indices.liquid
 
 > creates the individual links in the sidebar. <br>
@@ -137,6 +160,13 @@ Each section on this page illustrates liquid syntax that can be used to invoke m
 
 <span>{% include icon.liquid id='info-circle' %} <b>Note</b></span><br> This include is made available for override, so that a site can customize how (or if) it renders the items in the side nav.
 {:.ui.info.message}
+
+| parameter | description |
+|-----------|-------------|
+| `doc_list`         | reference to list of Jekyll collection docs to generate indices for |
+| `collection_label` | name of indices tab, to ensure links keep proper tab open |
+| `page_title`       | title of the current page, to render matching indices as 'active' |
+{:.ui.celled.table}
 
 #### markdown
 {:.ui.attached.tertiary.inverted.tight.grey.segment}
