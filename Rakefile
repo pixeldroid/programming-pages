@@ -117,8 +117,8 @@ def jekyll_build
   jekyll_cmd('build')
 end
 
-def jekyll_serve
-  jekyll_cmd('serve')
+def jekyll_watch
+  jekyll_cmd('serve --watch --incremental')
 end
 
 def jekyll_serve_only
@@ -205,13 +205,13 @@ end
 
 
 desc [
-  "calls jekyll to generate and serve the docs site",
-  "  cmd: #{jekyll_serve}",
+  "calls jekyll to generate, serve, watch and regenerate the docs site",
+  "  cmd: #{jekyll_watch}",
 ].join("\n")
 task :docs do |t, args|
   begin                 # run jekyll
-    puts jekyll_serve
-    system(jekyll_serve)
+    puts jekyll_watch
+    system(jekyll_watch)
   rescue Exception => e # capture the interrupt signal from a quit app
     puts ' (quit)'
   end
