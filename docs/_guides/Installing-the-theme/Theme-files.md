@@ -49,6 +49,42 @@ User authored content should include a homepage and some combination of API docu
 > Jekyll expects to find global site configuration values in `_config.yml`.
 
 The theme uses some configuration data values, and parameterizes some aspects of the site for the user to provide values for.
+A typical `_config.yml` may look like this:
+
+```yaml
+---
+project:
+  name: programming pages
+  owner: pixeldroid
+  repo: https://github.com/pixeldroid/programming-pages
+  version: {{ layout.theme_version }}
+collections:
+  guides:
+    output: true
+    permalink: "/:collection/:path/"
+    title: Guides
+    tab-order: 1
+  examples:
+    output: true
+    permalink: "/:collection/:path/"
+    title: Examples
+    tab-order: 2
+  layout_api:
+    output: true
+    permalink: "/:collection/:path/"
+    title: Layout API
+    tab-order: 3
+code_indent: "  "
+highlighter: rouge
+permalink: pretty
+sass:
+  style: compressed
+plugins:
+- jemoji
+- jekyll-remote-theme
+remote_theme: pixeldroid/programming-pages
+```
+
 
 ### User provided configuration
 
@@ -65,11 +101,14 @@ The theme defines the following configuration values:
 
 - `code_indent` : _used by the theme_ &mdash; Number of spaces to use when indenting lines of code in doc comments
 - `collections` : _used by Jekyll_ &mdash; [Collection][jekyll-collection] folders to expect api docs, examples, and guides to live in
+  - `<collection>.ignore-page-order` : _used by the theme_ &mdash; Turns off relative page ordering for a collection
+  - `<collection>.tab-order` : _used by the theme_ &mdash; Specifies relative order for the collection tabs (lower to the left)
+  - `<collection>.title` : _used by the theme_ &mdash; Label used for the collection tab
 - `highlighter` : _used by Jekyll_ &mdash; Specifies the [code hilighting engine used by GitHub Pages][ghpages-rouge] (Rouge), so local execution matches remote
 - `permalink` : _used by Jekyll_ &mdash; Specifies the 'pretty' permalink style (see [Built-in permalink styles][jekyll-permalink])
-- `plugins` : _used by Jekyll_ &mdash; Requests enablement of the [jemoji plugin][ghpages-jemoji]
+- `plugins` : _used by Jekyll_ &mdash; Requests enablement of the [jemoji][ghpages-jemoji] and [jekyll-remote-theme][ghpages-jekyll-remote-theme] plugins
 - `sass` : _used by Jekyll_ &mdash; Specifies compressed css when processed by the [scssify filter][jekyll-scssify]
-- `theme_version` : _used by the theme_ &mdash; Declares the current theme version
+- `remote_theme` : _used by the theme_ &mdash; Specifies the programming pages theme
 
 
 ## User content
@@ -130,6 +169,7 @@ In `_data/icons/theme.yml` are the [svg icon][svg-icons] definitions used by the
 [feature-search]: {{site.baseurl}}/guides/Theme-Features/#search-input "search feature"
 [feature-title]: {{site.baseurl}}/guides/Theme-Features/#title-bar "title bar feature"
 [ghjekyll]: https://help.github.com/articles/using-jekyll-as-a-static-site-generator-with-github-pages/ "Using Jekyll as a static site generator with GitHub Pages"
+[ghpages-jekyll-remote-theme]: https://github.com/benbalter/jekyll-remote-theme "Jekyll plugin for building Jekyll sites with any GitHub-hosted theme"
 [ghpages-jemoji]: https://help.github.com/articles/emoji-on-github-pages/ "Emoji on GitHub Pages"
 [ghpages-rouge]: https://help.github.com/articles/using-syntax-highlighting-on-github-pages/ "Using syntax highlighting on GitHub Pages"
 [ghpages]: https://pages.github.com/ "GitHub Pages"

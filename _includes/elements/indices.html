@@ -38,10 +38,12 @@
 <h4 class="ui header">{{ collection.title }}</h4>
 <div class="ui inverted link list">
 {% assign doc_list = collection.docs %}
+
+{% unless collection.ignore-page-order %}
 {% assign ordered_doc_list = '' | split: '' %}
 
 {%- comment %}
-for guides, we want to support user-defined ordering, but not require it in every guide.
+for collection pages, we want to support user-defined ordering, but not require it on every page.
 
 this means we have to create our own file tree, keeping children with parents as we re-sort
 the collection list from its default alphabetical order into user order, and for that,
@@ -86,7 +88,7 @@ so our strategy is to:
 {%- comment %} first, calculate max_depth as deepest level index {% endcomment -%}
 {% assign max_depth = 0 %}
 {% for doc in doc_list %}
-  {% assign depth = doc.path | split:'/' | size | minus:2 %} {%- comment %} minus one to convert from length to index, minus two to ignore root collection directory (_guides/) {% endcomment -%}
+  {% assign depth = doc.path | split:'/' | size | minus:2 %} {%- comment %} minus one to convert from length to index, minus two to ignore root collection directory (e.g. _guides/) {% endcomment -%}
   {% if depth > max_depth %}{% assign max_depth = depth %}{% endif %}
 {% endfor %}
 
@@ -199,27 +201,13 @@ so our strategy is to:
 {%- endfor -%}
 
 {% assign doc_list = ordered_doc_list %}
+{% endunless %}
 
-{% for doc in doc_list %}
-  {% capture link %}{{ doc.title }}{% endcapture %}
-  {% capture url %}{{ doc.url }}#/{{ collection.label | downcase }}/{% endcapture %}
-  {% capture item_class %}{% if doc.title == page.title %}active {% endif %}item{% endcapture %}
-  {% case doc.layout %}
-    {% when 'package' %}
-      {% capture link %}{% include icon.liquid id='folder-outline' %} {% include package_shortener.liquid package=doc.module %}{% endcapture %}
-    {% when 'type' %}
-      {% capture pkg %}{{ doc.module }}.{{ doc.name }}{% endcapture %}
-      {% capture link %}{% include package_shortener.liquid package=pkg %}{% endcapture %}
-    {% when 'page' %}
-      {% assign path_bits = doc.relative_path | split: '.' | first | split: '/' %}
-      {% assign n = path_bits.size | minus: 2 %}
-      {% if n > 3 %}{% assign n = 3 %}{% endif %}
-      {% capture indent %}{% for i in (1..n) %}&ensp;{% endfor %}{% endcapture %}
-      {% capture link %}{{ indent }}{{ doc.title }}{% endcapture %}
-  {% endcase %}
-  <a class="very tight smaller text {{ item_class }}" href="{{ site.baseurl }}{{ url }}">{{ link }}</a>
-{% endfor %}
+{%- comment %} delegate to extension point for actual rendering of link list {% endcomment -%}
+{% include render_indices.liquid doc_list=doc_list collection_label=collection.title page_title=page.title %}
 
+<br>
+<br>
 </div>
 </div>
 {% endfor %}

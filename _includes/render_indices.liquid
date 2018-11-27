@@ -1,0 +1,25 @@
+{%- comment -%}
+
+render_indices
+  creates the individual links in the sidebar
+  - pages, layouts, and guide-indexes are indented when parented
+
+params:
+  doc_list=<array of document objects to create links for>
+  collection_label=<name of collection the docs belong to>
+  page_title=<title of the calling page>
+
+{%- endcomment -%}
+{% for doc in include.doc_list %}
+  {% capture link %}{{ doc.title }}{% endcapture %}
+  {% capture url %}{{ doc.url }}#/{{ include.collection_label | downcase }}/{% endcapture %}
+  {% capture item_class %}{% if doc.title == include.page_title %}active {% endif %}item{% endcapture %}
+  {% if doc.layout == 'page' or doc.layout == 'layout' or doc.layout == 'guide-index' %}
+    {% assign path_bits = doc.relative_path | split: '.' | first | split: '/' %}
+    {% assign n = path_bits.size | minus: 2 %}
+    {% if n > 3 %}{% assign n = 3 %}{% endif %}
+    {% capture indent %}{% for i in (1..n) %}&ensp;{% endfor %}{% endcapture %}
+    {% capture link %}{{ indent }}{{ doc.title }}{% endcapture %}
+  {% endif %}
+  <a class="very tight smaller text {{ item_class }}" href="{{ site.baseurl }}{{ url }}">{{ link }}</a>
+{% endfor %}
