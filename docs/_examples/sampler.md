@@ -28,6 +28,7 @@ See the [References](#references) section below for links to more details.
 | [Tables](#tables) | `|--:|` |
 | [Links](#links) | `[text](url "title")` or (`[text][id]` + `[id]: url "title"`) |
 | [Images](#images) | `![alt](url "title")` or (`![alt][id]` + `[id]: url "title"`) |
+| [Footnotes](#footnotes) | `[^id]` + `[^id]: content`) |
 | [Rules](#rules) | `---` or `***` or `___` |
 | [Emoji](#emoji) | `:emoji-id:` |
 | [Icons](#icons) | {% raw %}`{% include icon.liquid id='<id>' %}`{% endraw %} |
@@ -475,6 +476,46 @@ Reference Format: `[reference-id]: url "hover text"`
 {:.ui.attached.secondary.segment}
 
 
+## Footnotes
+
+Marker format: `[^id]` <br>
+Note format: `[^id]: content`
+
+#### markdown
+{:.ui.attached.tertiary.inverted.tight.grey.segment}
+
+<div>
+    Footnote markers must be numbers or word characters in square brackets.[^1] Traditional symbols[^2] will not work with the kramdown processor.
+
+    The backlink character (`{{ site.kramdown.footnote_backlink}}`) is configurable via `kramdown.footnote_backlink` in `_config.yml`.[^3]
+
+    Footnotes are collected and all rendered at the end of the page.
+
+    [^1]: A footnote marker can be created by placing the footnote name in square brackets. The footnote name has to start with a caret (`^`), followed by a word character or a digit and then optionally followed by other word characters, digits or dashes. For example: `This is some text.[^1]. Other text.[^footnote].` (from: [Kramdown syntax documentation {% include icon.liquid id='external-link' %}](https://kramdown.gettalong.org/syntax.html#footnotes) ).
+    [^2]: Typographical devices such as the asterisk (*) or dagger (†) may also be used to point to footnotes; the traditional order of these symbols in English is *, †, ‡, §, ‖, ¶. (from: [Wikipedia description of footnotes {% include icon.liquid id='external-link' %}](https://en.wikipedia.org/w/index.php?title=Note_(typography)&oldid=871967408) ).
+    [^3]: `footnote_backlink` defines the text that will link back to the footnote marker. The footnote backlink is just text, so any special HTML characters will be escaped. If the footnote backlink text is an empty string, no footnote backlinks will be generated. (from: [Kramdown configuration options {% include icon.liquid id='external-link' %}](https://kramdown.gettalong.org/options.html#option-footnote-backlink) ).
+</div>
+{:.ui.attached.secondary.tight.segment}
+
+<br>
+
+#### result
+{:.ui.attached.secondary.inverted.tight.blue.segment}
+
+<div>
+Footnote markers must be numbers or word characters in square brackets.[^1] Traditional symbols[^2] will not work with the kramdown processor.
+
+The backlink character (`{{ site.kramdown.footnote_backlink}}`) is configurable via `kramdown.footnote_backlink` in `_config.yml`.[^3]
+
+Footnotes are collected and rendered all together at the end of the page.
+
+[^1]: A footnote marker can be created by placing the footnote name in square brackets. The footnote name has to start with a caret (`^`), followed by a word character or a digit and then optionally followed by other word characters, digits or dashes. For example: `This is some text.[^1]. Other text.[^footnote].` (from: [Kramdown syntax documentation {% include icon.liquid id='external-link' %}](https://kramdown.gettalong.org/syntax.html#footnotes) ).
+[^2]: Typographical devices such as the asterisk (*) or dagger (†) may also be used to point to footnotes; the traditional order of these symbols in English is *, †, ‡, §, ‖, ¶. (from: [Wikipedia description of footnotes {% include icon.liquid id='external-link' %}](https://en.wikipedia.org/w/index.php?title=Note_(typography)&oldid=871967408) ).
+[^3]: `footnote_backlink` defines the text that will link back to the footnote marker. The footnote backlink is just text, so any special HTML characters will be escaped. If the footnote backlink text is an empty string, no footnote backlinks will be generated. (from: [Kramdown configuration options {% include icon.liquid id='external-link' %}](https://kramdown.gettalong.org/options.html#option-footnote-backlink) ).
+</div>
+{:.ui.attached.secondary.segment}
+
+
 ## Rules
 
 Use three consecutive hyphens (`-`), asterisks (`*`), or underscores (`_`), on a line alone.
@@ -701,6 +742,13 @@ This text will appear as a huge message.
 
 > view the source for this page at [sampler.md][sampler-source]. <br>
 > it is more complicated than typical, in order to format the source and result blocks nicely.
+
+
+<br> <br>
+
+---
+
+##### _footnotes_
 
 
 

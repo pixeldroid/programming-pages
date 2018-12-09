@@ -33,6 +33,8 @@ collections:
     tab-order: 3
 code_indent: "  "
 highlighter: rouge
+kramdown:
+  footnote_backlink: '⮌'
 permalink: pretty
 sass:
   style: compressed
