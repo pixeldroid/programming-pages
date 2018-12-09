@@ -43,12 +43,18 @@
 :target::before {
   display: block;
   content: " ";
-  margin-top: -3.5rem;
-  height: 3.5rem;
+  margin-top: -3.75rem;
+  padding-top: 3.75rem;
+  height: 3.75rem;
   visibility: hidden;
   pointer-events: none;
 }
-
+sup:target::before {
+  display: inline-block;
+  margin-top: -5rem;
+  padding-top: 5rem;
+  height: 5rem;
+}
 /* adjustments to fixed top title */
 #page-container {
   margin-top: 3.4rem; /* position page under top menu */
