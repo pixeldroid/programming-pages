@@ -55,6 +55,15 @@ sup:target::before {
   padding-top: 5rem;
   height: 5rem;
 }
+/* animate a highlight of the link target to help users orient to new location */
+:target {
+  animation: highlight 0.75s cubic-bezier(0.260, 0.055, 0.080, 0.835); /* https://matthewlein.com/tools/ceaser */
+}
+@keyframes highlight {
+  0% {   text-shadow: -1px 0 0 #fd0, 0 1px 0 #fd0, 1px 0 0 #fd0; }
+  20% {  text-shadow: -3px 0 0 #fd0, 0 5px 0 #fd0, 3px 0 0 #fd0; }
+  100% { text-shadow: -1px 0 0 #fd0, 0 1px 0 #fd0, 1px 0 0 #fd0; }
+}
 /* adjustments to fixed top title */
 #page-container {
   margin-top: 3.4rem; /* position page under top menu */
