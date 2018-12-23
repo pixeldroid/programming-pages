@@ -43,12 +43,27 @@
 :target::before {
   display: block;
   content: " ";
-  margin-top: -3.5rem;
-  height: 3.5rem;
+  margin-top: -3.75rem;
+  padding-top: 3.75rem;
+  height: 3.75rem;
   visibility: hidden;
   pointer-events: none;
 }
-
+sup:target::before {
+  display: inline-block;
+  margin-top: -5rem;
+  padding-top: 5rem;
+  height: 5rem;
+}
+/* animate a highlight of the link target to help users orient to new location */
+:target {
+  animation: highlight 2.50s cubic-bezier(0.240, 0.010, 0.235, 0.995); /* https://matthewlein.com/tools/ceaser */
+}
+@keyframes highlight {
+  0% {   text-shadow: -1px 0 0 rgba(255,221,0, 0.4), 0 1px 0 rgba(255,221,0, 0.4), 1px 0 0 rgba(255,221,0, 0.4); }
+  20% {  text-shadow: -3px 0 0 rgba(255,221,0, 0.8), 0 5px 0 rgba(255,221,0, 0.8), 3px 0 0 rgba(255,221,0, 0.8); }
+  100% { text-shadow: -1px 0 0 rgba(255,221,0, 0.0), 0 1px 0 rgba(255,221,0, 0.0), 1px 0 0 rgba(255,221,0, 0.0); }
+}
 /* adjustments to fixed top title */
 #page-container {
   margin-top: 3.4rem; /* position page under top menu */

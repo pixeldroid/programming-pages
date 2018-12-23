@@ -212,8 +212,8 @@ task :docs do |t, args|
   begin                 # run jekyll
     puts jekyll_watch
     system(jekyll_watch)
-  rescue Exception => e # capture the interrupt signal from a quit app
-    puts ' (quit)'
+  rescue Exception => e # capture interrupt signal from the process
+    puts ' (stop)'
   end
 end
 
@@ -234,8 +234,8 @@ task :docs_serve do |t, args|
   begin                 # run jekyll
     puts jekyll_serve_only
     system(jekyll_serve_only)
-  rescue Exception => e # capture the interrupt signal from a quit app
-    puts ' (quit)'
+  rescue Exception => e # capture interrupt signal from the process
+    puts ' (stop)'
   end
 end
 
