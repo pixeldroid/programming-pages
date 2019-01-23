@@ -8,19 +8,21 @@ params:
   doc_list=<array of document objects to create links for>
   collection_label=<name of collection the docs belong to>
   page_title=<title of the calling page>
+  no_indent=<pipe delimited list of layouts that should not be indented>
 
 {%- endcomment -%}
+{% assign no_indenting = include.no_indent | split: '|' %}
 {% for doc in include.doc_list %}
   {% capture link %}{{ doc.title }}{% endcapture %}
   {% capture url %}{{ doc.url }}#/{{ include.collection_label | downcase }}/{% endcapture %}
   {% capture item_id %}{% if doc.title == include.page_title %} id="active-page-index"{% endif %}{% endcapture %}
   {% capture item_class %}{% if doc.title == include.page_title %}active {% endif %}item{% endcapture %}
-  {% if doc.layout == 'page' or doc.layout == 'layout' or doc.layout == 'guide-index' %}
+  {% unless no_indenting contains doc.layout %}
     {% assign path_bits = doc.relative_path | split: '.' | first | split: '/' %}
     {% assign n = path_bits.size | minus: 2 %}
     {% if n > 3 %}{% assign n = 3 %}{% endif %}
     {% capture indent %}{% for i in (1..n) %}&ensp;{% endfor %}{% endcapture %}
     {% capture link %}{{ indent }}{{ doc.title }}{% endcapture %}
-  {% endif %}
+  {% endunless %}
   <a{{ item_id }} class="very tight smaller text {{ item_class }}" href="{{ site.baseurl }}{{ url }}">{{ link }}</a>
 {% endfor %}
