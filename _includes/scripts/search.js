@@ -3,15 +3,8 @@ site_search_init = function() {
   {% for collection in site.collections %}
   {% unless collection.label == 'posts' %}
   {% for doc in collection.docs %}
-    {% assign title = doc.title %}
     {% capture url %}{{ doc.url }}#/{{ collection.label | downcase }}/{% endcapture %}
-    {% case doc.layout %}
-      {% when 'package' %}
-         {% assign title = doc.module %}
-      {% when 'type' %}
-         {% assign title = doc.name %}
-    {% endcase %}
-    { title: '{{ title }}', url: '{{ site.baseurl }}{{ url }}' },
+    { title: '{{ doc.title }}', url: '{{ site.baseurl }}{{ url }}' },
   {% endfor %}
   {% endunless %}
   {% endfor %}
