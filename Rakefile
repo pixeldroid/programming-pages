@@ -248,6 +248,18 @@ task :gem => [GEM] do |t, args|
 end
 
 desc [
+  "builds gem and installs locally",
+  "this is handy for iterating on changes",
+].join("\n")
+task :gem_local => [GEM] do |t, args|
+  cmd = "gem install --local #{PROJECT}-#{lib_version}.gem"
+  puts "[#{t.name}] installing gem locally"
+  try(cmd, 'unable to install .gem')
+
+  puts "[#{t.name}] task completed, gem installed locally"
+end
+
+desc [
   "pushes #{PROJECT}.gem to rubygems.org",
   " this requires an api key file at ~/.gem/credentials,",
   " and optionally a key name, if the credentials file has multiple keys",
