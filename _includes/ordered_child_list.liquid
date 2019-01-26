@@ -28,7 +28,7 @@ params:
   {% endif %}
 {% endfor %}
 {% assign ordered = ordered | sort: 'order' %}
-{% assign endered = endered | sort: 'order' | reverse %}
+{% assign endered = endered | sort: 'order' %}
 {% assign doc_list = ordered | concat: unorder | concat: endered %}
 
 <div class="ui bulleted link list">
