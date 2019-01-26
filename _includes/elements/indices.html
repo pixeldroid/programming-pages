@@ -115,7 +115,7 @@ so our strategy is to:
     {% endif %}
   {% endfor %}
   {% assign ordered = ordered | sort: 'order' %}
-  {% assign endered = endered | sort: 'order' | reverse %}
+  {% assign endered = endered | sort: 'order' %}
   {% assign new = ordered | concat: unorder | concat: endered %}
   {% assign leveled = leveled | push: new %}
 {% endfor %}
