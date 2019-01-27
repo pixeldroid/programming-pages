@@ -10,13 +10,13 @@ site_search_init = function() {
   {% endfor %}
   ];
 
-  // urls are auto-followed, so no callback needed
+  {% comment %} urls are auto-followed, so no callback needed {% endcomment %}
   $('#site-search').search({
     source: search_content,
     selectFirstResult: true,
   });
 
-  // set up shortut key for search input focus
+  {% comment %} set up shortut key for search input focus {% endcomment %}
   Mousetrap.bind('s', function() { $( '#site-search .prompt' ).focus(); return false; });
 };
 
