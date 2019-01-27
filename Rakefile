@@ -12,6 +12,7 @@ EXIT_OK = 0
 FRONT_MATTER_REGEX = /\A(---\s*\n.*?\n?)^((---|\.\.\.)\s*$\n?)/m # https://github.com/jekyll/jekyll/blob/1ac9c21956ed7e31be6fd8f0083f6414b6220684/lib/jekyll/document.rb#L10
 
 PROJECT = 'programming-pages'
+PROJECT_OWNER = 'pixeldroid'
 PROJECT_ROOT = File.dirname(__FILE__)
 
 GEM = "#{PROJECT}.gem" # actual filename will have version in it; this will cause build of gem every time (intentional)
@@ -158,6 +159,23 @@ def semantic_attribution(version)
   ].join("\n")
 end
 
+def set_theme(config_file, local_or_remote)
+  config = read_yaml(config_file)
+
+  case local_or_remote
+  when 'local'
+    config.delete('remote_theme')
+    config['theme'] = PROJECT
+  when 'remote'
+    config.delete('theme')
+    config['remote_theme'] = "#{PROJECT_OWNER}/#{PROJECT}"
+  else
+    fail("invalid value '#{local_or_remote}' (expected 'local' or 'remote')")
+  end
+
+  write_yaml(config_file, config)
+end
+
 def update_lib_version(config_file, new_value)
   # update config and write to file
   config = read_yaml(config_file)
@@ -228,6 +246,13 @@ task :docs_build do |t, args|
   try(jekyll_build, 'unable to create docs')
   puts "[#{t.name}] task completed, find updated docs in ./_site"
 end
+
+desc [
+  "regenerate the theme and docs from scratch",
+  " uses local theme",
+  " runs clobber first",
+].join("\n")
+task :docs_regen => ['clobber', 'gem_local', 'theme_local', 'docs']
 
 desc [
   "calls jekyll to serve the docs site, without first building it",
@@ -348,6 +373,34 @@ task :semantic, [:sui_dir] do |t, args|
 end
 
 desc [
+  "updates the docs config to use a local or remote theme",
+  " provide an argument value of either 'local' or 'remote'",
+  " 'local' is appropriate for development",
+  " 'remote' is appropriate for releasing",
+  " changes '#{relative_path(Pathname.pwd, project_config_file)}'",
+].join("\n")
+task :set_theme, [:which] do |t, args|
+  args.with_defaults(:which => 'unspecified')
+  set_theme(project_config_file, args.which)
+
+  puts "[#{t.name}] task completed, theme is now #{args.which}"
+end
+
+task :theme_local do |t, args|
+  which = 'local'
+  set_theme(project_config_file, which)
+
+  puts "[#{t.name}] task completed, theme is now #{which}"
+end
+
+task :theme_remote do |t, args|
+  which = 'remote'
+  set_theme(project_config_file, which)
+
+  puts "[#{t.name}] task completed, theme is now #{which}"
+end
+
+desc [
   "reports library version",
 ].join("\n")
 task :version do |t, args|
@@ -402,6 +455,7 @@ end
 
 desc [
   "generate a new release candidate: updates screenshot, zip and gem packages",
+  " requires docs to be live, locally (e.g. rake docs_regen in a separate process)",
   " runs clean first",
 ].join("\n")
-task :release => ['clean', 'screenshot', 'zip', 'gem']
+task :release => ['clean', 'screenshot', 'theme_remote', 'zip', 'gem']
