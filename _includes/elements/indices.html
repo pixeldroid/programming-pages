@@ -115,7 +115,7 @@ so our strategy is to:
     {% endif %}
   {% endfor %}
   {% assign ordered = ordered | sort: 'order' %}
-  {% assign endered = endered | sort: 'order' | reverse %}
+  {% assign endered = endered | sort: 'order' %}
   {% assign new = ordered | concat: unorder | concat: endered %}
   {% assign leveled = leveled | push: new %}
 {% endfor %}
@@ -204,10 +204,11 @@ so our strategy is to:
 {% endunless %}
 
 {%- comment %} delegate to extension point for actual rendering of link list {% endcomment -%}
-{% include render_indices.liquid doc_list=doc_list collection_label=collection.title page_title=page.title %}
+{% include render_indices.liquid doc_list=doc_list collection_label=collection.label page_title=page.title %}
 
-<br>
-<br>
 </div>
+
+&nbsp;<br>
+&nbsp;<br>
 </div>
 {% endfor %}

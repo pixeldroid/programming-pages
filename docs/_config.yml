@@ -3,7 +3,7 @@ project:
   name: programming pages
   owner: pixeldroid
   repo: https://github.com/pixeldroid/programming-pages
-  version: 0.5.11
+  version: 0.5.12
 attributions:
   entypo-pictograms: Daniel Bruce
   font-awesome: Dave Gandy

@@ -3,7 +3,7 @@ help_modal_init = function() {
     inverted: true
   });
 
-  // set up shortut key sequence to toggle modal
+  {% comment %} set up shortut key sequence to toggle modal {% endcomment %}
   Mousetrap.bind('h', function() { $('#site-help').modal('toggle'); return false; });
 };
 

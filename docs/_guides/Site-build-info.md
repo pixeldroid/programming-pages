@@ -99,7 +99,7 @@ depth order   name : path
     {% endif %}
   {% endfor %}
   {% assign ordered = ordered | sort: 'order' %}
-  {% assign endered = endered | sort: 'order' | reverse %}
+  {% assign endered = endered | sort: 'order' %}
   {% assign new = ordered | concat: unorder | concat: endered %}
   {% assign leveled = leveled | push: new %}
 {% endfor %}
@@ -108,7 +108,7 @@ depth order   name : path
 {%- assign i = 0 -%}
 {%- for lvl in leveled %}
 {{ i }}: [{% for e in lvl %}
-     [{{ e.path | split:'/' | last | split:'.' | first }}: {{ e.path }}]
+     {{ e.order | default: '?' }}: [{{ e.path | split:'/' | last | split:'.' | first }}: {{ e.path }}]
 {%- endfor %}]
 {%- assign i = i | plus:1 -%}
 {%- endfor -%}

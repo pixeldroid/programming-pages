@@ -166,6 +166,7 @@ Each section on this page illustrates liquid syntax that can be used to invoke m
 | `doc_list`         | reference to list of Jekyll collection docs to generate indices for |
 | `collection_label` | name of indices tab, to ensure links keep proper tab open |
 | `page_title`       | title of the current page, to render matching indices as 'active' |
+| `no_indent`        | pipe (`|`) delimited list of layouts that should not be indented |
 {:.ui.celled.table}
 
 #### markdown
