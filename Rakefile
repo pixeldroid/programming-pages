@@ -252,7 +252,7 @@ desc [
   "this is handy for iterating on changes",
 ].join("\n")
 task :gem_local => [GEM] do |t, args|
-  cmd = "gem install --local #{PROJECT}-#{lib_version}.gem"
+  cmd = "bundle exec gem install --local #{PROJECT}-#{lib_version}.gem"
   puts "[#{t.name}] installing gem locally"
   try(cmd, 'unable to install .gem')
 
