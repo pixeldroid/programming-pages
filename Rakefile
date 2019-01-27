@@ -26,7 +26,10 @@ def exec_with_echo(cmd)
 end
 
 def fail(message)
-  abort("✘ #{message}")
+  # win-safe:      desired:
+  #  √ - \u221A     ✓ - \u2713
+  #  × - \u00D7     ✘ - \u2718
+  abort("× #{message}")
 end
 
 def try(cmd, failure_message)
