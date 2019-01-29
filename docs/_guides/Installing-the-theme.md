@@ -30,7 +30,7 @@ Then use the theme to:
 
 1. [Author][author] your content
 1. [Publish][publish] to GitHub Pages
-1. _(optionally)_ [Customize][customize] the theme to taste
+1. _(optionally)_ Customize the theme to taste
 
 
 ## Running locally
@@ -45,7 +45,7 @@ Setting up locally for testing a GitHub pages target is best done via [Bundler][
    ```ruby
    source 'https://rubygems.org'
 
-   gem 'github-pages', group: :jekyll_plugins
+   gem 'github-pages'
    ```
 
 1. Retrieve dependencies into a local bundle:
@@ -76,7 +76,7 @@ There are three ways to install the theme for your site:
    ```ruby
    source 'https://rubygems.org'
 
-   gem 'github-pages', group: :jekyll_plugins
+   gem 'github-pages'
    ```
 
    ```console
@@ -104,10 +104,11 @@ There are three ways to install the theme for your site:
 
 ### Install via Ruby Gem
 
-1. Require the [programming-pages theme gem][programming-pages-gem] in your `Gemfile`:
+1. Require the [programming-pages theme gem][programming-pages-gem] in your `Gemfile` (replace the github-pages dependency):
 
    ```ruby
-   gem 'programming-pages'
+   - gem 'github-pages'
+   + gem 'programming-pages'
    ```
 
 1. Specify the theme in your `_config.yml`:
