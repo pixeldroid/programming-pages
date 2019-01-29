@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Site build info
+description: debug info from the last build of this site
 order: -1
 ---
 

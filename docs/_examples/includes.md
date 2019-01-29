@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Liquid Includes
+description: use includes as theme macros
 ---
 
 {::options parse_block_html="true" /}

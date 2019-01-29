@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Theme features
+description: a list of features provided by the theme
 order: 1
 ---
 
@@ -67,6 +68,8 @@ On the left-hand side of the site is a navigation pane that collapses in mobile 
 ### Search input
 
 All page titles are available to search for, and the search box will try to auto-complete best matches.
+
+Search also includes words found in `page.description` and `page.search_tags`. Search results are categorized by collection, which can be overridden by `page.category`.
 
 ### Collection indices
 

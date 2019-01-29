@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Markdown Sampler
+description: a reference for all the formatting conventions supported by this theme
 ---
 
 {::options parse_block_html="true" /}

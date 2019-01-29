@@ -1,7 +1,9 @@
 ---
 layout: guide-index
 title: Installing the theme
+description: how to get started
 order: 2
+
 cmd_jekyll_serve: 'bundle exec jekyll serve --source ./docs --layouts ./docs/_layouts'
 ---
 

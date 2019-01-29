@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Theme files
+description: details of the source files that compose this theme
 order: 2.1
 ---
 

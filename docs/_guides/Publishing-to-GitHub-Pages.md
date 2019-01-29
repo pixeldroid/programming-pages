@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Publishing to GitHub Pages
+description: how to host your site on GitHub
 ---
 
 # {{ page.title }}

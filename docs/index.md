@@ -1,6 +1,8 @@
 ---
 layout: page
 title: Introduction
+category: home
+description: overview of the programming-pages theme
 ---
 
 # {{ page.title }}
