@@ -10,23 +10,29 @@ order: -1
 built {{ site.time | date_to_rfc822 }}
 {:.ui.basic.label}
 
-- TOC
-{::options toc_levels="2,3" /}
-{:toc}
-
 ## site.attributions
 
-{% for v in site.attributions %}
-- {{ v[0] }} : `{{ v[1] }}`
+> many thanks to the authors of the projects below that make this theme feasible
+
+{% for a in site.attributions %}{% assign b = a[1] | split: ', ' %}
+- {{ a[0] }} : _{{ b | first }}_, <{{ b | last }}>
 {% endfor%}
 
-## site.baseurl
+---
+
+## debug info
+
+- TOC
+{::options toc_levels="3,4" /}
+{:toc}
+
+### site.baseurl
 
 ```liquid
 '{{ site.baseurl }}'
 ```
 
-## site.github
+### site.github
 
 {% if site.github %}
 ### site.github.versions
@@ -39,7 +45,7 @@ built {{ site.time | date_to_rfc822 }}
 _(not on github)_
 {% endif %}
 
-## site.collections
+### site.collections
 
 > (excluding `posts`)
 
@@ -48,15 +54,15 @@ _(not on github)_
 ```
 
 {% for collection in site.collections -%}
-{%- unless collection.label == 'posts' -%}
-- {{ collection.label }}
-  {%- for doc in collection.docs %}
-   * {{ doc.title }} ({{ doc.layout }}) - {{ site.baseurl }}{{ doc.url }}
-  {%- endfor %}
-{% endunless -%}
+{%- unless collection.label == 'posts' %}
+#### {{ collection.label }}
+{%- for doc in collection.docs %}
+* {{ doc.title }} ({{ doc.layout }}) - {{ site.baseurl }}{{ doc.url }}
 {%- endfor %}
+{% endunless %}
+{% endfor %}
 
-### guides
+### page ordering
 
 ```liquid
 {% raw %}{% assign guides = site.collections | where:'label','guides' | first %}{% endraw %}
@@ -72,7 +78,7 @@ depth order   name : path
 {%- endfor -%}
 </pre>
 
-#### guide levels
+#### computed page levels
 
 {%- comment %} first, calculate max_depth as deepest level index {% endcomment -%}
 {% assign max_depth = 0 %}
