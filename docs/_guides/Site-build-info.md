@@ -12,7 +12,7 @@ built {{ site.time | date_to_rfc822 }}
 
 ## site.attributions
 
-> many thanks to the authors of the projects below that make this theme feasible
+> &nbsp; :love_letter: &nbsp; many thanks to the authors of the projects below that make this theme feasible
 
 {% for a in site.attributions %}{% assign b = a[1] | split: ', ' %}
 - {{ a[0] }} : _{{ b | first }}_, <{{ b | last }}>
