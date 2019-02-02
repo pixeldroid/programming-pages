@@ -1,11 +1,3 @@
-<div class="ui inverted large menu">
-<div class="item" style="padding-top: 1.6em;">
-{% include elements/search.html %}
-</div>
-</div>
-
-<div class="ui fitted inverted divider"></div>
-
 {% assign collection_list = site.collections %}
 
 {% assign ordered = '' | split: '' %}
@@ -24,13 +16,6 @@
 {% assign ordered = ordered | sort: 'tab-order' %}
 {% assign endered = endered | sort: 'tab-order' | reverse %}
 {% assign collection_list = ordered | concat: unorder | concat: endered %}
-
-<div id="collection-tabs" class="ui inverted stackable pointing secondary menu">
-{% for collection in collection_list %}
-{% capture tab_class %}{% if forloop.first %}active {% endif %}item{% endcapture %}
-  <a class="{{ tab_class }}" data-tab="{{ collection.label | downcase }}">{{ collection.title }}</a>
-{% endfor %}
-</div>
 
 {% for collection in collection_list %}
 {% capture tab_class %}ui {% if forloop.first %}active {% endif %}inverted tab segment{% endcapture %}
@@ -212,3 +197,19 @@ so our strategy is to:
 &nbsp;<br>
 </div>
 {% endfor %}
+
+
+{%- comment %} these fixed items (search & collection tabs) need to be above the tab segments {% endcomment -%}
+
+<div id="collection-tabs" class="ui inverted stackable pointing secondary fixed menu">
+{% for collection in collection_list %}
+{% capture tab_class %}{% if forloop.first %}active {% endif %}item{% endcapture %}
+  <a class="{{ tab_class }}" data-tab="{{ collection.label | downcase }}">{{ collection.title }}</a>
+{% endfor %}
+</div>
+
+<div class="ui inverted large fixed menu">
+<div class="item">
+{% include elements/search.html %}
+</div>
+</div>

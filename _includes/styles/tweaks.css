@@ -111,6 +111,26 @@ sup:target::before {
   font-size: /* 10 - 14px */ calc(10px + 4 * ((100vw - 320px) / (1910 - 320)));
 }
 
+/* add space underneath indices so bottom-most item can scroll into view */
+#collection-indices {
+  padding-bottom: 75vh;
+}
+#collection-indices .ui.large.fixed.menu {
+  top: 3.5rem;
+}
+#collection-indices .ui.large.fixed.menu .item {
+  padding-top: 1.4em;
+}
+
+#collection-tabs {
+  top: 5.5rem;
+  background-color: #1b1c1d; /* FIXME: this should pull the semantic sass variable for inverted backgrounds: @black */
+}
+#collection-indices .ui.tab.segment {
+  top: 5rem;
+  margin-top: 0;
+}
+
 /* tweaks to existing semantic-ui rules */
 #sidebar-retractable.ui.push.sidebar {
   z-index: 100; /* underneath top fixed menu */

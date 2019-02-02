@@ -3,7 +3,7 @@ set_indices_scrolltop = function() {
   var active_item = $('#active-page-index').first();
   if (active_item.length < 1) return;
 
-  var y = active_item.position().top;
+  var y = active_item.position().top - 50; {% comment %} an arbitrary amount below the collection-tabs element {% endcomment %}
   $('#sidebar-fixed').scrollTop(y);
 }
 
