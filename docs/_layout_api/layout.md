@@ -3,9 +3,14 @@ layout: "layout"
 
 title: "layout"
 description: |
-  `layout` creates documentation of a Jekyll layout. Layouts are like rendering functions that turn page variables and content data into specific HTML.  This page is an example of `layout` in use, documenting itself ([source](https://raw.githubusercontent.com/pixeldroid/programming-pages/master/docs/_layout_api/layout.md "source of a page using the 'layout' layout")).
+  `layout` creates documentation of a Jekyll layout.
+
+  Layouts are like rendering functions that turn page variables and content data into specific HTML.
+  This page is an example of `layout` in use, documenting itself ([source]).
 
   See the usage section below for an illustration of how to invoke this layout in a documentation file.
+
+  [source]: https://raw.githubusercontent.com/pixeldroid/programming-pages/master/docs/_layout_api/layout.md "source of a page using the 'layout' layout"
 parent_layout: [ "page", "base", "compress" ]
 parameters:
   - { name: "title", type: "string", description: "filename of layout, without extension" }

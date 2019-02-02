@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Theme features
-description: a list of features provided by the theme
+description: list of features provided by the theme
 order: 1
 ---
 
@@ -13,7 +13,7 @@ order: 1
 - pre-built [site structure](#overview)&mdash;just add documentation
 - simple authoring syntax using [Markdown]({{site.baseurl}}/examples/sampler/#/examples/) and [Liquid][liquid]
 - ready-to-use [layouts](#/layout_api), extensible to create new ones
-- searchable content, with keyboard shortcuts (try `h`)
+- [searchable content](#search-input), with keyboard shortcuts (try `h`)
 - mobile-ready design browsable on multiple devices
 - styling for readability, leveraging [Semantic UI][semantic-ui]
 - clean site generation that scores well on [Lighthouse][lighthouse] audits
@@ -33,7 +33,7 @@ The programming pages theme provides a Home link (<span>{% include icon.liquid i
 
 To search for content, focus the search input, and start typing a term to search for. A results box will populate with best matches. Select one to navigate to the page.
 
-<span>{% include icon.liquid id='info-circle' %} <b>Info</b></span><br> On a desktop, open the help menu with the `h` key to see keyboard shortcuts for toggling navigation tabs and searching.
+<span>{% include icon.liquid id='info-circle' %} <b>Info</b></span><br> On a desktop, the `s` key will focus the search input. Open the help menu with the `h` key to see other keyboard shortcuts for toggling navigation tabs and searching.
 {:.ui.info.message}
 
 

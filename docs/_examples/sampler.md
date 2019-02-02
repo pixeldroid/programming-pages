@@ -25,7 +25,7 @@ See the [References](#references) section below for links to more details.
 | [Spans](#spans) | `_`, `**`, `~~` |
 | [Blockquotes](#blockquotes) | `>` |
 | [Lists](#lists) | `*`, `+`, `-`, `1.` |
-| [Code](#code) | <code>&#96;</code> or <code>```</code> |
+| [Code](#code) | <code class="highlighter-rouge">&#96;</code> or <code class="highlighter-rouge">```</code> |
 | [Keyboard](#keyboard) | `<kdb> .. </kbd>` |
 | [Tables](#tables) | `|--:|` |
 | [Links](#links) | `[text](url "title")` or (`[text][id]` + `[id]: url "title"`) |
