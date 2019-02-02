@@ -167,7 +167,7 @@ blockquote {
 blockquote p {
   display: inline;
 }
-code, kbd, pre, samp {
+code, pre, samp {
   font-family: Consolas,'Lucida Console','Andale Mono',monospace;
 }
 code.highlighter-rouge {

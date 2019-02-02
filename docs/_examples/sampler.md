@@ -26,6 +26,7 @@ See the [References](#references) section below for links to more details.
 | [Blockquotes](#blockquotes) | `>` |
 | [Lists](#lists) | `*`, `+`, `-`, `1.` |
 | [Code](#code) | <code>&#96;</code> or <code>```</code> |
+| [Keyboard](#keyboard) | `<kdb> .. </kbd>` |
 | [Tables](#tables) | `|--:|` |
 | [Links](#links) | `[text](url "title")` or (`[text][id]` + `[id]: url "title"`) |
 | [Images](#images) | `![alt](url "title")` or (`![alt][id]` + `[id]: url "title"`) |
@@ -332,6 +333,29 @@ Use triple backticks (<code>```</code>) on lines before and after the code block
     "bat": [true, false]
 }
 ```
+</div>
+{:.ui.attached.secondary.segment}
+
+
+## Keyboard
+
+Use the `kbd` tag to indicate literal key sequences (<kbd>Esc</kbd>).
+
+#### markdown
+{:.ui.attached.tertiary.inverted.tight.grey.segment}
+
+<div>
+    Select all text on the page with <kbd>Ctrl</kbd><kbd>A</kbd>.
+</div>
+{:.ui.attached.secondary.tight.segment}
+
+<br>
+
+#### result
+{:.ui.attached.secondary.inverted.tight.blue.segment}
+
+<div>
+Select all text on the page with <kbd>Ctrl</kbd><kbd>A</kbd>.
 </div>
 {:.ui.attached.secondary.segment}
 

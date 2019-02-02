@@ -30,6 +30,7 @@ layout: compress
 {% include styles/semantic-ui/transition.min.css %}
 
 {% capture _css %}
+{% include styles/kbd.css %}
 {% include styles/svg-icons.css %}
 {% include styles/tweaks.css %}
 {% include themes/syntax.css %}
