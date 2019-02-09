@@ -1,15 +1,18 @@
 {% capture NL %}
 {% endcapture%}
+
+{% assign searchable_docs = site.pages | concat: site.documents | where_exp:'it','it.title.size > 0' %}
+
 site_search_init = function() {
   var search_content = [
-  {% for collection in site.collections %}
-  {% unless collection.label == 'posts' %}
-  {% for doc in collection.docs %}
-    {% capture url %}{{ doc.url }}#/{{ collection.label | downcase }}/{% endcapture %}
+  {% for doc in searchable_docs %}
+    {% assign collection = doc.collection %}
+    {% if collection == 'posts' %}{% continue %}{% endif %}
+    {% assign url = doc.url %}{% if collection.size > 0 %}{% capture url %}{{ doc.url }}#/{{ collection | downcase }}/{% endcapture %}{% endif %}
     {% assign title = doc.title | default: doc.name %}
-    {% assign category = doc.category | default: collection.label %}
-    {% assign tags = doc.search_tags | default: "" %}
-    {% assign description = doc.description | default: "" %}
+    {% assign category = doc.category | default: collection | default: '?' %}
+    {% assign tags = doc.search_tags %}
+    {% assign description = doc.description %}
     {% comment %} placing string values in single quotes, so need to escape any within the string {% endcomment %}
     {% if title == "'" %}{% assign title = "\'" %} {% comment %} allow title to be single char, assume other fields are not {% endcomment %}
     {% elsif title contains "'" %}{% assign title = title | split: "'" | join: "\'" %}
@@ -21,15 +24,13 @@ site_search_init = function() {
     {% capture desc %}{% if description.size > 0 %}, description: '{{ description }}'{% endif %}{% endcapture %}
     { title: '{{ title }}', category: '{{ category }}'{{ tags }}{{ desc }}, url: '{{ site.baseurl }}{{ url }}' },
   {% endfor %}
-  {% endunless %}
-  {% endfor %}
   ];
 
   {% comment %} urls are auto-followed, so no callback needed {% endcomment %}
   $('#site-search').search({
     type: 'category',
     source: search_content,
-    searchFields: [ 'title', 'description', 'tags' ],
+    searchFields: [ 'title', 'tags', 'category', 'description' ],
     selectFirstResult: true,
   });
 
