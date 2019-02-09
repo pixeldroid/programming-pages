@@ -60,14 +60,15 @@ Setting up locally for testing a GitHub pages target is best done via [Bundler][
    $ {{ page.cmd_jekyll_serve }}
    ```
 
+---
 
 # Other installation methods
 
 There are three ways to install the theme for your site:
 
-- via the jekyll-remote-theme plugin (for GitHub Pages hosting)
-- via the programming-pages Ruby gem (for self-hosted sites)
-- by downloading a release of theme files directly and adding them to your site (for capturing dependencies or making custom modifications)
+1. via the jekyll-remote-theme plugin (for GitHub Pages hosting)
+1. via the programming-pages Ruby gem (for self-hosted sites)
+1. by downloading a release of theme files directly and adding them to your site (for capturing dependencies or making custom modifications)
 
 ### Install via remote theme
 

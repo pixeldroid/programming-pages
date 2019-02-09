@@ -77,6 +77,8 @@ collections:
     tab-order: 3
 code_indent: "  "
 highlighter: rouge
+kramdown:
+  footnote_backlink: "⮌"
 permalink: pretty
 sass:
   style: compressed
@@ -98,10 +100,10 @@ The user should provide the following project metadata values:
 
 ### Theme provided configuration
 
-The theme defines the following configuration values:
+The theme defines the following configuration values with defaults; feel free to customize them:
 
 - `code_indent` : _used by the theme_ &mdash; Number of spaces to use when indenting lines of code in doc comments
-- `collections` : _used by Jekyll_ &mdash; [Collection][jekyll-collection] folders to expect api docs, examples, and guides to live in
+- `collections` : _used by Jekyll_ &mdash; [Collection][jekyll-collection] folders to expect things like api docs, examples, and guides to live in
   - `<collection>.ignore-page-order` : _used by the theme_ &mdash; Turns off relative page ordering for a collection
   - `<collection>.tab-order` : _used by the theme_ &mdash; Specifies relative order for the collection tabs (lower to the left)
   - `<collection>.title` : _used by the theme_ &mdash; Label used for the collection tab
