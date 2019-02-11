@@ -3,10 +3,9 @@ layout: "layout"
 
 title: "example"
 description: |
-  `example` places an optional thumbnail image above a [tabular menu](https://semantic-ui.com/collections/menu.html#tabular "Semantic UI docs for tabular menu") of syntax-highlighted code files.
+  `example` places content and an optional thumbnail image above a [tabular menu](https://semantic-ui.com/collections/menu.html#tabular "Semantic UI docs for tabular menu") of syntax-highlighted code files.
 
   See [Using the example layout] for a demonstration ([source]).
-
 
   [Using the example layout]: ../../examples/example/#/examples/ "using the example layout"
   [source]: https://raw.githubusercontent.com/pixeldroid/programming-pages/master/docs/_examples/example.md "source of a page using the example layout"

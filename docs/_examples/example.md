@@ -6,6 +6,7 @@ code:
   - { label: command line, url: invocation.console, language: console }
 thumb: workflow.dot.png
 title: Using the example layout
+description: how to use the `example` layout
 ---
 
 The `example` layout presents text, imagery and code together in a layout useful for showing how things work.

@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Liquid Includes
+description: use includes as theme macros
 ---
 
 {::options parse_block_html="true" /}
@@ -156,7 +157,7 @@ Each section on this page illustrates liquid syntax that can be used to invoke m
 ## render\_indices.liquid
 
 > creates the individual links in the sidebar. <br>
-> pages, layouts, and guide-indexes are indented when parented
+> links are indented when parented, unless their page layout has been excluded
 
 <span>{% include icon.liquid id='info-circle' %} <b>Note</b></span><br> This include is made available for override, so that a site can customize how (or if) it renders the items in the side nav.
 {:.ui.info.message}

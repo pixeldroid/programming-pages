@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Reporting Issues and Contributing
+description: how to help this site improve
 order: -2
 ---
 

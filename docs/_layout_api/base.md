@@ -7,10 +7,10 @@ description: |
 
   The `base` layout does not provide any special content formatting; it is designed to be inherited from by another layout that leverages the base css and scripts to implement features.
 
-  Most of programming pages theme features are implemented in the [`page`][page] layout.
+  Most programming pages theme features are implemented in the [page] layout.
 
   [page]: ../page/#/layout_api/ "page layout of the programming-pages theme"
 parent_layout: [ "compress" ]
 parameters:
-  - { name: "title", type: "string", optional: true, description: "title of the page, used to render in indices. If not provided, defaults to sanitized file name." }
+  - { name: "title", type: "string", optional: true, description: "title of the page, used to render in indices. If not provided, defaults to file name." }
 ---

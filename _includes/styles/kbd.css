@@ -1,0 +1,20 @@
+/*!
+* Remixed from StackOverflow <kbd> css, user Jin
+* https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style
+* https://creativecommons.org/licenses/by-sa/3.0/
+*/
+kbd {
+  background-color: #f7f7f7;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+  color: #333;
+  display: inline-block;
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 75%;
+  line-height: 140%;
+  margin: 0 .1em;
+  padding: .1em .6em;
+  text-shadow: 0 1px 0 #fff;
+  user-select: none;
+}

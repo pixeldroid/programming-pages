@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Markdown Sampler
+description: a reference for all the formatting conventions supported by this theme
 ---
 
 {::options parse_block_html="true" /}
@@ -24,7 +25,8 @@ See the [References](#references) section below for links to more details.
 | [Spans](#spans) | `_`, `**`, `~~` |
 | [Blockquotes](#blockquotes) | `>` |
 | [Lists](#lists) | `*`, `+`, `-`, `1.` |
-| [Code](#code) | <code>&#96;</code> or <code>```</code> |
+| [Code](#code) | <code class="highlighter-rouge">&#96;</code> or <code class="highlighter-rouge">```</code> |
+| [Keyboard](#keyboard) | `<kdb> .. </kbd>` |
 | [Tables](#tables) | `|--:|` |
 | [Links](#links) | `[text](url "title")` or (`[text][id]` + `[id]: url "title"`) |
 | [Images](#images) | `![alt](url "title")` or (`![alt][id]` + `[id]: url "title"`) |
@@ -331,6 +333,29 @@ Use triple backticks (<code>```</code>) on lines before and after the code block
     "bat": [true, false]
 }
 ```
+</div>
+{:.ui.attached.secondary.segment}
+
+
+## Keyboard
+
+Use the `kbd` tag to indicate literal key sequences (<kbd>Esc</kbd>).
+
+#### markdown
+{:.ui.attached.tertiary.inverted.tight.grey.segment}
+
+<div>
+    Select all text on the page with <kbd>Ctrl</kbd><kbd>A</kbd>.
+</div>
+{:.ui.attached.secondary.tight.segment}
+
+<br>
+
+#### result
+{:.ui.attached.secondary.inverted.tight.blue.segment}
+
+<div>
+Select all text on the page with <kbd>Ctrl</kbd><kbd>A</kbd>.
 </div>
 {:.ui.attached.secondary.segment}
 

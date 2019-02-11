@@ -27,7 +27,7 @@ layout: page
 {% endif %}
 
 <div class="ui basic segment"><span class="anchor" id="description">&nbsp;</span>
-  {% assign lines = page.description | split: newline %}
+  {% assign lines = page.description | newline_to_br | split: '<br />' %}
   <p class="larger text">
   {{ lines.first | markdownify | remove: '<p>' | remove: '</p>' }}
   </p>

@@ -3,18 +3,27 @@ project:
   name: programming pages
   owner: pixeldroid
   repo: https://github.com/pixeldroid/programming-pages
-  version: 0.5.12
+  version: 0.5.13
 attributions:
-  entypo-pictograms: Daniel Bruce
-  font-awesome: Dave Gandy
-  glyphicon-halflings: Jan Kovařík
-  jquery: https://github.com/jquery/jquery
-  jquery-address: https://github.com/Semantic-Org/Semantic-UI-Docs/blob/master/server/files/javascript/library/history.js
-  loadcss: https://github.com/filamentgroup/loadCSS
-  monokai-colors: Wimer Hazenberg
-  mousetrap: https://craig.is/killing/mice
-  semantic-ui: https://github.com/Semantic-Org/Semantic-UI
-  svg-icon: https://leungwensen.github.io/svg-icon/
+  bundler: Bundler folks, https://github.com/bundler/bundler/
+  entypo-pictograms: Daniel Bruce, http://www.entypo.com/
+  font-awesome: Dave Gandy, https://github.com/FortAwesome/Font-Awesome
+  github-pages: GitHub, Inc., https://pages.github.com/
+  glyphicon-halflings: Jan Kovařík, https://www.glyphicons.com/sets/halflings/
+  jekyll: Jekyll crew, https://github.com/jekyll/jekyll
+  jquery: jQuery team, https://github.com/jquery/jquery
+  jquery-address: Rostislav Hristov, https://github.com/Semantic-Org/Semantic-UI-Docs/blob/master/server/files/javascript/library/history.js
+  kbd-css: StackOverflow user Jin, https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style
+  kramdown: Thomas Leitner, https://github.com/gettalong/kramdown
+  liquid: Shopify, https://github.com/Shopify/liquid
+  loadcss: Filament Group, https://github.com/filamentgroup/loadCSS
+  monokai-colors: Wimer Hazenberg, https://github.com/monokai
+  mousetrap: Craig Campbell, https://craig.is/killing/mice
+  rake: Jim Weirich, https://github.com/ruby/rake
+  rouge: Jeanine Adkisson, https://github.com/jneen/rouge
+  ruby: Yukihiro Matsumoto, https://www.ruby-lang.org/en/downloads/
+  semantic-ui: Jack Lukic, https://github.com/Semantic-Org/Semantic-UI
+  svg-icon: 绝云, https://leungwensen.github.io/svg-icon/
 collections:
   guides:
     output: true

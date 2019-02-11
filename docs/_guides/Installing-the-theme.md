@@ -1,7 +1,9 @@
 ---
 layout: guide-index
 title: Installing the theme
+description: how to get started
 order: 2
+
 cmd_jekyll_serve: 'bundle exec jekyll serve --source ./docs --layouts ./docs/_layouts'
 ---
 
@@ -28,7 +30,7 @@ Then use the theme to:
 
 1. [Author][author] your content
 1. [Publish][publish] to GitHub Pages
-1. _(optionally)_ [Customize][customize] the theme to taste
+1. _(optionally)_ Customize the theme to taste
 
 
 ## Running locally
@@ -43,7 +45,7 @@ Setting up locally for testing a GitHub pages target is best done via [Bundler][
    ```ruby
    source 'https://rubygems.org'
 
-   gem 'github-pages', group: :jekyll_plugins
+   gem 'github-pages'
    ```
 
 1. Retrieve dependencies into a local bundle:
@@ -58,14 +60,15 @@ Setting up locally for testing a GitHub pages target is best done via [Bundler][
    $ {{ page.cmd_jekyll_serve }}
    ```
 
+---
 
 # Other installation methods
 
 There are three ways to install the theme for your site:
 
-- via the jekyll-remote-theme plugin (for GitHub Pages hosting)
-- via the programming-pages Ruby gem (for self-hosted sites)
-- by downloading a release of theme files directly and adding them to your site (for capturing dependencies or making custom modifications)
+1. via the jekyll-remote-theme plugin (for GitHub Pages hosting)
+1. via the programming-pages Ruby gem (for self-hosted sites)
+1. by downloading a release of theme files directly and adding them to your site (for capturing dependencies or making custom modifications)
 
 ### Install via remote theme
 
@@ -74,7 +77,7 @@ There are three ways to install the theme for your site:
    ```ruby
    source 'https://rubygems.org'
 
-   gem 'github-pages', group: :jekyll_plugins
+   gem 'github-pages'
    ```
 
    ```console
@@ -102,10 +105,11 @@ There are three ways to install the theme for your site:
 
 ### Install via Ruby Gem
 
-1. Require the [programming-pages theme gem][programming-pages-gem] in your `Gemfile`:
+1. Require the [programming-pages theme gem][programming-pages-gem] in your `Gemfile` (replace the github-pages dependency):
 
    ```ruby
-   gem 'programming-pages'
+   - gem 'github-pages'
+   + gem 'programming-pages'
    ```
 
 1. Specify the theme in your `_config.yml`:

@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Authoring documentation
+description: how to write documentation with this theme
 order: 3
 ---
 
