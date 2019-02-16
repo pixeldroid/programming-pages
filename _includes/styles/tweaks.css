@@ -2,6 +2,17 @@
  * CSS customizations for the programming pages template
  */
 
+/* add cross-platform support for unicode characters used in the theme */
+@font-face {
+  font-family: 'progp-symbol';
+  src: url('fonts/progp-symbol.woff2') format('woff2'); /* path relative to /assets/site.css */
+  unicode-range: U+2B8C; /* ⮌ | U+2B8C: ANTICLOCKWISE TRIANGLE-HEADED RIGHT U-SHAPED ARROW */
+}
+.reversefootnote { /* kramdown applies this class to footnote backlinks */
+  font-family: 'progp-symbol', 'Segoe UI Symbol', sans-serif;
+  font-size: 80%;
+}
+
 /* use flexbox to keep footer stuck to bottom */
 .pusher {
   display: flex;

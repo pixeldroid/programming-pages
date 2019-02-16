@@ -513,12 +513,15 @@ Note format: `[^id]: content`
     Footnote markers must be numbers or word characters in square brackets.[^1] Traditional symbols[^2] will not work with the kramdown processor.
 
     The backlink character (`{{ site.kramdown.footnote_backlink}}`) is configurable via `kramdown.footnote_backlink` in `_config.yml`.[^3]
+    The programming pages theme chooses unicode code point `U+2B8C` for this, and supplies its own webfont to ensure cross-platform rendering.
+    Kramdown's default value is `U+21A9` (`↩`).[^4]
 
-    Footnotes are collected and all rendered at the end of the page.
+    Footnotes are collected and all rendered at the end of the page, with the optional backlink character linking back to the citing text.
 
-    [^1]: A footnote marker can be created by placing the footnote name in square brackets. The footnote name has to start with a caret (`^`), followed by a word character or a digit and then optionally followed by other word characters, digits or dashes. For example: `This is some text.[^1]. Other text.[^footnote].` (from: [Kramdown syntax documentation {% include icon.liquid id='external-link' %}](https://kramdown.gettalong.org/syntax.html#footnotes) ).
-    [^2]: Typographical devices such as the asterisk (*) or dagger (†) may also be used to point to footnotes; the traditional order of these symbols in English is *, †, ‡, §, ‖, ¶. (from: [Wikipedia description of footnotes {% include icon.liquid id='external-link' %}](https://en.wikipedia.org/w/index.php?title=Note_(typography)&oldid=871967408) ).
-    [^3]: `footnote_backlink` defines the text that will link back to the footnote marker. The footnote backlink is just text, so any special HTML characters will be escaped. If the footnote backlink text is an empty string, no footnote backlinks will be generated. (from: [Kramdown configuration options {% include icon.liquid id='external-link' %}](https://kramdown.gettalong.org/options.html#option-footnote-backlink) ).
+    [^1]: A footnote marker can be created by placing the footnote name in square brackets. The footnote name has to start with a caret (`^`), followed by a word character or a digit and then optionally followed by other word characters, digits or dashes. For example: `This is some text.[^1]. Other text.[^footnote].` (from: [Kramdown syntax documentation {% include icon.liquid id='external-link' class='smaller text' %}](https://kramdown.gettalong.org/syntax.html#footnotes) ).
+    [^2]: Typographical devices such as the asterisk (*) or dagger (†) may also be used to point to footnotes; the traditional order of these symbols in English is *, †, ‡, §, ‖, ¶. (from: [Wikipedia description of footnotes {% include icon.liquid id='external-link' class='smaller text' %}](https://en.wikipedia.org/w/index.php?title=Note_(typography)&oldid=871967408) ).
+    [^3]: `footnote_backlink` defines the text that will link back to the footnote marker. The footnote backlink is just text, so any special HTML characters will be escaped. If the footnote backlink text is an empty string, no footnote backlinks will be generated. (from: [Kramdown configuration options {% include icon.liquid id='external-link' class='smaller text' %}](https://kramdown.gettalong.org/options.html#option-footnote-backlink) ).
+    [^4]: Default value for `footnote_backlink` is `&8617;`, i.e. unicode codepoint `U+21A9`. It can be set to any text, or the empty string to disable.(from: [Kramdown syntax documentation {% include icon.liquid id='external-link' class='smaller text' %}](https://kramdown.gettalong.org/options.html#option-footnote-backlink) ).
 </div>
 {:.ui.attached.secondary.tight.segment}
 
@@ -530,13 +533,16 @@ Note format: `[^id]: content`
 <div>
 Footnote markers must be numbers or word characters in square brackets.[^1] Traditional symbols[^2] will not work with the kramdown processor.
 
-The backlink character (`{{ site.kramdown.footnote_backlink}}`) is configurable via `kramdown.footnote_backlink` in `_config.yml`.[^3]
+The backlink character (`{{ site.kramdown.footnote_backlink}}`{:.reversefootnote}) is configurable via `kramdown.footnote_backlink` in `_config.yml`.[^3]
+The programming pages theme chooses unicode code point `U+2B8C` for this, and supplies its own webfont to ensure cross-platform rendering.
+Kramdown's default value is `U+21A9` (`↩`).[^4]
 
-Footnotes are collected and rendered all together at the end of the page.
+Footnotes are collected and all rendered at the end of the page, with the optional backlink character linking back to the citing text.
 
-[^1]: A footnote marker can be created by placing the footnote name in square brackets. The footnote name has to start with a caret (`^`), followed by a word character or a digit and then optionally followed by other word characters, digits or dashes. For example: `This is some text.[^1]. Other text.[^footnote].` (from: [Kramdown syntax documentation {% include icon.liquid id='external-link' %}](https://kramdown.gettalong.org/syntax.html#footnotes) ).
-[^2]: Typographical devices such as the asterisk (*) or dagger (†) may also be used to point to footnotes; the traditional order of these symbols in English is *, †, ‡, §, ‖, ¶. (from: [Wikipedia description of footnotes {% include icon.liquid id='external-link' %}](https://en.wikipedia.org/w/index.php?title=Note_(typography)&oldid=871967408) ).
-[^3]: `footnote_backlink` defines the text that will link back to the footnote marker. The footnote backlink is just text, so any special HTML characters will be escaped. If the footnote backlink text is an empty string, no footnote backlinks will be generated. (from: [Kramdown configuration options {% include icon.liquid id='external-link' %}](https://kramdown.gettalong.org/options.html#option-footnote-backlink) ).
+[^1]: A footnote marker can be created by placing the footnote name in square brackets. The footnote name has to start with a caret (`^`), followed by a word character or a digit and then optionally followed by other word characters, digits or dashes. For example: `This is some text.[^1]. Other text.[^footnote].` (from: [Kramdown syntax documentation {% include icon.liquid id='external-link' class='smaller text' %}](https://kramdown.gettalong.org/syntax.html#footnotes) ).
+[^2]: Typographical devices such as the asterisk (*) or dagger (†) may also be used to point to footnotes; the traditional order of these symbols in English is *, †, ‡, §, ‖, ¶. (from: [Wikipedia description of footnotes {% include icon.liquid id='external-link' class='smaller text' %}](https://en.wikipedia.org/w/index.php?title=Note_(typography)&oldid=871967408) ).
+[^3]: `footnote_backlink` defines the text that will link back to the footnote marker. The footnote backlink is just text, so any special HTML characters will be escaped. If the footnote backlink text is an empty string, no footnote backlinks will be generated. (from: [Kramdown configuration options {% include icon.liquid id='external-link' class='smaller text' %}](https://kramdown.gettalong.org/options.html#option-footnote-backlink) ).
+[^4]: Default value for `footnote_backlink` is `&8617;`, i.e. unicode codepoint `U+21A9`. It can be set to any text, or the empty string to disable.(from: [Kramdown syntax documentation {% include icon.liquid id='external-link' class='smaller text' %}](https://kramdown.gettalong.org/options.html#option-footnote-backlink) ).
 </div>
 {:.ui.attached.secondary.segment}
 
