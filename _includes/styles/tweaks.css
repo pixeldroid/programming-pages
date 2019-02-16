@@ -123,36 +123,36 @@ sup:target::before {
 }
 
 /* add space underneath indices so bottom-most item can scroll into view */
-#collection-indices {
+#sidebar-collection-indices {
   padding-bottom: 75vh;
 }
-#collection-indices .ui.large.fixed.menu .item {
+#sidebar-collection-indices .ui.large.fixed.menu .item {
   padding-top: 1.4em;
 }
 
 /* for sidebar fixed, keep search and tabs fixed at top */
-#sidebar-fixed #collection-indices .ui.large.fixed.menu {
+#sidebar-fixed #sidebar-collection-indices .ui.large.fixed.menu {
   top: 3.5rem;
 }
-#sidebar-fixed #collection-indices .ui.tab.segment {
+#sidebar-fixed #sidebar-collection-indices .ui.tab.segment {
   top: 5rem;
   margin-top: 0;
 }
-#sidebar-fixed #collection-tabs {
+#sidebar-fixed #sidebar-collection-tabs {
   top: 5.5rem;
   background-color: #1b1c1d; /* FIXME: this should pull the semantic sass variable for inverted backgrounds: @black */
 }
 
 /* for sidebar retractable, items still need to be positioned, since they've been fixed */
 /* FIXME: this is clunky and brittle */
-#sidebar-retractable #collection-indices .ui.large.fixed.menu {
+#sidebar-retractable #sidebar-collection-indices .ui.large.fixed.menu {
   top: 0;
 }
-#sidebar-retractable #collection-indices .ui.tab.segment {
+#sidebar-retractable #sidebar-collection-indices .ui.tab.segment {
   top: 8.5rem; /* TODO: use liquid to make this {{ num_collections*2.5+1 }}; */
   margin-top: 0;
 }
-#sidebar-retractable #collection-tabs {
+#sidebar-retractable #sidebar-collection-tabs {
   top: 2.5rem;
   background-color: rgba(255,255,255,.08); /* FIXME: this should pull the semantic sass variable for .ui.inverted.menu a.item:hover: @invertedHoverBackground */
 }

@@ -12,13 +12,13 @@ sidebar_init = function() {
 $(sidebar_init);
 
 ensure_mobile_view = function() {
-  if (0 == $('#sidebar-retractable').has('#collection-indices').length) {
-    $('#collection-indices').appendTo( $('#sidebar-retractable') );
+  if (0 == $('#sidebar-retractable').has('#sidebar-collection-indices').length) {
+    $('#sidebar-collection-indices').appendTo( $('#sidebar-retractable') );
   }
 };
 ensure_desktop_view = function() {
-  if (0 == $('#sidebar-fixed').has('#collection-indices').length) {
-    $('#collection-indices').appendTo( $('#sidebar-fixed') );
+  if (0 == $('#sidebar-fixed').has('#sidebar-collection-indices').length) {
+    $('#sidebar-collection-indices').appendTo( $('#sidebar-fixed') );
   }
   if ($('#sidebar-retractable').sidebar('is visible')) {
     $('#sidebar-retractable').sidebar('hide');

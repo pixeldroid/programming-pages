@@ -3,12 +3,12 @@ set_indices_scrolltop = function() {
   var active_item = $('#active-page-index').first();
   if (active_item.length < 1) return;
 
-  var y = active_item.position().top - 50; {% comment %} an arbitrary amount below the collection-tabs element {% endcomment %}
+  var y = active_item.position().top - 50; {% comment %} an arbitrary amount below the sidebar-collection-tabs element {% endcomment %}
   $('#sidebar-fixed').scrollTop(y);
 }
 
 collection_tabs_init = function() {
-  $('#collection-tabs .item').tab({
+  $('#sidebar-collection-tabs .item').tab({
     history: true,
     historyType: 'hash',
     onFirstLoad: set_indices_scrolltop,
