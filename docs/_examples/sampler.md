@@ -585,6 +585,7 @@ Place an emoji id inside colons (`:id:`). Reference an [emoji cheat sheet][emoji
 
 <div>
     :golf::clap:
+    {:.ui.huge}
 </div>
 {:.ui.attached.secondary.tight.segment}
 
@@ -595,6 +596,7 @@ Place an emoji id inside colons (`:id:`). Reference an [emoji cheat sheet][emoji
 
 <div>
 :golf::clap:
+{:.ui.huge}
 </div>
 {:.ui.attached.secondary.segment}
 
@@ -650,7 +652,7 @@ and `type` is any of:
 {:.ui.attached.tertiary.inverted.tight.grey.segment}
 
 <div>
-    This text will appear as a huge message.
+    This text will appear as a **<size>** message. :speech_balloon:
     {:.ui.huge.message}
 </div>
 {:.ui.attached.secondary.tight.segment}
@@ -661,8 +663,29 @@ and `type` is any of:
 {:.ui.attached.secondary.inverted.tight.blue.segment}
 
 <div>
-This text will appear as a huge message.
+This text will appear as a **mini** message. :speech_balloon:
+{:.ui.mini.message}
+
+This text will appear as a **tiny** message. :speech_balloon:
+{:.ui.tiny.message}
+
+This text will appear as a **small** message. :speech_balloon:
+{:.ui.small.message}
+
+This is a plain message with no size specified. :speech_balloon:
+{:.ui.message}
+
+This text will appear as a **large** message. :speech_balloon:
+{:.ui.large.message}
+
+This text will appear as a **big** message. :speech_balloon:
+{:.ui.big.message}
+
+This text will appear as a **huge** message. :speech_balloon:
 {:.ui.huge.message}
+
+This text will appear as a **massive** message. :speech_balloon:
+{:.ui.massive.message}
 </div>
 {:.ui.attached.secondary.segment}
 

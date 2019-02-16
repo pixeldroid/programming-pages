@@ -1,0 +1,16 @@
+/*
+ * Emoji sizes to match semantic ui vocabulary and leverage souce being 128px x 128px
+ */
+
+img.emoji {
+  width: auto;
+  vertical-align: middle;
+  height: 1.25em; /* medium */
+}
+.ui.mini > img.emoji { height: 1.5em; }
+.ui.tiny > img.emoji { height: 1.25em; }
+.ui.small > img.emoji { height: 1.125em; }
+.ui.large > img.emoji { height: 1.5em; }
+.ui.big > img.emoji { height: 1.75em; }
+.ui.huge > img.emoji { height: 2em; }
+.ui.massive > img.emoji { height: 3em; }
