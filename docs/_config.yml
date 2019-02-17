@@ -3,13 +3,15 @@ project:
   name: programming pages
   owner: pixeldroid
   repo: https://github.com/pixeldroid/programming-pages
-  version: 0.5.13
+  version: 0.5.14
 attributions:
   bundler: Bundler folks, https://github.com/bundler/bundler/
   entypo-pictograms: Daniel Bruce, http://www.entypo.com/
   font-awesome: Dave Gandy, https://github.com/FortAwesome/Font-Awesome
+  fontello: Fontello, http://fontello.com/
   github-pages: GitHub, Inc., https://pages.github.com/
   glyphicon-halflings: Jan Kovařík, https://www.glyphicons.com/sets/halflings/
+  iconic: P.J. Onori, https://github.com/somerandomdude/Iconic
   jekyll: Jekyll crew, https://github.com/jekyll/jekyll
   jquery: jQuery team, https://github.com/jquery/jquery
   jquery-address: Rostislav Hristov, https://github.com/Semantic-Org/Semantic-UI-Docs/blob/master/server/files/javascript/library/history.js
