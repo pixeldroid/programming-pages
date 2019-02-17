@@ -75,6 +75,7 @@ sup:target::before {
   20% {  text-shadow: -3px 0 0 rgba(255,221,0, 0.8), 0 5px 0 rgba(255,221,0, 0.8), 3px 0 0 rgba(255,221,0, 0.8); }
   100% { text-shadow: -1px 0 0 rgba(255,221,0, 0.0), 0 1px 0 rgba(255,221,0, 0.0), 1px 0 0 rgba(255,221,0, 0.0); }
 }
+
 /* adjustments to fixed top title */
 #page-container {
   margin-top: 3.4rem; /* position page under top menu */
@@ -86,6 +87,7 @@ sup:target::before {
   top: -.06em;
   margin-right: .18em;
 }
+
 /* tighten things up as viewport shrinks */
 #site-title {
   background-color: #eee;
@@ -179,6 +181,9 @@ sup:target::before {
 .ui.vertical.text.menu .very.tight.item {
   margin: 0;
   padding: .125em;
+}
+.ui.segment {
+  overflow-x: auto;
 }
 .ui.tight.header {
   margin-bottom: .5em;
