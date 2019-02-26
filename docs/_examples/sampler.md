@@ -46,9 +46,28 @@ Each section on this page illustrates markdown syntax that can be used to author
 
 ## TOC
 
+Place the kramdown macro `{:toc}` on the line below any list item. The list item will be replaced by an auto-generated table of content list.
+
+#### markdown
+{:.ui.attached.tertiary.inverted.tight.grey.segment}
+
+<div>
+    - toc placeholder
+    {:toc}
+</div>
+{:.ui.attached.secondary.tight.segment}
+
+<br>
+
+#### result
+{:.ui.attached.secondary.inverted.tight.blue.segment}
+
+<div>
 - TOC (this line will be replaced by the table of contents)
 {::options toc_levels="2,3" /}
 {:toc}
+</div>
+{:.ui.attached.secondary.tight.segment}
 
 
 ## Headings
