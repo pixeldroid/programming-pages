@@ -124,42 +124,35 @@ sup:target::before {
   font-size: /* 10 - 14px */ calc(10px + 4 * ((100vw - 320px) / (1910 - 320)));
 }
 
-/* add space underneath indices so bottom-most item can scroll into view */
+/* sidebar menu styling */
 #sidebar-collection-indices {
-  padding-bottom: 75vh;
+  padding-bottom: 75vh; /* add space underneath indices so bottom-most item can scroll into view */
 }
 #sidebar-collection-indices .ui.large.fixed.menu .item {
   padding-top: 1.4em;
 }
-
-/* for sidebar fixed, keep search and tabs fixed at top */
-#sidebar-fixed #sidebar-collection-indices .ui.large.fixed.menu {
-  top: 3.5rem;
-}
-#sidebar-fixed #sidebar-collection-indices .ui.tab.segment {
-  top: 5rem;
+#sidebar-collection-indices .ui.tab.segment {
+  /* adjust tab segment to to fit under n rendered collections */
+  {% assign n = 0 %}{% for c in site.collections %}{% unless c.label == 'posts' or c.docs.size == 0 %}{% assign n = n | plus: 1 %}{% endunless %}{% endfor %}
+  top: {{ n | minus: 1 | times: 1.5 | plus: 5 }}rem; /* 1 -> 5 , 2 -> 6.5 , 3 -> 8 , .. */
+  padding: 0 0 0 .7em;
   margin-top: 0;
+}
+#sidebar-collection-tabs {
+  background-color: #292a2b; /* FIXME: this should be some theme variable for a lightened inverted background */
+}
+#sidebar-fixed #sidebar-collection-indices .ui.large.fixed.menu {
+  top: 3.5rem; /* for sidebar fixed, keep search and tabs fixed at top */
 }
 #sidebar-fixed #sidebar-collection-tabs {
-  top: 5.5rem;
-  background-color: #1b1c1d; /* FIXME: this should pull the semantic sass variable for inverted backgrounds: @black */
+  top: 6rem;
 }
-
-/* for sidebar retractable, items still need to be positioned, since they've been fixed */
-/* FIXME: this is clunky and brittle */
 #sidebar-retractable #sidebar-collection-indices .ui.large.fixed.menu {
-  top: 0;
-}
-#sidebar-retractable #sidebar-collection-indices .ui.tab.segment {
-  top: 8.5rem; /* TODO: use liquid to make this {{ num_collections*2.5+1 }}; */
-  margin-top: 0;
+  top: 0; /* for sidebar retractable, items still need to be positioned, since they've been fixed */
 }
 #sidebar-retractable #sidebar-collection-tabs {
   top: 2.5rem;
-  background-color: rgba(255,255,255,.08); /* FIXME: this should pull the semantic sass variable for .ui.inverted.menu a.item:hover: @invertedHoverBackground */
 }
-
-/* tweaks to existing semantic-ui rules */
 #sidebar-retractable.ui.push.sidebar {
   z-index: 100; /* underneath top fixed menu */
 }
@@ -171,8 +164,22 @@ sup:target::before {
   top: 3.5rem; /* below top fixed menu */
   left: auto;
 }
+.ui.menu {
+  min-height: 1em; /* SUI default is too large for a single item, at 2.75em */
+}
+
+/* tweaks to existing semantic-ui rules */
 .ui.secondary.pointing.menu .item {
-  padding: .75em .75em;
+  padding: .5em .75em;
+}
+.ui.secondary.vertical.pointing.menu .item {
+  border-bottom: none;/*            same as sui */
+  border-radius: 0!important;/*     ''          */
+  border-right: none;/*             switch border from right to left */
+  border-left-style: solid;
+  border-left-color: transparent;
+  border-left-width: 2px;
+  margin: 0 0 0 -2px;
 }
 .ui.vertical.text.menu .tight.item {
   margin: 0;
