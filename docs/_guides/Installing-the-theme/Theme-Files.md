@@ -75,7 +75,6 @@ collections:
     permalink: "/:collection/:path/"
     title: Layout API
     tab-order: 3
-code_indent: "  "
 highlighter: rouge
 kramdown:
   footnote_backlink: "⮌"
@@ -100,14 +99,15 @@ The user should provide the following project metadata values:
 
 ### Theme provided configuration
 
-The theme defines the following configuration values with defaults; feel free to customize them:
+The theme defines the following configuration values by default; feel free to customize them:
 
-- `code_indent` : _used by the theme_ &mdash; Number of spaces to use when indenting lines of code in doc comments
 - `collections` : _used by Jekyll_ &mdash; [Collection][jekyll-collection] folders to expect things like api docs, examples, and guides to live in
   - `<collection>.ignore-page-order` : _used by the theme_ &mdash; Turns off relative page ordering for a collection
   - `<collection>.tab-order` : _used by the theme_ &mdash; Specifies relative order for the collection tabs (lower to the left)
   - `<collection>.title` : _used by the theme_ &mdash; Label used for the collection tab
 - `highlighter` : _used by Jekyll_ &mdash; Specifies the [code hilighting engine used by GitHub Pages][ghpages-rouge] (Rouge), so local execution matches remote
+- `kramdown` : _used by Jekyll_ &mdash; Specifies [configuration settings for the kramdown processor][ghpages-kramdown]
+  - `footnote_backlink` : _used by kramdown_ &mdash; Label to act as a 'return to citation' link in footnotes
 - `permalink` : _used by Jekyll_ &mdash; Specifies the 'pretty' permalink style (see [Built-in permalink styles][jekyll-permalink])
 - `plugins` : _used by Jekyll_ &mdash; Requests enablement of the [jemoji][ghpages-jemoji] and [jekyll-remote-theme][ghpages-jekyll-remote-theme] plugins
 - `sass` : _used by Jekyll_ &mdash; Specifies compressed css when processed by the [scssify filter][jekyll-scssify]
@@ -174,6 +174,7 @@ In `_data/icons/theme.yml` are the [svg icon][svg-icons] definitions used by the
 [ghjekyll]: https://help.github.com/articles/using-jekyll-as-a-static-site-generator-with-github-pages/ "Using Jekyll as a static site generator with GitHub Pages"
 [ghpages-jekyll-remote-theme]: https://github.com/benbalter/jekyll-remote-theme "Jekyll plugin for building Jekyll sites with any GitHub-hosted theme"
 [ghpages-jemoji]: https://help.github.com/articles/emoji-on-github-pages/ "Emoji on GitHub Pages"
+[ghpages-kramdown]: https://kramdown.gettalong.org/options.html "configuration options for the kramdown converter used in Jekyll"
 [ghpages-rouge]: https://help.github.com/articles/using-syntax-highlighting-on-github-pages/ "Using syntax highlighting on GitHub Pages"
 [ghpages]: https://pages.github.com/ "GitHub Pages"
 [jekyll-collection]: https://jekyllrb.com/docs/collections/#step1 "Tell Jekyll to read in your collection"

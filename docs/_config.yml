@@ -42,7 +42,6 @@ collections:
     permalink: "/:collection/:path/"
     title: Layout API
     tab-order: 3
-code_indent: "  "
 highlighter: rouge
 kramdown:
   footnote_backlink: "⮌"

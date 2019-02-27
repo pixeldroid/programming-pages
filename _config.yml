@@ -24,7 +24,6 @@ collections:
     title: Guides
     tab-order: 3
 
-code_indent: "  "
 highlighter: rouge
 permalink: pretty
 sass:
