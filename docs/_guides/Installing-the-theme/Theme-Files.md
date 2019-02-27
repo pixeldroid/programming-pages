@@ -124,7 +124,7 @@ Content for collections is optional. To provide it, simply create one or more of
 - `_examples/`
 - `_guides/`
 
-See the [Authoring Documentation][authoring-documentation] guide to learn more about writing the contents of these files.
+Collections are not limited to these three names&mdash;see the [Authoring Documentation][authoring-documentation] guide to learn more.
 
 
 ## Theme content

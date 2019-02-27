@@ -67,7 +67,10 @@ Grouped documentation is called a _collection_ by Jekyll, and can be any folder 
 <span>{% include icon.liquid id='info-circle' %} <b>Info</b></span><br> See the [Site theme files guide]({{site.baseurl}}/guides/Installing-the-theme/Theme-files/#theme-provided-configuration) for details about specifying collection folders in the site configuration file.
 {:.ui.info.message}
 
-The programming pages theme is pre-configured for three common collections (`_api`, `_examples`, `_guides`). To use one or more of them, simply create the collection folder and put content markdown files inside. Collections without a folder are ignored.
+The programming pages theme is pre-configured for three common collections (`_api`, `_examples`, `_guides`).
+To use one or more of them, simply create the collection folder and put content markdown files inside. Missing or empty collections are ignored.
+
+Other collections are created by adding a new folder prefixed with an underscore (`_`), and updating `_config.yml` to match. The theme supports more than three collections, or fewer, or none.
 
 #### API reference
 
