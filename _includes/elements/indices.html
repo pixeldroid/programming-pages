@@ -20,7 +20,6 @@
 {% for collection in collection_list %}
 {% capture tab_class %}ui {% if forloop.first %}active {% endif %}inverted tab segment{% endcapture %}
 <div class="{{ tab_class }}" data-tab="{{ collection.label | downcase }}">
-<h4 class="ui header">{{ collection.title }}</h4>
 <div class="ui inverted link list">
 {% assign doc_list = collection.docs %}
 
@@ -201,7 +200,7 @@ so our strategy is to:
 
 {%- comment %} these fixed items (search & collection tabs) need to be above the tab segments {% endcomment -%}
 
-<div id="sidebar-collection-tabs" class="ui inverted stackable pointing secondary fixed menu">
+<div id="sidebar-collection-tabs" class="ui inverted vertical secondary pointing fixed menu">
 {% for collection in collection_list %}
 {% capture tab_class %}{% if forloop.first %}active {% endif %}item{% endcapture %}
   <a class="{{ tab_class }}" data-tab="{{ collection.label | downcase }}">{{ collection.title }}</a>
