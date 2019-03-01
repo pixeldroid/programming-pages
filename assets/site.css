@@ -35,4 +35,5 @@ layout: compress
 {% include styles/programming-pages/svg-icons.css %}
 {% include styles/programming-pages/tweaks.css %}
 {% include themes/syntax.css %}
+{% include styles/custom.css %}
 {% endcapture %}{{ _css | scssify }}
