@@ -20,6 +20,7 @@ params:
   {% unless no_indenting contains doc.layout %}
     {% assign path_bits = doc.relative_path | split: '.' | first | split: '/' %}
     {% assign n = path_bits.size | minus: 2 %}
+    {% if n == 0 %}{% assign item_class = item_class | append: ' header' %}{% endif %}
     {% if n > 3 %}{% assign n = 3 %}{% endif %}
     {% capture indent %}{% for i in (1..n) %}&ensp;{% endfor %}{% endcapture %}
     {% capture link %}{{ indent }}{{ doc.title }}{% endcapture %}
