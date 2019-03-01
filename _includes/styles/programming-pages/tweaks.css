@@ -138,6 +138,9 @@ sup:target::before {
   padding: 0 0 0 .7em;
   margin-top: 0;
 }
+#sidebar-collection-indices .ui.list .header.item {
+  font-weight: normal;
+}
 #sidebar-collection-tabs {
   background-color: #292a2b; /* FIXME: this should be some theme variable for a lightened inverted background */
 }
