@@ -30,9 +30,10 @@ layout: compress
 {% include styles/semantic-ui/transition.min.css %}
 
 {% capture _css %}
-{% include styles/emoji.css %}
-{% include styles/kbd.css %}
-{% include styles/svg-icons.css %}
-{% include styles/tweaks.css %}
+{% include styles/programming-pages/emoji.css %}
+{% include styles/programming-pages/kbd.css %}
+{% include styles/programming-pages/svg-icons.css %}
+{% include styles/programming-pages/tweaks.css %}
 {% include themes/syntax.css %}
+{% include styles/custom.css %}
 {% endcapture %}{{ _css | scssify }}
