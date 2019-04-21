@@ -1,0 +1,65 @@
+{%- comment -%}
+
+log
+  sends values to the browser's javascript console via console.log|info|warn|error() or console.table()
+
+params:
+  lvl='<log|info|warn|error>' (optional, defaults to 'log'; message level)
+  msg='<string>' (optional; message to log)
+  table=[..] (optional; object to be logged as a table)
+  values=[..] (optional; array of values to be logged individually at message level)
+  keys=[..] (optional; array of labels to be combined with values and logged as a table)
+
+{%- endcomment -%}
+
+{%- comment -%}push prior state{%- endcomment -%}
+{%- assign __default_level = default_level -%}
+{%- assign __valid_levels = valid_levels -%}
+{%- assign __lvl = lvl -%}
+{%- assign __n = n -%}
+{%- assign __v = v -%}
+
+{%- assign default_level = 'log' -%}
+{%- assign valid_levels = 'log|info|warn|error' | split: '|' -%}
+{%- assign lvl = default_level -%}{%- if valid_levels contains include.lvl %}{% assign lvl = include.lvl %}{% endif -%}
+
+<script>
+$(function() {
+  {% if include.msg -%}
+  console.{{ lvl }}('{{ include.msg | xml_escape }}');
+  {% endif -%}
+
+  {%- if include.values -%}
+  {%- if include.keys and include.values.size == include.keys.size -%}
+
+  {%- assign n = include.keys.size -%}
+  let obj = {
+  {%- for i in (0..n) -%}
+    {% assign v = '""' %}{% unless include.values[i] == '' %}{% capture v %}{{ include.values[i] | jsonify }}{% endcapture %}{% endunless %}
+    "{{ include.keys[i] }}" : {{ v }}
+  {%- unless forloop.last -%},{%- endunless -%}
+  {%- endfor %}
+  };
+  console.table(obj);
+
+  {%- else -%}
+
+  {% for v in include.values -%}
+  console.{{ lvl }}({{ v | jsonify }});
+  {% endfor -%}
+
+  {%- endif -%}
+  {%- endif -%}
+
+  {%- if include.table %}
+  console.table({{ include.table | jsonify }});
+  {%- endif %}
+});
+</script>
+
+{%- comment -%}pop prior state{%- endcomment -%}
+{%- assign v = __v -%}
+{%- assign n = __n -%}
+{%- assign lvl = __lvl -%}
+{%- assign valid_levels = __valid_levels -%}
+{%- assign default_level = __default_level -%}

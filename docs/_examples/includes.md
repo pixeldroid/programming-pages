@@ -52,6 +52,55 @@ Each section on this page illustrates liquid syntax that can be used to invoke m
 {:.ui.attached.secondary.segment}
 
 
+## log.liquid
+
+> generates a javascript function that logs information to the console. <br>
+> the function is submitted to jQuery's document ready function (`$()`).
+
+| parameter | description |
+|-----------|-------------|
+| `lvl`     | `<log|info|warn|error>` (optional, defaults to `log`; message level) |
+| `msg`     | `<string>` (optional; message to print to console at specific level) |
+| `table`   | `[..]` (optional; object to be logged as a table) |
+| `values`  | `[..]` (optional; array of values to be logged individually at message level) |
+| `keys`    | `[..]` (optional; array of labels to be combined with values and logged as a table) |
+{:.ui.celled.table}
+
+#### markdown
+{:.ui.attached.tertiary.inverted.tight.grey.segment}
+
+<div>
+    {% raw %}{% include log.liquid msg='[programming-pages] hello, console' %}{% endraw %}
+    {% raw %}{% include log.liquid msg='[programming-pages] warning, console' lvl='warn' %}{% endraw %}
+    {% raw %}{% assign log_k = '' | split: '' %}{% endraw %}
+    {% raw %}{% assign log_v = '' | split: '' %}{% endraw %}
+    {% raw %}{% assign log_k = log_k | push: 'key 1' %}{% assign log_v = log_v | push: 'value one' %}{% endraw %}
+    {% raw %}{% assign log_k = log_k | push: 'key 2' %}{% assign log_v = log_v | push: 'value two' %}{% endraw %}
+    {% raw %}{% assign log_k = log_k | push: 'key 3' %}{% assign log_v = log_v | push: 'value three' %}{% endraw %}
+    {% raw %}{% include log.liquid msg='[programming-pages] key/value pairs to table' keys=log_k values=log_v %}{% endraw %}
+    (open the browser's javascript console to see the examples)
+</div>
+{:.ui.attached.secondary.tight.segment}
+
+<br>
+
+#### result
+{:.ui.attached.secondary.inverted.tight.blue.segment}
+
+<div>
+{% include log.liquid msg='[programming-pages] hello, console' %}
+{% include log.liquid msg='[programming-pages] warning, console' lvl='warn' %}
+{% assign log_k = '' | split: '' %}
+{% assign log_v = '' | split: '' %}
+{% assign log_k = log_k | push: 'key 1' %}{% assign log_v = log_v | push: 'value one' %}
+{% assign log_k = log_k | push: 'key 2' %}{% assign log_v = log_v | push: 'value two' %}
+{% assign log_k = log_k | push: 'key 3' %}{% assign log_v = log_v | push: 'value three' %}
+{% include log.liquid msg='[programming-pages] key/value pairs to table' keys=log_k values=log_v %}
+(open the browser's javascript console to see the examples)
+</div>
+{:.ui.attached.secondary.segment}
+
+
 ## ordered\_child\_list.liquid
 
 > generates an html list of child pages, respecting their `page.order` value. <br>
