@@ -11,6 +11,17 @@ params:
   no_indent=<pipe delimited list of layouts that should not be indented>
 
 {%- endcomment -%}
+
+{%- comment -%}push prior state{%- endcomment -%}
+{%- assign __no_indenting = no_indenting -%}
+{%- assign __link = link -%}
+{%- assign __url = url -%}
+{%- assign __item_id = item_id -%}
+{%- assign __item_class = item_class -%}
+{%- assign __path_bits = path_bits -%}
+{%- assign __n = n -%}
+{%- assign __indent = indent -%}
+
 {% assign no_indenting = include.no_indent | split: '|' %}
 {% for doc in include.doc_list %}
   {% capture link %}{{ doc.title }}{% endcapture %}
@@ -27,3 +38,13 @@ params:
   {% endunless %}
   <a{{ item_id }} class="very tight smaller text {{ item_class }}" href="{{ site.baseurl }}{{ url }}">{{ link }}</a>
 {% endfor %}
+
+{%- comment -%}pop prior state{%- endcomment -%}
+{%- assign indent = __indent -%}
+{%- assign n = __n -%}
+{%- assign path_bits = __path_bits -%}
+{%- assign item_class = __item_class -%}
+{%- assign item_id = __item_id -%}
+{%- assign url = __url -%}
+{%- assign link = __link -%}
+{%- assign no_indenting = __no_indenting -%}
