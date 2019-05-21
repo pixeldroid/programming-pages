@@ -7,9 +7,16 @@ params:
   page=<page-object>
 
 {%- endcomment -%}
+
+{%- comment -%}push prior state{%- endcomment -%}
+{%- assign __url_pieces = url_pieces -%}
+
 {%- assign url_pieces = include.page.url | split: '/' -%}
 {%- for piece in url_pieces -%}
   {%- unless piece.size > 0 -%}{%- continue -%}{%- endunless -%}
   /{{ piece }}
   {%- break -%}
 {%- endfor -%}
+
+{%- comment -%}pop prior state{%- endcomment -%}
+{%- assign url_pieces = __url_pieces -%}

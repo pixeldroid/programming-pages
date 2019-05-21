@@ -1,4 +1,5 @@
 .jekyll-metadata
+.sass-cache
 _site
 build/doc-template
 Gemfile.lock

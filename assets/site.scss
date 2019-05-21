@@ -2,6 +2,8 @@
 layout: compress
 ---
 
+{% comment %} #TODO: use sass distribution of SUI {% endcomment %}
+
 {% include styles/semantic-ui/_version.css %}
 {% include styles/semantic-ui/site.min.css %}
 {% include styles/semantic-ui/reset.min.css %}
@@ -29,11 +31,13 @@ layout: compress
 {% include styles/semantic-ui/table.min.css %}
 {% include styles/semantic-ui/transition.min.css %}
 
-{% capture _css %}
-{% include styles/programming-pages/emoji.css %}
-{% include styles/programming-pages/kbd.css %}
-{% include styles/programming-pages/svg-icons.css %}
+@import "emoji";
+@import "kbd";
+@import "svg-icons";
+@import "syntax";
+
+{% comment %} not scss, needs liquid processing {% endcomment %}
 {% include styles/programming-pages/tweaks.css %}
-{% include themes/syntax.css %}
+
+{% comment %} allow user to override any theme css {% endcomment %}
 {% include styles/custom.css %}
-{% endcapture %}{{ _css | scssify }}

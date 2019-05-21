@@ -11,6 +11,13 @@ params:
   threshold=2 (optional, defaults to 2)
 
 {%- endcomment -%}
+
+{%- comment -%}push prior state{%- endcomment -%}
+{%- assign __t = t -%}
+{%- assign __pkg_long = pkg_long -%}
+{%- assign __pkg_abbr = pkg_abbr -%}
+{%- assign __p = p -%}
+
 {%- assign t = include.threshold | default: 2 -%}
 {%- assign pkg_long = include.package | split: '.' -%}
 {%- if pkg_long.size > t -%}
@@ -27,3 +34,9 @@ params:
 {%- else -%}
   {%- assign pkg_abbr = include.package -%}
 {%- endif -%}{{- pkg_abbr -}}
+
+{%- comment -%}pop prior state{%- endcomment -%}
+{%- assign p = __p -%}
+{%- assign pkg_abbr = __pkg_abbr -%}
+{%- assign pkg_long = __pkg_long -%}
+{%- assign t = __t -%}
