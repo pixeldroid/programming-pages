@@ -25,6 +25,7 @@ Gem::Specification.new do |gem|
     '_data/**/*',
     '_includes/**/*',
     '_layouts/**/*',
+    '_sass/**/*',
     'assets/**/*',
     'favicon.png',
     'index.md',
