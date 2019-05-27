@@ -1,0 +1,36 @@
+{%- comment -%}
+
+collapsible_example
+  embeds the provided snippet in a collapsible container
+  snippet path should be rooted in _includes
+
+params:
+  file=<path-to-file> must be rooted in _includes
+
+{%- endcomment -%}
+
+{%- comment -%}push prior state{%- endcomment -%}
+{%- assign __name_parts = name_parts -%}
+{%- assign __example_id = example_id -%}
+{%- assign __example_content = example_content -%}
+
+{%- assign name_parts = include.file | split: '/' | last | split: '.' -%}
+{%- assign example_id = name_parts.first | prepend: 'ex-' -%}
+{%- capture example_content -%}
+```{{ name_parts | last }}
+{% include {{ include.file }} %}
+```
+{%- endcapture -%}
+
+<div class="ui example segment">
+<a class="ui top attached basic tiny label" onclick="toggle_collapsed('{{ example_id }}')">{% include icon.liquid id='plus-square-outline' %} toggle example</a>
+<div id="{{ example_id }}" class="collapsible example collapsed">
+{{ example_content | markdownify }}
+</div>
+<div class="ui bottom attached label"> {{ name_parts | join: '.' }} </div>
+</div>
+
+{%- comment -%}pop prior state{%- endcomment -%}
+{%- assign example_content = __example_content -%}
+{%- assign example_id = __example_id -%}
+{%- assign name_parts = __name_parts -%}

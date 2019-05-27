@@ -20,9 +20,35 @@ Each section on this page illustrates liquid syntax that can be used to invoke m
 {:toc}
 
 
+## collapsible_example.liquid
+
+> Embed a collapsed example that the user can expand if interested.
+
+#### markdown
+{:.ui.attached.tertiary.inverted.tight.grey.segment}
+
+<div>
+    {% raw %}{% include collapsible_example.liquid file='snippets/hello_world.cpp' %}{% endraw %}
+</div>
+{:.ui.attached.secondary.tight.segment}
+
+<br>
+
+#### result
+{:.ui.attached.secondary.inverted.tight.blue.segment}
+
+{::options parse_block_html="false" /}
+<div>
+{% include collapsible_example.liquid file='snippets/hello_world.cpp' %}
+</div>
+{:.ui.attached.secondary.segment}
+{::options parse_block_html="true" /}
+
+
+
 ## icon.liquid
 
-> SVG icons are defined in [_data/icons/theme.yml][svg-file] by the theme.  See the [markdown sampler] for a list of icon ids.
+> SVG icons are defined in [\_data/icons/theme.yml][svg-file] by the theme.  See the [markdown sampler] for a list of icon ids.
 
 <span>{% include icon.liquid id='check-circle' %} <b>Tip</b></span><br> Users may also define icons of their own, by adding additional icon data files under `_data/icons/`. See the [source comments][svg-file] for more details.
 {:.ui.success.message}
