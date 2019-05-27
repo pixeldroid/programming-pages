@@ -1,5 +1,6 @@
 /*
  * CSS customizations
  *
- * rules in this file will take precedence over other rules defined for the theme
+ * this file is included after all other stye sheet files
+ * you can add rules here that will take precedence over any already defined by the theme
  */

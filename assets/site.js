@@ -2,6 +2,9 @@
 layout: compress
 ---
 
+{% comment %} render-blocking scripts only {% endcomment %}
+{% comment %} on-page-ready scripts are loaded by the page layout {% endcomment %}
+
 {% include scripts/jquery/jquery-3.3.1.custom.min.js %}
 {% include scripts/jquery-address/jquery-address-1.6.semantic-ui.min.js %}
 

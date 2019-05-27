@@ -1,3 +1,7 @@
+toggle_collapsed = function(id) {
+  $('#'+id).toggleClass('collapsed'); //  document.getElementById(id).classList.toggle('collapsed');
+}
+
 sidebar_init = function() {
   $('#sidebar-retractable')
   .sidebar({

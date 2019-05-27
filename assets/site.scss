@@ -39,5 +39,5 @@ layout: compress
 {% comment %} not scss, needs liquid processing {% endcomment %}
 {% include styles/programming-pages/tweaks.css %}
 
-{% comment %} allow user to override any theme css {% endcomment %}
+{% comment %} provide user extension / override point {% endcomment %}
 {% include styles/custom.css %}

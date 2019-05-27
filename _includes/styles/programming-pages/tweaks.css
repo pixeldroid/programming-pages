@@ -247,6 +247,16 @@ pre.highlight {
   width: fit-content;
   max-width: 100%;
 }
+.example.segment {
+  min-height: 4rem;
+  background-color: transparent;
+}
+.collapsible.example {
+  display: block;
+}
+.collapsible.example.collapsed {
+  display: none;
+}
 .larger.text {
   font-size: 150%;
 }
