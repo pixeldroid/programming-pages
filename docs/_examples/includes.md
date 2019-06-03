@@ -22,7 +22,14 @@ Each section on this page illustrates liquid syntax that can be used to invoke m
 
 ## collapsible_example.liquid
 
-> Embed a collapsed example that the user can expand if interested.
+> embeds a collapsed example that the user can expand if interested.
+
+| parameter | description |
+|-----------|-------------|
+| `file`    | path to example file for embedding (must be rooted in `_includes`) |
+| `syntax`  | (optional) hint for syntax hilighter; defaults to file extension |
+| `id_only` | (optional) when `'true'` (string value), macro only evaluates to id of example label, e.g. to use in an href; defaults to empty string and normal behavior of embedding code example |
+{:.ui.celled.table}
 
 #### markdown
 {:.ui.attached.tertiary.inverted.tight.grey.segment}
@@ -48,7 +55,7 @@ Each section on this page illustrates liquid syntax that can be used to invoke m
 
 ## icon.liquid
 
-> SVG icons are defined in [\_data/icons/theme.yml][svg-file] by the theme.  See the [markdown sampler] for a list of icon ids.
+> inserts SVG code for an icon. SVG icons are defined in [\_data/icons/theme.yml][svg-file] by the theme.  See the [markdown sampler] for a list of icon ids.
 
 <span>{% include icon.liquid id='check-circle' %} <b>Tip</b></span><br> Users may also define icons of their own, by adding additional icon data files under `_data/icons/`. See the [source comments][svg-file] for more details.
 {:.ui.success.message}
@@ -232,7 +239,7 @@ Each section on this page illustrates liquid syntax that can be used to invoke m
 ## render\_indices.liquid
 
 > creates the individual links in the sidebar. <br>
-> links are indented when parented, unless their page layout has been excluded
+> links are indented when parented, unless their page layout has been excluded with `no_indent`
 
 <span>{% include icon.liquid id='info-circle' %} <b>Note</b></span><br> This include is made available for override, so that a site can customize how (or if) it renders the items in the side nav.
 {:.ui.info.message}

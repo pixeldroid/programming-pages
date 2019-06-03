@@ -6,31 +6,49 @@ collapsible_example
 
 params:
   file=<path-to-file> must be rooted in _includes
+  syntax=<hilighter-syntax-hint> (optional) hint for syntax hilighter; defaults to file extension
+  id_only=<'true'|any> (optional) when 'true', evaluates to the id of the example label, e.g. for use in an href; defaults to empty string and normal behavior of embedding code example
 
 {%- endcomment -%}
 
 {%- comment -%}push prior state{%- endcomment -%}
 {%- assign __name_parts = name_parts -%}
 {%- assign __example_id = example_id -%}
-{%- assign __example_content = example_content -%}
 
 {%- assign name_parts = include.file | split: '/' | last | split: '.' -%}
-{%- assign example_id = name_parts.first | prepend: 'ex-' -%}
+{%- assign example_id = name_parts.first | slugify | prepend: 'example-' -%}
+
+{%- if include.id_only == 'true' -%}
+{{ example_id }}
+
+{%- else -%}
+{%- assign __collapsible_id = collapsible_id -%}
+{%- assign __example_content = example_content -%}
+{%- assign __syntax = syntax -%}
+
+{%- assign collapsible_id = name_parts.first | slugify | prepend: 'collapsible-' -%}
+{%- assign syntax = name_parts | last -%}{%- if include.syntax %}{% assign syntax = include.syntax %}{% endif -%}
 {%- capture example_content -%}
-```{{ name_parts | last }}
+```{{ syntax }}
 {% include {{ include.file }} %}
 ```
 {%- endcapture -%}
 
 <div class="ui example segment">
-<a class="ui top attached basic tiny label" onclick="toggle_collapsed('{{ example_id }}')">{% include icon.liquid id='plus-square-outline' %} toggle example</a>
-<div id="{{ example_id }}" class="collapsible example collapsed">
+<a class="ui top attached basic tiny label" onclick="toggle_collapsed('{{ collapsible_id }}')">{% include icon.liquid id='plus-square-outline' %} toggle example</a>
+<div id="{{ collapsible_id }}" class="collapsible example collapsed">
 {{ example_content | markdownify }}
 </div>
-<div class="ui bottom attached label"> {{ name_parts | join: '.' }} </div>
+<div id="{{ example_id }}" class="ui bottom attached label"> {{ name_parts | join: '.' }} </div>
 </div>
 
 {%- comment -%}pop prior state{%- endcomment -%}
 {%- assign example_content = __example_content -%}
+{%- assign syntax = __syntax -%}
+{%- assign collapsible_id = __collapsible_id -%}
+
+{%- endif -%}
+
+{%- comment -%}pop prior state{%- endcomment -%}
 {%- assign example_id = __example_id -%}
 {%- assign name_parts = __name_parts -%}
