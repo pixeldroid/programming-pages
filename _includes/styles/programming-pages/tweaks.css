@@ -146,6 +146,7 @@ sup:target::before {
 }
 #sidebar-fixed #sidebar-collection-indices .ui.large.fixed.menu {
   top: 3.5rem; /* for sidebar fixed, keep search and tabs fixed at top */
+  width: 15rem;
 }
 #sidebar-fixed #sidebar-collection-tabs {
   top: 5.65rem;
