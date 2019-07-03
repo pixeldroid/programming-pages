@@ -315,12 +315,18 @@ desc [
   " Puppeteer is on GitHub: https://github.com/GoogleChrome/puppeteer#puppeteer-core",
 ].join("\n")
 task :screenshot do |t, args|
-  np = 'NODE_PATH="$(npm root -g):$NODE_PATH"'
-  bp = 'BROWSER_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"'
-  dim = 'WIDTH=850 HEIGHT=800'
-  cmd = "#{np} #{bp} #{dim} node ./build/screenshots/take_screenshot.js"
-  puts "[#{t.name}] asking puppeteer to take a screenshot..."
-  try(cmd, 'unable to take screenshot')
+  unless path_to_exe('npm')
+    puts "[#{t.name}] npm command not found, skipping auto-screenshot"
+    puts "[#{t.name}]   please manually create an 850 x 800 px screenshot, and"
+    puts "[#{t.name}]   save it in the root of this project dir as 'screenshot.png'"
+  else
+    np = 'NODE_PATH="$(npm root -g):$NODE_PATH"'
+    bp = 'BROWSER_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"'
+    dim = 'WIDTH=850 HEIGHT=800'
+    cmd = "#{np} #{bp} #{dim} node ./build/screenshots/take_screenshot.js"
+    puts "[#{t.name}] asking puppeteer to take a screenshot..."
+    try(cmd, 'unable to take screenshot')
+  end
 
   puts "[#{t.name}] task completed"
 end
