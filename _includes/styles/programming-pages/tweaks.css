@@ -125,6 +125,16 @@ sup:target::before {
 }
 
 /* sidebar menu styling */
+#site-search {
+  width: 14rem;
+  margin-left: -.5rem;
+}
+#site-search .results {
+  overflow: auto;
+}
+#site-search input {
+  padding-left: 2em;
+}
 #sidebar-collection-indices {
   padding-bottom: 75vh; /* add space underneath indices so bottom-most item can scroll into view */
 }
