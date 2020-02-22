@@ -57,6 +57,16 @@ theme: programming-pages
 1. Visit your documentation site at https://&lt;`username`&gt;.github.io/&lt;`project`&gt;
 1. _repeat_
 
+<br>
+
+---
+
+> If you just want to use the theme, you can stop reading here. 
+> The directions below are only useful if you're interested in building the theme from source. <br>
+
+---
+
+<br>
 
 ## building
 
